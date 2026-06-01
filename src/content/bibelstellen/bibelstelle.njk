@@ -1,0 +1,16 @@
+---
+pagination:
+  data: collections.sermonScriptures
+  size: 1
+  alias: entry
+layout: layouts/page.njk
+permalink: "/bibelstellen/{{ entry.slug }}/"
+eleventyExcludeFromCollections: true
+---
+{% set title = entry.label %}
+{% set summary = entry.items.length + " Predigten zu dieser Bibelstelle." %}
+<ul>
+  {% for sermon in entry.items %}
+    <li><a href="{{ sermon.url }}">{{ sermon.data.title }}</a> · <time datetime="{{ sermon.data.date | htmlDateString }}">{{ sermon.data.date | readableDate("dd.MM.yyyy") }}</time></li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,16 @@
+---
+pagination:
+  data: collections.contentTags
+  size: 1
+  alias: entry
+layout: layouts/page.njk
+permalink: "/tags/{{ entry.slug }}/"
+eleventyExcludeFromCollections: true
+---
+{% set title = entry.label %}
+{% set summary = entry.items.length + " veröffentlichte Inhalte mit diesem Schlagwort." %}
+<ul>
+  {% for item in entry.items %}
+    <li><a href="{{ item.url }}">{{ item.data.title }}</a>{% if item.data.date %} · <time datetime="{{ item.data.date | htmlDateString }}">{{ item.data.date | readableDate("dd.MM.yyyy") }}</time>{% endif %}</li>
+  {% endfor %}
+</ul>

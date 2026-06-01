@@ -1,0 +1,11 @@
+---
+layout: layouts/page.njk
+title: Schlagworte
+summary: Thematische Archive über alle veröffentlichten Inhalte.
+permalink: /tags/
+---
+<ul>
+  {% for entry in collections.contentTags %}
+    <li><a href="/tags/{{ entry.slug }}/">{{ entry.label }}</a> ({{ entry.items.length }})</li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,29 @@
+---
+layout: layouts/page.njk
+title: Über mich
+summary: Biografische Informationen, persönliche Schwerpunkte und Bilder.
+permalink: /ueber-mich/
+---
+<div class="portrait-block">
+  {% if legacyMedia.portrait %}
+    <figure class="portrait-card">
+      {% responsiveImage legacyMedia.portrait, "Pfarrer Christoph Fischer", {
+        class: "portrait-card__image",
+        sizes: "(min-width: 64rem) 22rem, 100vw",
+        loading: "eager"
+      }, page %}
+    </figure>
+  {% endif %}
+
+  <div>
+    <p>Ich bin in Böblingen geboren, in Herrenberg-Kuppingen aufgewachsen und seit vielen Jahren mit Rebecca Dernelle-Fischer verheiratet. Gemeinsam haben wir drei Kinder und ein Familienleben, das mich ebenso prägt wie mein theologischer Weg.</p>
+    <p>Mit Leib und Seele bin ich Pfarrer. Mein Weg in den hauptamtlichen geistlichen Dienst verlief nicht geradlinig, aber genau das hat meinen Blick geweitet: von freikirchlichen Prägungen über das Theologiestudium in Belgien bis in den Pfarrdienst der Evangelischen Landeskirche in Württemberg.</p>
+    <p>Mich prägen die Liebe zur Bibel, die Freude an Predigt und Verkündigung, ökumenische Offenheit und ein starkes Interesse daran, wie digitale Werkzeuge die kirchliche Arbeit sinnvoll unterstützen können.</p>
+    <blockquote>Ich will meine Kraft und meine Gaben dazu nutzen, offen, barmherzig und in ökumenischer Zusammenarbeit Menschen die Gnade Gottes in Jesus Christus nahezubringen.</blockquote>
+    <p>Weitere Stationen stehen in der <a href="/vita/">Vita</a>. Eigene Software- und Gemeindeprojekte spielen ebenfalls eine Rolle, etwa in der Entwicklung des Pfarrplaners und weiterer digitaler Werkzeuge für kirchliche Praxis.</p>
+  </div>
+</div>
+
+<h2>In Bildern</h2>
+{% set items = legacyMedia.aboutGallery %}
+{% include "components/gallery-grid.njk" %}

@@ -1,0 +1,11 @@
+---
+layout: layouts/page.njk
+title: Bibelstellen
+summary: Predigtarchiv nach Bibelstellen.
+permalink: /bibelstellen/
+---
+<ul>
+  {% for entry in collections.sermonScriptures %}
+    <li><a href="/bibelstellen/{{ entry.slug }}/">{{ entry.label }}</a> ({{ entry.items.length }})</li>
+  {% endfor %}
+</ul>

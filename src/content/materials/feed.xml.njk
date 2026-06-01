@@ -1,0 +1,21 @@
+---
+permalink: /material/feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>{{ site.title }} – Material</title>
+    <link>{{ site.url }}/material/</link>
+    <description>Materialfeed von {{ site.title }}</description>
+    {% for item in collections.materials.slice(0, 20) %}
+    <item>
+      <title>{{ item.data.title | escape }}</title>
+      <link>{{ item.url | absoluteUrl(site) }}</link>
+      <guid>{{ item.url | absoluteUrl(site) }}</guid>
+      <pubDate>{{ item.date.toUTCString() }}</pubDate>
+      <description>{{ (item.data.summary or item.templateContent | excerpt(240)) | escape }}</description>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

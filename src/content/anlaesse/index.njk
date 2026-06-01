@@ -1,0 +1,11 @@
+---
+layout: layouts/page.njk
+title: Anlässe
+summary: Predigtarchiv nach liturgischem Anlass.
+permalink: /anlaesse/
+---
+<ul>
+  {% for entry in collections.sermonOccasions %}
+    <li><a href="/anlaesse/{{ entry.slug }}/">{{ entry.label }}</a> ({{ entry.items.length }})</li>
+  {% endfor %}
+</ul>

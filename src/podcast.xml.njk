@@ -1,0 +1,41 @@
+---
+permalink: /podcast.xml
+eleventyExcludeFromCollections: true
+---
+{% set explicitFlag = "yes" if site.podcast.explicit else "no" %}
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title>{{ site.podcast.title }}</title>
+    <link>{{ site.url }}/</link>
+    <description>{{ site.podcast.description }}</description>
+    <language>{{ site.language }}</language>
+    <itunes:author>{{ site.author.name }}</itunes:author>
+    <itunes:summary>{{ site.podcast.description }}</itunes:summary>
+    <itunes:explicit>{{ explicitFlag }}</itunes:explicit>
+    <itunes:owner>
+      <itunes:name>{{ site.podcast.ownerName }}</itunes:name>
+      {% if site.podcast.ownerEmail %}<itunes:email>{{ site.podcast.ownerEmail }}</itunes:email>{% endif %}
+    </itunes:owner>
+    <itunes:image href="{{ ('/img/podcast.jpg') | absoluteUrl(site) }}"/>
+    {% for category in site.podcast.categories %}
+      <itunes:category text="{{ category }}"/>
+    {% endfor %}
+    {% for sermon in collections.sermons.slice(0, 20) %}
+      {% if sermon.data.audio %}
+      <item>
+        <title>{{ sermon.data.title | escape }}</title>
+        <link>{{ sermon.url | absoluteUrl(site) }}</link>
+        <guid>{{ sermon.url | absoluteUrl(site) }}</guid>
+        <pubDate>{{ sermon.date.toUTCString() }}</pubDate>
+        <description>{{ sermon.data.summary | escape }}</description>
+        <itunes:author>{{ site.author.name }}</itunes:author>
+        <itunes:summary>{{ sermon.data.summary | escape }}</itunes:summary>
+        <itunes:explicit>{{ explicitFlag }}</itunes:explicit>
+        {% if sermon.data.audio_duration %}<itunes:duration>{{ sermon.data.audio_duration }}</itunes:duration>{% endif %}
+        <enclosure url="{{ (sermon.url + sermon.data.audio) | absoluteUrl(site) }}" type="audio/mpeg"/>
+      </item>
+      {% endif %}
+    {% endfor %}
+  </channel>
+</rss>

@@ -1,0 +1,12 @@
+{% if items and items.length %}
+  <dl class="metadata-list{% if metaClass %} {{ metaClass }}{% endif %}">
+    {% for item in items %}
+      {% if item.value %}
+        <div>
+          <dt>{{ item.label }}</dt>
+          <dd>{{ item.value | safe }}</dd>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </dl>
+{% endif %}

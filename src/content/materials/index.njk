@@ -1,0 +1,15 @@
+---
+layout: layouts/page.njk
+title: Material
+summary: Arbeitsblätter, Downloads und weiterführende Materialien.
+permalink: /material/
+---
+{% if collections.materials.length %}
+  {% set archiveItems = collections.materials %}
+  {% set archiveClass = null %}
+  {% include "components/archive-list.njk" %}
+{% else %}
+  <div class="archive-placeholder">
+    <p>Im Materialbereich sind noch keine Inhalte veröffentlicht.</p>
+  </div>
+{% endif %}

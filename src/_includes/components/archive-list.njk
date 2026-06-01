@@ -1,0 +1,44 @@
+{% if archiveItems and archiveItems.length %}
+  <div class="archive-list{% if archiveClass %} {{ archiveClass }}{% endif %}">
+    {% for item in archiveItems %}
+      {% set entry = item.data %}
+      {% if entry.cover %}
+        {% if entry.cover.startsWith('/') %}
+          {% set entryCoverUrl = entry.cover %}
+        {% else %}
+          {% set entryCoverUrl = item.url + entry.cover %}
+        {% endif %}
+      {% endif %}
+      <article class="archive-entry{% if entry.cover %} archive-entry--with-image{% endif %}">
+        {% if entry.cover %}
+          <a class="archive-entry__media" href="{{ item.url }}" aria-hidden="true" tabindex="-1">
+            <img
+              src="{{ entryCoverUrl }}"
+              alt="{{ entry.cover_alt or ('Titelbild zu ' + entry.title) }}"
+              class="archive-entry__image"
+              loading="lazy"
+              decoding="async"
+            >
+          </a>
+        {% endif %}
+        <div class="archive-entry__body">
+          <div class="archive-entry__meta meta">
+            {% if entry.date %}
+              <time datetime="{{ entry.date | htmlDateString }}">{{ entry.date | readableDate("dd.MM.yyyy") }}</time>
+            {% endif %}
+            {% if entry.occasion %} · {{ entry.occasion }}{% endif %}
+            {% if entry.scripture %} · {{ entry.scripture }}{% endif %}
+          </div>
+          <h3><a href="{{ item.url }}">{{ entry.title }}</a></h3>
+          {% if entry.summary %}
+            <p>{{ entry.summary }}</p>
+          {% endif %}
+          {% if entry.tagList and entry.tagList.length %}
+            {% set tags = entry.tagList %}
+            {% include "components/tag-links.njk" %}
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+{% endif %}

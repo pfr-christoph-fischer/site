@@ -1,0 +1,20 @@
+{
+  "name": "Christoph Fischer",
+  "short_name": "CFDE",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f2eb",
+  "theme_color": "#f6f2eb",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

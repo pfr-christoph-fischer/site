@@ -1,0 +1,11 @@
+---
+permalink: /opensearch.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>{{ site.title }}</ShortName>
+  <Description>{{ site.title }} durchsuchen</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Url type="text/html" method="get" template="{{ site.url }}/suche/?q={searchTerms}"/>
+</OpenSearchDescription>

@@ -1,0 +1,18 @@
+---
+layout: layouts/page.njk
+title: Podcast
+summary: Podcast-Episoden und Audiobeiträge.
+permalink: /podcast/
+---
+<p>Der Podcast bündelt veröffentlichte Predigten zum Hören und verweist auf den abonnierbaren Feed.</p>
+
+{% if collections.podcasts.length %}
+  {% set archiveItems = collections.podcasts %}
+  {% set archiveClass = null %}
+  {% include "components/archive-list.njk" %}
+  <p><a href="/podcast-abonnieren/">Podcast abonnieren</a></p>
+{% else %}
+  <div class="archive-placeholder">
+    <p>Dedizierte Podcast-Episoden können im Dateisystem unter <code>src/content/podcasts/</code> angelegt werden.</p>
+  </div>
+{% endif %}

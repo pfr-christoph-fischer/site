@@ -1,0 +1,7 @@
+{% if tags and tags.length %}
+  <p class="tag-row">
+    {% for tag in tags %}
+      <a href="/tags/{{ tag | slugify }}/" rel="tag">{{ tag }}</a>{% if not loop.last %} · {% endif %}
+    {% endfor %}
+  </p>
+{% endif %}

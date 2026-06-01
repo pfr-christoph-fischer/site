@@ -1,0 +1,11 @@
+---
+layout: layouts/page.njk
+title: Predigtreihen
+summary: Archiv aller Predigtreihen.
+permalink: /reihen/
+---
+<ul>
+  {% for entry in collections.sermonSeries %}
+    <li><a href="/reihen/{{ entry.slug }}/">{{ entry.label }}</a> ({{ entry.items.length }})</li>
+  {% endfor %}
+</ul>

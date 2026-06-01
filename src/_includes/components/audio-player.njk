@@ -1,0 +1,9 @@
+{% if audio %}
+  <section class="audio-block">
+    <h2>Audio</h2>
+    <audio controls preload="none" src="{{ audio }}">
+      Ihr Browser unterstützt das Audio-Element nicht.
+    </audio>
+    <p class="meta"><a href="{{ audio }}" download rel="noopener">MP3 herunterladen</a>{% if audio_duration %} · {{ audio_duration }}{% endif %}</p>
+  </section>
+{% endif %}

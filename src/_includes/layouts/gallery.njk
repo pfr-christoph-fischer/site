@@ -1,0 +1,29 @@
+---
+layout: layouts/page.njk
+ogType: article
+dcType: Image
+---
+{% set items = images %}
+{% include "components/gallery-grid.njk" %}
+
+{% if images and images.length %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ImageGallery",
+      "name": {{ title | dump | safe }},
+      "url": {{ (page.url | absoluteUrl(site)) | dump | safe }},
+      "description": {{ (summary or site.description) | dump | safe }},
+      "inLanguage": {{ site.language | dump | safe }},
+      "image": [
+        {% for item in images %}
+          {
+            "@type": "ImageObject",
+            "contentUrl": {{ (item.src | absoluteUrl(site)) | dump | safe }},
+            "caption": {{ (item.caption or item.title or item.alt) | dump | safe }}
+          }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  </script>
+{% endif %}

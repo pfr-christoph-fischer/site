@@ -1,0 +1,21 @@
+---
+permalink: /blog/feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>{{ site.title }} – Blog</title>
+    <link>{{ site.url }}/blog/</link>
+    <description>Blogfeed von {{ site.title }}</description>
+    {% for post in collections.posts.slice(0, 20) %}
+    <item>
+      <title>{{ post.data.title | escape }}</title>
+      <link>{{ post.url | absoluteUrl(site) }}</link>
+      <guid>{{ post.url | absoluteUrl(site) }}</guid>
+      <pubDate>{{ post.date.toUTCString() }}</pubDate>
+      <description>{{ (post.data.summary or post.templateContent | excerpt(240)) | escape }}</description>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

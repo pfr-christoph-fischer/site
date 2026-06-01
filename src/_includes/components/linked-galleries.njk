@@ -1,0 +1,18 @@
+{% if galleries and galleries.length %}
+  {% for gallerySlug in galleries %}
+    {% set linkedGallery = galleryIndex[gallerySlug] %}
+    {% if linkedGallery %}
+      <section class="linked-gallery">
+        <div class="section-heading">
+          <h2>{{ linkedGallery.title }}</h2>
+          <a href="/galerie/{{ linkedGallery.slug }}/">Galerieseite</a>
+        </div>
+        {% if linkedGallery.summary %}
+          <p class="linked-gallery__summary">{{ linkedGallery.summary }}</p>
+        {% endif %}
+        {% set items = linkedGallery.images %}
+        {% include "components/gallery-grid.njk" %}
+      </section>
+    {% endif %}
+  {% endfor %}
+{% endif %}

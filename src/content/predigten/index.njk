@@ -1,0 +1,19 @@
+---
+layout: layouts/page.njk
+title: Predigten
+summary: Archiv aller im neuen statischen Aufbau gepflegten Predigten.
+permalink: /predigten/
+---
+{% if collections.sermonSeries.length or collections.sermonOccasions.length or collections.sermonScriptures.length %}
+  <nav class="archive-taxonomy-links" aria-label="Weitere Predigtarchive">
+    <p><strong>Weitere Archive:</strong> <a href="/reihen/">Reihen</a> · <a href="/anlaesse/">Anlässe</a> · <a href="/bibelstellen/">Bibelstellen</a> · <a href="/tags/predigt/">Tag Predigt</a></p>
+  </nav>
+{% endif %}
+{% for group in collections.sermonsByYear %}
+  <section class="year-group" aria-labelledby="year-{{ group.year }}">
+    <h2 id="year-{{ group.year }}">{{ group.year }}</h2>
+    {% set archiveItems = group.items %}
+    {% set archiveClass = null %}
+    {% include "components/archive-list.njk" %}
+  </section>
+{% endfor %}

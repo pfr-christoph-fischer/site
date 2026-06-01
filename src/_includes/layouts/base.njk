@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="{{ language or site.language }}">
+  <head>
+    {% set pageTitle = title or site.title %}
+    {% set pageDescription = description or summary or site.description %}
+    {% set pageCanonical = (canonical or page.url) | absoluteUrl(site) %}
+    {% set pageImage = socialImage
+      or (cover and ((page.url + cover) | absoluteUrl(site)))
+      or site.defaultSocialImage | absoluteUrl(site) %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if title %}{{ title }} - {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{{ pageDescription }}">
+    <meta name="author" content="{{ site.author.name }}">
+    <meta name="generator" content="Eleventy">
+    <meta name="robots" content="{% if index == false %}noindex,follow{% else %}index,follow,max-image-preview:large{% endif %}">
+    <link rel="canonical" href="{{ pageCanonical }}">
+    <link rel="home" href="{{ site.url }}/">
+    <link rel="index" href="{{ site.url }}/sitemap.xml">
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="{{ site.title }}">
+    <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="{{ site.title }}">
+    <link rel="alternate" type="application/feed+json" href="/feed.json" title="{{ site.title }}">
+    <link rel="alternate" type="application/rss+xml" href="/podcast.xml" title="{{ site.podcast.title }}">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="{{ site.themeColor }}">
+    <meta name="DC.title" content="{{ pageTitle }}">
+    <meta name="DC.creator" content="{{ site.author.name }}">
+    <meta name="DC.language" content="{{ site.language }}">
+    <meta name="DC.description" content="{{ pageDescription }}">
+    <meta name="DC.identifier" content="{{ pageCanonical }}">
+    <meta name="DC.type" content="{{ dcType or 'Text' }}">
+    <meta name="DC.format" content="text/html">
+    {% if date %}<meta name="DC.date" content="{{ date | htmlDateString }}">{% endif %}
+    <meta property="og:site_name" content="{{ site.title }}">
+    <meta property="og:title" content="{{ pageTitle }}">
+    <meta property="og:description" content="{{ pageDescription }}">
+    <meta property="og:type" content="{{ ogType or 'website' }}">
+    <meta property="og:url" content="{{ pageCanonical }}">
+    <meta property="og:locale" content="{{ site.locale }}">
+    {% if pageImage %}
+      <meta property="og:image" content="{{ pageImage }}">
+      {% if coverAlt or cover_alt %}<meta property="og:image:alt" content="{{ coverAlt or cover_alt }}">{% endif %}
+    {% endif %}
+    {% if ogType == "article" and date %}
+      <meta property="article:published_time" content="{{ date }}T00:00:00+02:00">
+      <meta property="article:author" content="{{ site.author.name }}">
+    {% endif %}
+    {% if ogType == "article" and updated %}
+      <meta property="article:modified_time" content="{{ updated }}T00:00:00+02:00">
+    {% endif %}
+    {% for tag in tagList or [] %}
+      <meta property="article:tag" content="{{ tag }}">
+    {% endfor %}
+    {% if audio %}
+      <meta property="og:audio" content="{{ (page.url + audio) | absoluteUrl(site) }}">
+      <meta property="og:audio:type" content="audio/mpeg">
+    {% endif %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ pageTitle }}">
+    <meta name="twitter:description" content="{{ pageDescription }}">
+    {% if pageImage %}
+      <meta name="twitter:image" content="{{ pageImage }}">
+      {% if coverAlt or cover_alt %}<meta name="twitter:image:alt" content="{{ coverAlt or cover_alt }}">{% endif %}
+    {% endif %}
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    {% if page.url == "/" %}
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebSite",
+              "name": {{ site.title | dump | safe }},
+              "url": {{ site.url | dump | safe }},
+              "inLanguage": {{ site.language | dump | safe }},
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": {{ (site.url + "/suche/?q={search_term_string}") | dump | safe }},
+                "query-input": "required name=search_term_string"
+              }
+            },
+            {
+              "@type": "Person",
+              "name": {{ site.author.name | dump | safe }},
+              "url": {{ site.url | dump | safe }},
+              "jobTitle": {{ site.author.jobTitle | dump | safe }},
+              "worksFor": {
+                "@type": "Organization",
+                "name": {{ site.organization.name | dump | safe }}
+              },
+              "sameAs": {{ site.relMe | dump | safe }}
+            }
+          ]
+        }
+      </script>
+    {% endif %}
+  </head>
+  <body>
+    {% include "components/skip-link.njk" %}
+    <div class="h-card" hidden>
+      <a class="u-url p-name" href="{{ site.url }}/">{{ site.author.name }}</a>
+      <span class="p-job-title">{{ site.author.jobTitle }}</span>
+      {% for profile in site.relMe %}
+        <a href="{{ profile }}" rel="me">{{ profile }}</a>
+      {% endfor %}
+    </div>
+    {% include "components/site-header.njk" %}
+    <main id="main-content" tabindex="-1"{% if listed == false or search == false %} data-pagefind-ignore{% else %} data-pagefind-body{% endif %}>
+      {{ content | safe }}
+    </main>
+    {% include "components/site-footer.njk" %}
+  </body>
+</html>

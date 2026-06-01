@@ -1,0 +1,21 @@
+---
+pagination:
+  data: collections.sermons
+  size: 1
+  alias: sermon
+permalink: "/predigt/{{ sermon.data.slug or sermon.fileSlug }}/index.html"
+layout: layouts/base.njk
+eleventyExcludeFromCollections: true
+index: false
+---
+<section class="shell page-section">
+  <article class="prose">
+    <header class="page-header">
+      <p class="eyebrow">Weiterleitung</p>
+      <h1>{{ sermon.data.title }}</h1>
+      <p class="page-summary">Diese Predigt ist unter einer neuen Adresse erreichbar.</p>
+    </header>
+    <p><a href="{{ sermon.url }}">Zur Predigt wechseln</a></p>
+  </article>
+</section>
+<script>window.location.replace({{ sermon.url | dump | safe }});</script>

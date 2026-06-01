@@ -1,0 +1,15 @@
+---
+layout: layouts/page.njk
+title: Projekte
+summary: Digitale und kreative Projekte.
+permalink: /projekte/
+---
+{% if collections.projects.length %}
+  {% set archiveItems = collections.projects %}
+  {% set archiveClass = null %}
+  {% include "components/archive-list.njk" %}
+{% else %}
+  <div class="archive-placeholder">
+    <p>Projektseiten können jetzt im Dateisystem angelegt werden; konkrete Einträge folgen als nächster Inhaltsschritt.</p>
+  </div>
+{% endif %}

@@ -1,0 +1,16 @@
+<header class="site-header" data-pagefind-ignore>
+  <div class="shell site-header__inner">
+    <div>
+      <a class="site-title" href="/" rel="home">{{ site.title }}</a>
+      <p class="site-tagline">Predigten, Texte und Materialien</p>
+    </div>
+
+    <nav aria-label="Hauptnavigation">
+      <ul class="nav-list">
+        {% for item in site.navigation %}
+          <li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>

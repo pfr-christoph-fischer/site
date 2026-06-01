@@ -1,0 +1,92 @@
+---
+layout: layouts/base.njk
+ogType: article
+---
+<article class="shell sermon-page">
+  {% set eyebrow = "Predigt" %}
+  {% set coverAlt = cover_alt or null %}
+  {% include "components/article-header.njk" %}
+  {% set items = [
+    { label: "Datum", value: '<time datetime="' + (date | htmlDateString) + '">' + (date | readableDate("dd.MM.yyyy")) + '</time>' },
+    { label: "Bibelstelle", value: scripture },
+    { label: "Anlass", value: occasion },
+    { label: "Reihe", value: series }
+  ] %}
+  {% include "components/metadata-list.njk" %}
+  {% if tagList and tagList.length %}
+    {% set tags = tagList %}
+    {% include "components/tag-links.njk" %}
+  {% endif %}
+  <div class="sermon-page__header">
+    {% if events and events.length %}
+      <section class="detail-block">
+        <h2>Gottesdienste und Anlässe</h2>
+        <ul>
+          {% for event in events %}
+            <li>
+              <strong>{{ event.date | readableDate("dd.MM.yyyy") }}</strong>
+              {% if event.time %} · {{ event.time }}{% endif %}
+              {% if event.location %} · {{ event.location }}{% endif %}
+              {% if event.title %}<br>{{ event.title }}{% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+    {% include "components/audio-player.njk" %}
+  </div>
+
+  <div class="sermon-body prose">
+    {{ content | safe }}
+  </div>
+
+  <section class="detail-block">
+    <small>Dieser Inhalt wird unter einer <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de" title="Lizenzbedingungen zur CC-BY-SA 4.0 Lizenz" target="_blank">Creative Commons 4.0 CC-BY-SA-Lizenz</a> veröffentlicht.</small>
+  </section>
+  {% if relatedSermons and relatedSermons.length %}
+    <section class="detail-block">
+      <h2>Verwandte Predigten</h2>
+      <ul>
+        {% for item in relatedSermons %}
+          <li><a href="{{ item.url }}">{{ item.data.title }}</a>{% if item.data.scripture %} · {{ item.data.scripture }}{% endif %}</li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": {{ title | dump | safe }},
+      "description": {{ (summary or site.description) | dump | safe }},
+      "datePublished": {{ date | htmlDateString | dump | safe }},
+      {% if updated %}"dateModified": {{ updated | dump | safe }},{% endif %}
+      "author": {
+        "@type": "Person",
+        "name": {{ site.author.name | dump | safe }},
+        "url": {{ site.url | dump | safe }}
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": {{ site.author.name | dump | safe }},
+        "url": {{ site.url | dump | safe }}
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": {{ (page.url | absoluteUrl(site)) | dump | safe }}
+      },
+      {% if cover %}"image": [{{ ((page.url + cover) | absoluteUrl(site)) | dump | safe }}],{% endif %}
+      {% if scripture %}"about": [{{ scripture | dump | safe }}],{% endif %}
+      "inLanguage": {{ site.language | dump | safe }},
+      "isAccessibleForFree": true
+      {% if audio %},
+      "associatedMedia": {
+        "@type": "AudioObject",
+        "contentUrl": {{ ((page.url + audio) | absoluteUrl(site)) | dump | safe }},
+        "encodingFormat": "audio/mpeg"{% if audio_duration %},
+        "duration": {{ audio_duration | dump | safe }}{% endif %}
+      }
+      {% endif %}
+    }
+  </script>
+</article>

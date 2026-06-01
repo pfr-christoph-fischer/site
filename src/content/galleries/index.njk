@@ -1,0 +1,18 @@
+---
+layout: layouts/page.njk
+title: Galerie
+summary: Bildersammlungen und dokumentierte Projekte.
+permalink: /galerie/
+---
+<p>Neben dieser Übersichtsseite sind bereits die Bereiche <a href="/presse/">Presse</a> und <a href="/kunstprojekte/">Kunstprojekte</a> als statische Bildsammlungen eingebunden.</p>
+
+{% if collections.galleries.length %}
+  <ul>
+    {% for gallery in collections.galleries %}
+      <li>
+        <a href="{{ gallery.url }}">{{ gallery.data.title }}</a>
+        {% if gallery.data.summary %}<br>{{ gallery.data.summary }}{% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

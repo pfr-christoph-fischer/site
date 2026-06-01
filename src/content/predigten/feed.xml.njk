@@ -1,0 +1,22 @@
+---
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>{{ site.title }}</title>
+    <link>{{ site.url }}/</link>
+    <description>{{ site.description }}</description>
+    {% for sermon in collections.publishedContent.slice(0, 20) %}
+    <item>
+      <title>{{ sermon.data.title | escape }}</title>
+      <link>{{ sermon.url | absoluteUrl(site) }}</link>
+      <guid>{{ sermon.url | absoluteUrl(site) }}</guid>
+      <pubDate>{{ sermon.date.toUTCString() }}</pubDate>
+      <description>{{ (sermon.data.summary or sermon.templateContent | excerpt(240)) | escape }}</description>
+      {% for tag in sermon.data.tagList or [] %}<category>{{ tag | escape }}</category>{% endfor %}
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

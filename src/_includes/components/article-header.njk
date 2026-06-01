@@ -1,0 +1,23 @@
+<header class="article-header{% if cover %} article-header--with-image{% endif %}">
+  <div class="article-header__copy">
+    {% if eyebrow %}
+      <p class="eyebrow">{{ eyebrow }}</p>
+    {% endif %}
+    <h1>{{ title }}</h1>
+    {% if subtitle %}
+      <p class="eyebrow">{{ subtitle }}</p>
+    {% endif %}
+    {% if summary %}
+      <p class="lede">{{ summary }}</p>
+    {% endif %}
+  </div>
+  {% if cover %}
+    <figure class="article-header__media">
+      {% responsiveImage cover, coverAlt or cover_alt or ('Titelbild zu ' + title), {
+        class: "article-header__image",
+        sizes: "(min-width: 70rem) 34rem, 100vw",
+        loading: "eager"
+      }, page %}
+    </figure>
+  {% endif %}
+</header>

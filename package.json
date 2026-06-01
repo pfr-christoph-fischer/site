@@ -1,0 +1,32 @@
+{
+  "name": "christoph-fischer-2026",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "clean": "rm -rf _site/img/previews .pagefind",
+    "dev": "npx @11ty/eleventy --serve",
+    "generate:assets": "node scripts/generate-site-assets.mjs",
+    "validate": "node scripts/validate-content.mjs",
+    "build": "node scripts/build-site.mjs",
+    "search": "npx pagefind --site _site",
+    "backend": "node backend/server.mjs",
+    "federate": "node scripts/federate-new-posts.mjs",
+    "deploy": "node scripts/deploy.mjs",
+    "publish": "npm run build && npm run search && npm run deploy && npm run federate",
+    "import:latest-sermon": "node scripts/import-latest-sermon.mjs",
+    "release:sermon": "node scripts/release-sermon.mjs",
+    "migrate:sermons": "node scripts/migrate-sermons.mjs",
+    "rewrite:sermons-markdown": "node scripts/rewrite-sermons-markdown.mjs",
+    "fix:sermon-cover-extensions": "node scripts/fix-sermon-cover-extensions.mjs"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.0",
+    "@11ty/eleventy-img": "^6.0.0",
+    "luxon": "^3.7.1"
+  },
+  "devDependencies": {
+    "pagefind": "^1.3.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}

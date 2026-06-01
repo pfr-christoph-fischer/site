@@ -1,0 +1,36 @@
+---
+permalink: /feed.json
+eleventyExcludeFromCollections: true
+---
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": {{ site.title | dump | safe }},
+  "home_page_url": {{ (site.url + "/") | dump | safe }},
+  "feed_url": {{ (site.url + "/feed.json") | dump | safe }},
+  "description": {{ site.description | dump | safe }},
+  "language": {{ site.language | dump | safe }},
+  "authors": [
+    {
+      "name": {{ site.author.name | dump | safe }},
+      "url": {{ (site.url + "/") | dump | safe }}
+    }
+  ],
+  "items": [
+    {% for item in collections.publishedContent.slice(0, 20) %}
+      {
+        "id": {{ (item.url | absoluteUrl(site)) | dump | safe }},
+        "url": {{ (item.url | absoluteUrl(site)) | dump | safe }},
+        "title": {{ item.data.title | dump | safe }},
+        "summary": {{ (item.data.summary or item.templateContent | excerpt(240)) | dump | safe }},
+        "content_text": {{ (item.templateContent | striptags | excerpt(500)) | dump | safe }},
+        "date_published": {{ item.date.toISOString() | dump | safe }},
+        "authors": [
+          {
+            "name": {{ site.author.name | dump | safe }}
+          }
+        ],
+        "tags": {{ (item.data.tagList or []) | dump | safe }}
+      }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}

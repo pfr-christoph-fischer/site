@@ -1,0 +1,10 @@
+---
+layout: layouts/base.njk
+---
+<section class="shell page-section">
+  <article class="prose">
+    {% set eyebrow = eyebrow or null %}
+    {% include "components/article-header.njk" %}
+    {{ content | safe }}
+  </article>
+</section>

@@ -1,0 +1,37 @@
+---
+layout: layouts/base.njk
+---
+<section class="hero">
+  <div class="shell hero__inner">
+    <div class="hero__copy">
+      <p class="eyebrow">Christoph Fischer</p>
+      <h1>{{ title }}</h1>
+      <p class="lede">{{ summary }}</p>
+      <div class="hero__actions">
+        <a class="button" href="/predigten/">Predigten lesen</a>
+        <a class="button button--subtle" href="/podcast-abonnieren/">Podcast abonnieren</a>
+      </div>
+    </div>
+    <aside class="hero__aside" aria-labelledby="latest-sermon-heading">
+      {% set latest = collections.sermons[0] %}
+      {% if latest %}
+        <h2 id="latest-sermon-heading">Neueste Predigt</h2>
+        {% set archiveItems = [latest] %}
+        {% set archiveClass = "archive-list--featured" %}
+        {% include "components/archive-list.njk" %}
+      {% else %}
+        <p>Noch keine Predigten vorhanden.</p>
+      {% endif %}
+    </aside>
+  </div>
+</section>
+
+<section class="shell page-section" aria-labelledby="recent-sermons-heading">
+  <div class="section-heading">
+    <h2 id="recent-sermons-heading">Aktuelle Predigten</h2>
+    <a href="/predigten/">Zum Archiv</a>
+  </div>
+  {% set archiveItems = collections.sermons.slice(1, 7) %}
+  {% set archiveClass = null %}
+  {% include "components/archive-list.njk" %}
+</section>

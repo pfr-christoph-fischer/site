@@ -1,0 +1,34 @@
+---
+layout: layouts/page.njk
+title: Suche
+summary: Volltextsuche über die statischen Inhalte mit Pagefind.
+permalink: /suche/
+index: false
+---
+<div class="search-shell">
+  <p class="search-note">Die Suche arbeitet vollständig statisch. Wenn JavaScript deaktiviert ist, bleiben die regulären Archive und Übersichtsseiten nutzbar.</p>
+  <div id="search-results"></div>
+</div>
+<script src="/pagefind/pagefind-ui.js"></script>
+<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    new PagefindUI({
+      element: "#search-results",
+      showSubResults: true,
+      resetStyles: false,
+      translations: {
+        placeholder: "Website durchsuchen",
+        clear_search: "Suche löschen",
+        load_more: "Mehr Ergebnisse",
+        search_label: "Suche",
+        filters_label: "Filter",
+        zero_results: "Keine Treffer für [SEARCH_TERM]",
+        many_results: "[COUNT] Treffer für [SEARCH_TERM]",
+        one_result: "[COUNT] Treffer für [SEARCH_TERM]",
+        alt_search: "Keine Treffer für [SEARCH_TERM]. Ergebnisse für [DIFFERENT_TERM] anzeigen?",
+        search_suggestion: "Keine Treffer für [SEARCH_TERM]. Vorschlag: [DIFFERENT_TERM].",
+        searching: "Suche läuft für [SEARCH_TERM]"
+      }
+    });
+  });
+</script>

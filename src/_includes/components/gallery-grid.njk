@@ -1,0 +1,21 @@
+{% if items and items.length %}
+  <div class="gallery-grid">
+    {% for item in items %}
+      <figure class="gallery-card">
+        <a href="{{ item.src }}">
+          {% if item.src.endsWith('.pdf') %}
+            <div class="gallery-card__file">PDF</div>
+          {% else %}
+            {% responsiveImage item.src, item.alt, {
+              class: "gallery-card__image",
+              sizes: "(min-width: 70rem) 22rem, (min-width: 44rem) 45vw, 100vw"
+            }, page %}
+          {% endif %}
+        </a>
+        {% if item.title or item.caption %}
+          <figcaption>{{ item.title or item.caption }}</figcaption>
+        {% endif %}
+      </figure>
+    {% endfor %}
+  </div>
+{% endif %}

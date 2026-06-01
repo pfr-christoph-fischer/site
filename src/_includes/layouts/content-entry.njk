@@ -1,0 +1,48 @@
+---
+layout: layouts/base.njk
+ogType: article
+---
+<article class="shell entry-page">
+  {% set eyebrow = contentLabel or null %}
+  {% set coverAlt = cover_alt or coverAlt or null %}
+  {% include "components/article-header.njk" %}
+
+  {% set metaItems = [] %}
+  {% if date %}
+    {% set metaItems = metaItems.concat([{ label: "Datum", value: '<time datetime="' + (date | htmlDateString) + '">' + (date | readableDate("dd.MM.yyyy")) + '</time>' }]) %}
+  {% endif %}
+  {% if updated %}
+    {% set metaItems = metaItems.concat([{ label: "Aktualisiert", value: updated }]) %}
+  {% endif %}
+  {% if scripture %}
+    {% set metaItems = metaItems.concat([{ label: "Bibelstelle", value: scripture }]) %}
+  {% endif %}
+  {% if occasion %}
+    {% set metaItems = metaItems.concat([{ label: "Anlass", value: occasion }]) %}
+  {% endif %}
+  {% if series %}
+    {% set metaItems = metaItems.concat([{ label: "Reihe", value: series }]) %}
+  {% endif %}
+  {% if license %}
+    {% set metaItems = metaItems.concat([{ label: "Lizenz", value: license }]) %}
+  {% endif %}
+  {% if technologies and technologies.length %}
+    {% set metaItems = metaItems.concat([{ label: "Technologien", value: technologies | join(", ") }]) %}
+  {% endif %}
+  {% set items = metaItems %}
+  {% include "components/metadata-list.njk" %}
+
+  {% if tagList and tagList.length %}
+    {% set tags = tagList %}
+    {% include "components/tag-links.njk" %}
+  {% endif %}
+
+  {% include "components/audio-player.njk" %}
+  {% include "components/download-list.njk" %}
+
+  <div class="entry-page__body prose">
+    {{ content | safe }}
+  </div>
+
+  {% include "components/linked-galleries.njk" %}
+</article>
