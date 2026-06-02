@@ -12,6 +12,9 @@ index: false
 <script src="/pagefind/pagefind-ui.js"></script>
 <script>
   window.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    const initialQuery = (params.get("q") || "").trim();
+
     new PagefindUI({
       element: "#search-results",
       showSubResults: true,
@@ -30,5 +33,34 @@ index: false
         searching: "Suche läuft für [SEARCH_TERM]"
       }
     });
+
+    const syncUrl = (value) => {
+      const nextUrl = new URL(window.location.href);
+      if (value) {
+        nextUrl.searchParams.set("q", value);
+      } else {
+        nextUrl.searchParams.delete("q");
+      }
+      window.history.replaceState({}, "", nextUrl);
+    };
+
+    const connectSearchInput = () => {
+      const input = document.querySelector(".pagefind-ui__search-input");
+      if (!input) {
+        window.requestAnimationFrame(connectSearchInput);
+        return;
+      }
+
+      if (initialQuery) {
+        input.value = initialQuery;
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+      }
+
+      input.addEventListener("input", () => {
+        syncUrl(input.value.trim());
+      });
+    };
+
+    connectSearchInput();
   });
 </script>

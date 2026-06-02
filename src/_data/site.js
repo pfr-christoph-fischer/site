@@ -20,12 +20,9 @@ export default {
   navigation: [
     { label: "Start", url: "/" },
     { label: "Predigten", url: "/predigten/" },
-    { label: "Live", url: "/live/" },
     { label: "Blog", url: "/blog/" },
     { label: "Material", url: "/material/" },
     { label: "Open Source", url: "/open-source/" },
-    { label: "Galerie", url: "/galerie/" },
-    { label: "Suche", url: "/suche/" },
     { label: "Podcasts", url: "/podcasts/" },
     { label: "Über mich", url: "/ueber-mich/" }
   ],

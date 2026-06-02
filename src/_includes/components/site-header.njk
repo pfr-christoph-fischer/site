@@ -5,12 +5,27 @@
       <p class="site-tagline">Predigten, Texte und Materialien</p>
     </div>
 
-    <nav aria-label="Hauptnavigation">
-      <ul class="nav-list">
-        {% for item in site.navigation %}
-          <li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
-        {% endfor %}
-      </ul>
-    </nav>
+    <div class="site-header__nav-group">
+      <nav class="site-header__nav" aria-label="Hauptnavigation">
+        <ul class="nav-list">
+          {% for item in site.navigation %}
+            <li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+      <form class="site-header__search" action="/suche/" method="get" role="search" hidden>
+        <label class="visually-hidden" for="site-search-input">Website durchsuchen</label>
+        <input id="site-search-input" class="site-header__search-input" type="search" name="q" placeholder="Website durchsuchen">
+        <button class="site-header__action" type="submit">Suchen</button>
+        <button class="site-header__action site-header__action--subtle" type="button" data-search-close>Schliessen</button>
+      </form>
+      <div class="site-header__controls">
+        <button class="site-header__action" type="button" data-search-open aria-expanded="false" aria-controls="site-search-input">Suche</button>
+        <div class="nav-zoom" aria-label="Seitengroesse">
+          <button class="nav-zoom__button" type="button" data-site-zoom-step="-0.125" aria-label="Seite verkleinern">A-</button>
+          <button class="nav-zoom__button" type="button" data-site-zoom-step="0.125" aria-label="Seite vergroessern">A+</button>
+        </div>
+      </div>
+    </div>
   </div>
 </header>

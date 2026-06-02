@@ -138,6 +138,70 @@
       </div>
     </dialog>
     {% include "components/site-footer.njk" %}
+    <script>
+      (() => {
+        const zoomStorageKey = "site-zoom";
+        const root = document.documentElement;
+        const zoomControls = document.querySelectorAll("[data-site-zoom-step]");
+        const searchOpen = document.querySelector("[data-search-open]");
+        const searchClose = document.querySelector("[data-search-close]");
+        const searchForm = document.querySelector(".site-header__search");
+        const nav = document.querySelector(".site-header__nav");
+        const searchInput = document.getElementById("site-search-input");
+        const navGroup = document.querySelector(".site-header__nav-group");
+
+        const min = 1;
+        const max = 1.5;
+        const clamp = (value) => Math.min(max, Math.max(min, value));
+
+        if (zoomControls.length) {
+          const applyZoom = (value) => {
+            const normalized = clamp(value);
+            root.style.setProperty("--site-zoom", normalized.toFixed(3));
+            zoomControls.forEach((button) => {
+              const step = Number(button.dataset.siteZoomStep || 0);
+              const nextValue = clamp(normalized + step);
+              button.disabled = nextValue === normalized;
+            });
+            return normalized;
+          };
+
+          const storedZoom = Number(window.localStorage.getItem(zoomStorageKey));
+          let currentZoom = applyZoom(Number.isFinite(storedZoom) ? storedZoom : 1);
+
+          zoomControls.forEach((button) => {
+            button.addEventListener("click", () => {
+              currentZoom = applyZoom(currentZoom + Number(button.dataset.siteZoomStep || 0));
+              window.localStorage.setItem(zoomStorageKey, currentZoom.toFixed(3));
+            });
+          });
+        }
+
+        if (searchOpen && searchClose && searchForm && nav && searchInput && navGroup) {
+          const setSearchActive = (active) => {
+            navGroup.classList.toggle("is-search-active", active);
+            searchForm.hidden = !active;
+            nav.hidden = active;
+            searchOpen.hidden = active;
+            searchOpen.setAttribute("aria-expanded", active ? "true" : "false");
+            if (active) {
+              window.requestAnimationFrame(() => searchInput.focus());
+            } else {
+              searchOpen.focus();
+            }
+          };
+
+          searchOpen.addEventListener("click", () => setSearchActive(true));
+          searchClose.addEventListener("click", () => setSearchActive(false));
+          searchForm.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+              event.preventDefault();
+              setSearchActive(false);
+            }
+          });
+        }
+      })();
+    </script>
     <script src="/assets/js/lightbox.js"></script>
   </body>
 </html>
