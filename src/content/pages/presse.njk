@@ -1,0 +1,12 @@
+---
+layout: layouts/page.njk
+title: Presse
+summary: Presseberichte, Interviews und Ausschnitte aus dem bisherigen Auftritt.
+permalink: /presse/
+---
+<p>Hier sind die Presseberichte aus dem bisherigen Auftritt als zugängliche Sammlung zusammengeführt. Die Ausschnitte öffnen sich in einer vergrößerten Ansicht, PDFs bleiben direkt verlinkt.</p>
+
+{% set items = legacyMedia.press %}
+{% set galleryVariant = "press" %}
+{% set galleryId = "press" %}
+{% include "components/gallery-grid.njk" %}

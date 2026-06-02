@@ -1,0 +1,54 @@
+---
+pagination:
+  data: collections.podcastSeries
+  size: 1
+  alias: series
+eleventyExcludeFromCollections: true
+---
+{% set explicitFlag = "yes" if (series.data.podcast_explicit if series.data.podcast_explicit is defined else site.podcast.explicit) else "no" %}
+{% set feedTitle = series.data.podcast_feed_title or series.data.title %}
+{% set feedDescription = series.data.podcast_feed_description or series.data.summary or site.podcast.description %}
+{% set feedOwnerName = series.data.podcast_owner_name or site.podcast.ownerName or site.author.name %}
+{% set feedOwnerEmail = series.data.podcast_owner_email or site.podcast.ownerEmail %}
+{% set feedCategories = series.data.podcast_categories or site.podcast.categories %}
+{% set episodes = collections.podcastEpisodes | podcastEpisodesForSeries(series.page.fileSlug) %}
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title>{{ feedTitle }}</title>
+    <link>{{ series.url | absoluteUrl(site) }}</link>
+    <description>{{ feedDescription }}</description>
+    <language>{{ site.language }}</language>
+    <itunes:author>{{ feedOwnerName }}</itunes:author>
+    <itunes:summary>{{ feedDescription }}</itunes:summary>
+    <itunes:explicit>{{ explicitFlag }}</itunes:explicit>
+    <itunes:owner>
+      <itunes:name>{{ feedOwnerName }}</itunes:name>
+      {% if feedOwnerEmail %}<itunes:email>{{ feedOwnerEmail }}</itunes:email>{% endif %}
+    </itunes:owner>
+    {% if series.data.cover %}<itunes:image href="{{ (series.url + series.data.cover) | absoluteUrl(site) }}"/>{% endif %}
+    {% for category in feedCategories %}
+      <itunes:category text="{{ category }}"/>
+    {% endfor %}
+    {% for episode in episodes %}
+      {% if episode.data.audio %}
+      <item>
+        <title>{{ episode.data.title | escape }}</title>
+        <link>{{ episode.url | absoluteUrl(site) }}</link>
+        <guid>{{ episode.url | absoluteUrl(site) }}</guid>
+        <pubDate>{{ episode.date.toUTCString() }}</pubDate>
+        <description>{{ episode.data.summary | escape }}</description>
+        <itunes:author>{{ feedOwnerName }}</itunes:author>
+        <itunes:summary>{{ episode.data.summary | escape }}</itunes:summary>
+        {% if episode.data.subtitle %}<itunes:subtitle>{{ episode.data.subtitle | escape }}</itunes:subtitle>{% endif %}
+        <itunes:explicit>{{ explicitFlag }}</itunes:explicit>
+        {% if episode.data.audio_duration %}<itunes:duration>{{ episode.data.audio_duration }}</itunes:duration>{% endif %}
+        {% if episode.data.episode_number %}<itunes:episode>{{ episode.data.episode_number }}</itunes:episode>{% endif %}
+        {% if episode.data.season_number %}<itunes:season>{{ episode.data.season_number }}</itunes:season>{% endif %}
+        {% if episode.data.cover %}<itunes:image href="{{ (episode.url + episode.data.cover) | absoluteUrl(site) }}"/>{% endif %}
+        <enclosure url="{{ (episode.url + episode.data.audio) | absoluteUrl(site) }}" type="audio/mpeg"/>
+      </item>
+      {% endif %}
+    {% endfor %}
+  </channel>
+</rss>

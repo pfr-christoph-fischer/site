@@ -121,11 +121,21 @@ export const schemas = {
     if (!isNonEmptyString(data.title)) errors.push(`${file}: title is required`);
     if (!isNonEmptyString(data.summary)) errors.push(`${file}: summary is required`);
     if (!isDateLike(data.date)) errors.push(`${file}: date is required`);
-    if (!isNonEmptyString(data.audio)) errors.push(`${file}: audio is required`);
-    validateAssetField(file, "audio", data.audio, errors);
+    const normalized = file.replace(/\\/g, "/");
+    const isEpisode = /\/src\/content\/podcasts\/[^/]+\/[^/]+\/index\.md$/.test(normalized);
+    const isSeries = /\/src\/content\/podcasts\/[^/]+\/index\.md$/.test(normalized);
+    if (isEpisode) {
+      if (!isNonEmptyString(data.audio)) errors.push(`${file}: audio is required`);
+      validateAssetField(file, "audio", data.audio, errors);
+    }
     if ("cover" in data) validateAssetField(file, "cover", data.cover, errors);
     if ("cover" in data && !isNonEmptyString(data.cover_alt)) errors.push(`${file}: cover_alt is required when cover is set`);
     if ("tags" in data) validateStringArray(file, "tags", data.tags, errors);
+    if ("subtitle" in data && data.subtitle !== null && !isNonEmptyString(data.subtitle)) errors.push(`${file}: subtitle must be a non-empty string when provided`);
+    if ("audio_duration" in data && data.audio_duration !== null && !isNonEmptyString(data.audio_duration)) errors.push(`${file}: audio_duration must be a non-empty string when provided`);
+    if ("episode_number" in data && !(Number.isInteger(data.episode_number) && data.episode_number > 0)) errors.push(`${file}: episode_number must be a positive integer when provided`);
+    if ("season_number" in data && !(Number.isInteger(data.season_number) && data.season_number > 0)) errors.push(`${file}: season_number must be a positive integer when provided`);
+    if (isSeries && "podcast_categories" in data) validateStringArray(file, "podcast_categories", data.podcast_categories, errors);
   },
   page(file, data, errors) {
     validateCommonBooleans(file, data, errors);

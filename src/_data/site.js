@@ -1,12 +1,13 @@
 export default {
   name: "Christoph Fischer",
   title: "Christoph Fischer",
-  description: "Predigten, Texte, Materialien und digitale Projekte von Christoph Fischer.",
+  description: "Predigten, Texte, Materialien und Open-Source-Projekte von Christoph Fischer.",
   language: "de",
   locale: "de_DE",
   url: "https://www.christoph-fischer.de",
-  themeColor: "#f6f2eb",
+  themeColor: "#0b0d10",
   defaultSocialImage: "/assets/generated/social-default.png",
+  defaultSocialImageAlt: "Portraet und Wortmarke von Christoph Fischer.",
   author: {
     name: "Christoph Fischer",
     jobTitle: "Pfarrer",
@@ -19,11 +20,13 @@ export default {
   navigation: [
     { label: "Start", url: "/" },
     { label: "Predigten", url: "/predigten/" },
+    { label: "Live", url: "/live/" },
     { label: "Blog", url: "/blog/" },
     { label: "Material", url: "/material/" },
-    { label: "Projekte", url: "/projekte/" },
+    { label: "Open Source", url: "/open-source/" },
     { label: "Galerie", url: "/galerie/" },
-    { label: "Podcast", url: "/podcast-abonnieren/" },
+    { label: "Suche", url: "/suche/" },
+    { label: "Podcasts", url: "/podcasts/" },
     { label: "Über mich", url: "/ueber-mich/" }
   ],
   relMe: [

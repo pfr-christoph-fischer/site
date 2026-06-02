@@ -1,0 +1,40 @@
+---
+layout: layouts/page.njk
+title: Live
+summary: Kommende Gottesdienste und Gelegenheiten, Christoph live predigen zu hören.
+permalink: /live/
+---
+<p>Du möchtest Christoph einmal live predigen hören? Dann komm doch einfach bei einem der folgenden Gottesdienste vorbei.</p>
+
+{% if collections.upcomingServices.length %}
+  <div class="service-list" role="list">
+    {% for service in collections.upcomingServices %}
+      <article class="service-item" role="listitem">
+        <div class="service-item__date">
+          <time datetime="{{ service.date }}">{{ service.date | readableDate("dd.MM.yyyy") }}</time>
+          {% if service.occasion %}
+            <div class="service-item__occasion">
+              {% if service.liturgyColor %}
+                <span class="service-color service-color--{{ service.liturgyColor | slugify }}" aria-hidden="true"></span>
+              {% endif %}
+              {{ service.occasion }}
+            </div>
+          {% endif %}
+        </div>
+        <div class="service-item__time">{{ service.displayTime }}</div>
+        <div class="service-item__location">{{ service.location }}</div>
+        <div class="service-item__title">
+          {% if service.title != "Gottesdienst" %}{{ service.title }}{% endif %}
+          {% if service.sermonTitle %}
+            <div class="service-item__sermon"><a href="{{ service.sermonUrl }}">{{ service.sermonTitle }}</a></div>
+          {% endif %}
+        </div>
+        <div class="service-item__scripture">
+          {% if service.scripture %}{{ service.scripture }}{% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="archive-placeholder">Im aktuellen statischen Bestand sind noch keine kommenden Gottesdienste hinterlegt. Sobald neue Predigten mit Terminangaben importiert oder veröffentlicht werden, erscheinen sie hier automatisch.</p>
+{% endif %}

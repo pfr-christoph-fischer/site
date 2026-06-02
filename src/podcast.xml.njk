@@ -21,7 +21,7 @@ eleventyExcludeFromCollections: true
     {% for category in site.podcast.categories %}
       <itunes:category text="{{ category }}"/>
     {% endfor %}
-    {% for sermon in collections.sermons.slice(0, 20) %}
+    {% for sermon in collections.sermons.slice(0, 100) %}
       {% if sermon.data.audio %}
       <item>
         <title>{{ sermon.data.title | escape }}</title>
@@ -31,8 +31,10 @@ eleventyExcludeFromCollections: true
         <description>{{ sermon.data.summary | escape }}</description>
         <itunes:author>{{ site.author.name }}</itunes:author>
         <itunes:summary>{{ sermon.data.summary | escape }}</itunes:summary>
+        {% if sermon.data.subtitle %}<itunes:subtitle>{{ sermon.data.subtitle | escape }}</itunes:subtitle>{% endif %}
         <itunes:explicit>{{ explicitFlag }}</itunes:explicit>
         {% if sermon.data.audio_duration %}<itunes:duration>{{ sermon.data.audio_duration }}</itunes:duration>{% endif %}
+        {% if sermon.data.cover %}<itunes:image href="{{ (sermon.url + sermon.data.cover) | absoluteUrl(site) }}"/>{% endif %}
         <enclosure url="{{ (sermon.url + sermon.data.audio) | absoluteUrl(site) }}" type="audio/mpeg"/>
       </item>
       {% endif %}

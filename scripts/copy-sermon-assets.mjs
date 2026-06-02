@@ -1,8 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import yaml from "js-yaml";
-import { projectRoot, siteRoot } from "./lib/paths.mjs";
 
+const projectRoot = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
+const siteRoot = path.join(projectRoot, "_site");
 const contentRoot = path.join(projectRoot, "src", "content");
 
 function getFiles(dir, predicate = () => true) {

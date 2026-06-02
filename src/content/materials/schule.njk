@@ -1,0 +1,16 @@
+---
+layout: layouts/page.njk
+title: Material für Schule
+summary: Materialien aus dem Bereich Schule.
+date: 2026-06-02
+permalink: /material/schule/
+---
+{% if collections.schoolMaterials.length %}
+  {% set archiveItems = collections.schoolMaterials %}
+  {% set archiveClass = null %}
+  {% include "components/archive-list.njk" %}
+{% else %}
+  <div class="archive-placeholder">
+    <p>Im Bereich Schule sind derzeit noch keine Materialien mit dem Tag <code>Schule</code> veröffentlicht.</p>
+  </div>
+{% endif %}

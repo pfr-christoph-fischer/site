@@ -14,6 +14,15 @@ ogType: article
   {% if updated %}
     {% set metaItems = metaItems.concat([{ label: "Aktualisiert", value: updated }]) %}
   {% endif %}
+  {% if subtitle %}
+    {% set metaItems = metaItems.concat([{ label: "Untertitel", value: subtitle }]) %}
+  {% endif %}
+  {% if episode_number %}
+    {% set metaItems = metaItems.concat([{ label: "Episode", value: episode_number }]) %}
+  {% endif %}
+  {% if season_number %}
+    {% set metaItems = metaItems.concat([{ label: "Staffel", value: season_number }]) %}
+  {% endif %}
   {% if scripture %}
     {% set metaItems = metaItems.concat([{ label: "Bibelstelle", value: scripture }]) %}
   {% endif %}
@@ -26,11 +35,50 @@ ogType: article
   {% if license %}
     {% set metaItems = metaItems.concat([{ label: "Lizenz", value: license }]) %}
   {% endif %}
+  {% if repository_platform %}
+    {% set metaItems = metaItems.concat([{ label: "Plattform", value: repository_platform }]) %}
+  {% endif %}
+  {% if repository_owner %}
+    {% set ownerValue = repository_owner %}
+    {% if repository_owner_url %}
+      {% set ownerValue = '<a href="' + repository_owner_url + '">' + repository_owner + '</a>' %}
+    {% endif %}
+    {% set metaItems = metaItems.concat([{ label: "Eigentümer", value: ownerValue }]) %}
+  {% endif %}
+  {% if language %}
+    {% set metaItems = metaItems.concat([{ label: "Sprache", value: language }]) %}
+  {% endif %}
+  {% if stars is defined %}
+    {% set metaItems = metaItems.concat([{ label: "Sterne", value: stars }]) %}
+  {% endif %}
+  {% if forks is defined %}
+    {% set metaItems = metaItems.concat([{ label: "Forks", value: forks }]) %}
+  {% endif %}
+  {% if watchers is defined %}
+    {% set metaItems = metaItems.concat([{ label: "Beobachter", value: watchers }]) %}
+  {% endif %}
+  {% if default_branch %}
+    {% set metaItems = metaItems.concat([{ label: "Branch", value: default_branch }]) %}
+  {% endif %}
+  {% if audio_duration %}
+    {% set metaItems = metaItems.concat([{ label: "Länge", value: audio_duration }]) %}
+  {% endif %}
   {% if technologies and technologies.length %}
     {% set metaItems = metaItems.concat([{ label: "Technologien", value: technologies | join(", ") }]) %}
   {% endif %}
   {% set items = metaItems %}
   {% include "components/metadata-list.njk" %}
+
+  {% if repository_url or homepage_url %}
+    <div class="entry-actions">
+      {% if repository_url %}
+        <a class="button" href="{{ repository_url }}" target="_blank" rel="noopener">Repository ansehen</a>
+      {% endif %}
+      {% if homepage_url %}
+        <a class="button button--subtle" href="{{ homepage_url }}" target="_blank" rel="noopener">Projektseite öffnen</a>
+      {% endif %}
+    </div>
+  {% endif %}
 
   {% if tagList and tagList.length %}
     {% set tags = tagList %}
@@ -45,4 +93,57 @@ ogType: article
   </div>
 
   {% include "components/linked-galleries.njk" %}
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": {{ (schemaType or "CreativeWork") | dump | safe }},
+      "headline": {{ title | dump | safe }},
+      "name": {{ title | dump | safe }},
+      "description": {{ (summary or site.description) | dump | safe }},
+      "url": {{ (page.url | absoluteUrl(site)) | dump | safe }},
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": {{ (page.url | absoluteUrl(site)) | dump | safe }}
+      },
+      "datePublished": {{ date | htmlDateString | dump | safe }},
+      {% if updated %}"dateModified": {{ updated | dump | safe }},{% endif %}
+      "author": {
+        "@type": "Person",
+        "name": {{ site.author.name | dump | safe }},
+        "url": {{ site.url | dump | safe }}
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": {{ site.organization.name | dump | safe }},
+        "url": {{ site.url | dump | safe }}
+      },
+      {% if repository_url %}"codeRepository": {{ repository_url | dump | safe }},{% endif %}
+      {% if homepage_url %}"url": {{ homepage_url | dump | safe }},{% endif %}
+      {% if language %}"programmingLanguage": {{ language | dump | safe }},{% endif %}
+      {% if cover %}"image": [{{ ((page.url + cover) | absoluteUrl(site)) | dump | safe }}],{% endif %}
+      {% if technologies and technologies.length %}"keywords": {{ technologies | join(", ") | dump | safe }},{% endif %}
+      {% if tagList and tagList.length %}"about": {{ tagList | dump | safe }},{% endif %}
+      {% if downloads and downloads.length %}
+      "hasPart": [
+        {% for download in downloads %}
+          {
+            "@type": "MediaObject",
+            "name": {{ download.title | dump | safe }},
+            "contentUrl": {{ ((page.url + download.file) | absoluteUrl(site)) | dump | safe }}
+          }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ],
+      {% endif %}
+      {% if audio %}
+      "associatedMedia": {
+        "@type": "AudioObject",
+        "contentUrl": {{ ((page.url + audio) | absoluteUrl(site)) | dump | safe }},
+        "encodingFormat": "audio/mpeg"
+      },
+      {% endif %}
+      "inLanguage": {{ site.language | dump | safe }},
+      "isAccessibleForFree": true
+    }
+  </script>
 </article>

@@ -1,16 +1,70 @@
-function isEntryPage(data) {
-  const inputPath = data.page?.inputPath?.replace(/\\/g, "/") || "";
-  return /\/src\/content\/podcasts\/[^/]+\/index\.md$/.test(inputPath);
+function normalizedInputPath(data) {
+  return data.page?.inputPath?.replace(/\\/g, "/") || "";
+}
+
+function podcastPathParts(data) {
+  const match = normalizedInputPath(data).match(/\/src\/content\/podcasts\/(.+)\/index\.md$/);
+  return match ? match[1].split("/").filter(Boolean) : [];
+}
+
+function isSeriesPage(data) {
+  return podcastPathParts(data).length === 1;
+}
+
+function isEpisodePage(data) {
+  return podcastPathParts(data).length >= 2;
+}
+
+function seriesSlug(data) {
+  return podcastPathParts(data)[0] || null;
+}
+
+function seriesFeedUrl(data) {
+  if (isSeriesPage(data)) {
+    return data.podcast_external_feed || `/podcast/${data.page.fileSlug}/feed.xml`;
+  }
+  if (isEpisodePage(data)) {
+    return `/podcast/${seriesSlug(data)}/feed.xml`;
+  }
+  return null;
 }
 
 export default {
   eleventyComputed: {
-    layout: (data) => isEntryPage(data) ? "layouts/content-entry.njk" : data.layout,
-    tags: (data) => isEntryPage(data) ? ["podcast"] : (data.tags || []),
-    contentLabel: (data) => isEntryPage(data) ? "Podcast" : data.contentLabel,
+    layout: (data) => {
+      if (isSeriesPage(data)) return "layouts/podcast-series.njk";
+      if (isEpisodePage(data)) return "layouts/content-entry.njk";
+      return data.layout;
+    },
+    tags: (data) => {
+      if (isSeriesPage(data)) return ["podcast-series"];
+      if (isEpisodePage(data)) return ["podcast-episode"];
+      return data.tags || [];
+    },
+    contentLabel: (data) => {
+      if (isSeriesPage(data)) return "Podcast";
+      if (isEpisodePage(data)) return "Podcast-Folge";
+      return data.contentLabel;
+    },
+    schemaType: (data) => {
+      if (isSeriesPage(data)) return "PodcastSeries";
+      if (isEpisodePage(data)) return "PodcastEpisode";
+      return data.schemaType;
+    },
     description: (data) => data.summary || data.description || null,
     coverAlt: (data) => data.cover_alt || null,
-    tagList: (data) => isEntryPage(data) && Array.isArray(data.tags) ? data.tags.filter((tag) => tag !== "podcast") : (data.tagList || []),
-    permalink: (data) => isEntryPage(data) ? `/podcast/${data.page.fileSlug}/` : data.permalink
+    socialImageAlt: (data) => data.cover_alt || data.socialImageAlt || null,
+    podcastSeriesSlug: (data) => seriesSlug(data),
+    podcastFeedUrl: (data) => seriesFeedUrl(data),
+    tagList: (data) => {
+      if (isSeriesPage(data)) return Array.isArray(data.tags) ? data.tags.filter((tag) => tag !== "podcast-series") : (data.tagList || []);
+      if (isEpisodePage(data)) return Array.isArray(data.tags) ? data.tags.filter((tag) => tag !== "podcast-episode") : (data.tagList || []);
+      return data.tagList || [];
+    },
+    permalink: (data) => {
+      if (isSeriesPage(data)) return `/podcast/${data.page.fileSlug}/`;
+      if (isEpisodePage(data)) return `/podcast/${seriesSlug(data)}/${data.page.fileSlug}/`;
+      return data.permalink;
+    }
   }
 };

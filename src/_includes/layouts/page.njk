@@ -8,3 +8,18 @@ layout: layouts/base.njk
     {{ content | safe }}
   </article>
 </section>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": {{ title | dump | safe }},
+    "description": {{ (summary or description or site.description) | dump | safe }},
+    "url": {{ (page.url | absoluteUrl(site)) | dump | safe }},
+    "inLanguage": {{ site.language | dump | safe }},
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": {{ site.title | dump | safe }},
+      "url": {{ site.url | dump | safe }}
+    }
+  }
+</script>

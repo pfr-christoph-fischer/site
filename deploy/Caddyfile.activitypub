@@ -1,0 +1,19 @@
+www.christoph-fischer.de {
+  root * /var/www/christoph-fischer.de
+  encode zstd gzip
+
+  handle /.well-known/webfinger* {
+    reverse_proxy 127.0.0.1:8787
+  }
+
+  handle /users/* {
+    reverse_proxy 127.0.0.1:8787
+  }
+
+  handle /activity/* {
+    reverse_proxy 127.0.0.1:8787
+  }
+
+  try_files {path} {path}/ =404
+  file_server
+}

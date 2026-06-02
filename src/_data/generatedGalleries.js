@@ -17,6 +17,7 @@ const aboutGallery = {
   slug: "ueber-christoph",
   title: "Über Christoph in Bildern",
   summary: "Bildgalerie aus dem bisherigen Profilbereich.",
+  variant: "portrait",
   images: legacyMedia.aboutGallery
 };
 
@@ -24,15 +25,17 @@ const pressGallery = {
   slug: "presse",
   title: "Presse",
   summary: "Presseausschnitte und veröffentlichte Beiträge aus dem bisherigen Auftritt.",
+  variant: "press",
   images: legacyMedia.press
 };
 
 const artGalleries = legacyMedia.artProjects.map((project) => ({
   slug: `kunst-${slugify(project.title)}`,
   title: project.title,
-  summary: `Künstlerisches Projekt: ${project.title}.`,
+  summary: project.description || `Künstlerisches Projekt: ${project.title}.`,
+  variant: "art",
   images: project.images
-}));
+})).filter((project) => project.images.length);
 
 export default [
   aboutGallery,

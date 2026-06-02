@@ -7,6 +7,8 @@
     {% set pageImage = socialImage
       or (cover and ((page.url + cover) | absoluteUrl(site)))
       or site.defaultSocialImage | absoluteUrl(site) %}
+    {% set pageImageAlt = socialImageAlt or coverAlt or cover_alt or site.defaultSocialImageAlt %}
+    {% set resolvedPageImageAlt = pageImageAlt or site.defaultSocialImageAlt or "Bildvorschau zur Website von Christoph Fischer." %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% if title %}{{ title }} - {% endif %}{{ site.title }}</title>
@@ -21,6 +23,9 @@
     <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="{{ site.title }}">
     <link rel="alternate" type="application/feed+json" href="/feed.json" title="{{ site.title }}">
     <link rel="alternate" type="application/rss+xml" href="/podcast.xml" title="{{ site.podcast.title }}">
+    {% if podcastFeedUrl and podcastFeedUrl != "/podcast.xml" %}
+      <link rel="alternate" type="application/rss+xml" href="{{ podcastFeedUrl }}" title="{{ title }}">
+    {% endif %}
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -42,14 +47,14 @@
     <meta property="og:locale" content="{{ site.locale }}">
     {% if pageImage %}
       <meta property="og:image" content="{{ pageImage }}">
-      {% if coverAlt or cover_alt %}<meta property="og:image:alt" content="{{ coverAlt or cover_alt }}">{% endif %}
+      <meta property="og:image:alt" content="{{ resolvedPageImageAlt }}">
     {% endif %}
     {% if ogType == "article" and date %}
-      <meta property="article:published_time" content="{{ date }}T00:00:00+02:00">
+      <meta property="article:published_time" content="{{ date | isoDateTimeString }}">
       <meta property="article:author" content="{{ site.author.name }}">
     {% endif %}
     {% if ogType == "article" and updated %}
-      <meta property="article:modified_time" content="{{ updated }}T00:00:00+02:00">
+      <meta property="article:modified_time" content="{{ updated | isoDateTimeString }}">
     {% endif %}
     {% for tag in tagList or [] %}
       <meta property="article:tag" content="{{ tag }}">
@@ -63,7 +68,7 @@
     <meta name="twitter:description" content="{{ pageDescription }}">
     {% if pageImage %}
       <meta name="twitter:image" content="{{ pageImage }}">
-      {% if coverAlt or cover_alt %}<meta name="twitter:image:alt" content="{{ coverAlt or cover_alt }}">{% endif %}
+      <meta name="twitter:image:alt" content="{{ resolvedPageImageAlt }}">
     {% endif %}
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="stylesheet" href="/assets/css/site.css">
@@ -112,6 +117,20 @@
     <main id="main-content" tabindex="-1"{% if listed == false or search == false %} data-pagefind-ignore{% else %} data-pagefind-body{% endif %}>
       {{ content | safe }}
     </main>
+    <dialog class="lightbox" id="site-lightbox" aria-label="Bildansicht">
+      <form method="dialog" class="lightbox__chrome">
+        <button class="lightbox__close" aria-label="Bildansicht schließen">Schließen</button>
+      </form>
+      <div class="lightbox__viewport">
+        <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Vorheriges Bild">Zurück</button>
+        <figure class="lightbox__figure">
+          <img id="site-lightbox-image" class="lightbox__image" alt="">
+          <figcaption id="site-lightbox-caption" class="lightbox__caption"></figcaption>
+        </figure>
+        <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Nächstes Bild">Weiter</button>
+      </div>
+    </dialog>
     {% include "components/site-footer.njk" %}
+    <script src="/assets/js/lightbox.js"></script>
   </body>
 </html>

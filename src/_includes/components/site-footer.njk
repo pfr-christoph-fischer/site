@@ -1,10 +1,57 @@
 <footer class="site-footer" data-pagefind-ignore>
-  <div class="shell site-footer__inner">
-    <p>{{ site.title }}. Ruhig, lesbar, statisch aufgebaut mit Eleventy.</p>
+  <div class="shell site-footer__main">
+    <section class="footer-section" aria-labelledby="footer-overview">
+      <h2 id="footer-overview">Übersicht</h2>
+      <ul class="footer-linklist">
+        {% for item in footerData.overview %}
+          <li><a href="{{ item.url }}">{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section class="footer-section" aria-labelledby="footer-social">
+      <h2 id="footer-social">Social</h2>
+      <ul class="footer-linklist">
+        {% for item in footerData.social %}
+          <li><a href="{{ item.url }}" target="_blank" rel="{{ item.rel or 'noopener' }}">{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section class="footer-section" aria-labelledby="footer-dev">
+      <h2 id="footer-dev">#DEV</h2>
+      <ul class="footer-linklist">
+        {% for item in footerData.dev %}
+          <li><a href="{{ item.url }}"{% if item.url.startsWith('http') %} target="_blank"{% endif %} rel="{{ item.rel or 'noopener' }}">{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section class="footer-section" aria-labelledby="footer-school">
+      <h2 id="footer-school">Schule</h2>
+      <ul class="footer-linklist">
+        {% for item in footerData.school %}
+          <li><a href="{{ item.url }}">{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section class="footer-section footer-section--wide" aria-labelledby="footer-christoph">
+      <h2 id="footer-christoph">Christoph</h2>
+      <ul class="footer-linklist">
+        {% for item in footerData.christoph %}
+          <li><a href="{{ item.url }}">{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </section>
+  </div>
+
+  <div class="shell site-footer__bottom">
+    <p>© {{ footerData.year }} Pfarrer Christoph Fischer</p>
     <ul class="footer-links">
-      <li><a href="/impressum/">Impressum</a></li>
-      <li><a href="/datenschutz/">Datenschutz</a></li>
-      <li><a href="/podcast-abonnieren/">Podcast</a></li>
+      {% for item in footerData.legal %}
+        <li><a href="{{ item.url }}">{{ item.label }}</a></li>
+      {% endfor %}
     </ul>
   </div>
 </footer>

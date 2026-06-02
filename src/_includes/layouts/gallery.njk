@@ -4,6 +4,8 @@ ogType: article
 dcType: Image
 ---
 {% set items = images %}
+{% set galleryVariant = galleryVariant or "default" %}
+{% set galleryId = page.fileSlug %}
 {% include "components/gallery-grid.njk" %}
 
 {% if images and images.length %}

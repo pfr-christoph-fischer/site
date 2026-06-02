@@ -116,6 +116,24 @@ function resolveOccasion(events) {
   return null;
 }
 
+function resolveSubtitle(sermon) {
+  const candidates = [sermon.subtitle, sermon.subTitle, sermon.alternativeHeadline];
+  return candidates.find((value) => typeof value === "string" && value.trim()) || null;
+}
+
+function resolveLiturgyColor(liturgy) {
+  if (!liturgy || Array.isArray(liturgy)) return null;
+  return liturgy["CSS-Farbe"] || liturgy.litColor || liturgy.Farbe || null;
+}
+
+function resolvePrimaryLiturgyColor(events) {
+  for (const event of events || []) {
+    const color = resolveLiturgyColor(event.liturgy);
+    if (color) return color;
+  }
+  return null;
+}
+
 async function main() {
   const overrides = parseArgs(process.argv.slice(2));
   const hosts = JSON.parse(fs.readFileSync(configPath, "utf8"));
@@ -176,10 +194,12 @@ async function main() {
 
   const frontmatter = renderFrontmatter({
     title: sermon.title,
+    subtitle: resolveSubtitle(sermon),
     date,
     slug,
     scripture: sermon.reference || null,
     occasion: sermon.occasion || resolveOccasion(sermon.events || []),
+    liturgy_color: resolvePrimaryLiturgyColor(sermon.events || []),
     series: sermon.series || null,
     summary: sermon.summary || textExcerpt(sermon.text || ""),
     source: "pfarrplaner",
@@ -196,7 +216,8 @@ async function main() {
       time: event.time || null,
       title: event.title || null,
       location: event.location || null,
-      occasion: Array.isArray(event.liturgy) ? null : event.liturgy?.Bezeichnung || event.liturgy?.title || null
+      occasion: Array.isArray(event.liturgy) ? null : event.liturgy?.Bezeichnung || event.liturgy?.title || null,
+      liturgy_color: resolveLiturgyColor(event.liturgy)
     }))
   });
 

@@ -4,15 +4,31 @@ title: Galerie
 summary: Bildersammlungen und dokumentierte Projekte.
 permalink: /galerie/
 ---
-<p>Neben dieser Übersichtsseite sind bereits die Bereiche <a href="/presse/">Presse</a> und <a href="/kunstprojekte/">Kunstprojekte</a> als statische Bildsammlungen eingebunden.</p>
+<p>Die Galerien bündeln Bildmaterial aus dem bisherigen Auftritt: persönliche Eindrücke, dokumentierte Kunstprojekte und Presseausschnitte. Die Detailseiten lassen sich direkt durchblättern und per Lightbox vergrößern.</p>
 
 {% if collections.galleries.length %}
-  <ul>
+  <div class="archive-list">
     {% for gallery in collections.galleries %}
-      <li>
-        <a href="{{ gallery.url }}">{{ gallery.data.title }}</a>
-        {% if gallery.data.summary %}<br>{{ gallery.data.summary }}{% endif %}
-      </li>
+      {% set cover = gallery.data.images[0] if gallery.data.images and gallery.data.images.length else null %}
+      <article class="archive-entry{% if cover %} archive-entry--with-image{% endif %}">
+        {% if cover %}
+          <a class="archive-entry__media" href="{{ gallery.url }}" aria-hidden="true" tabindex="-1">
+            <img
+              src="{{ cover.src }}"
+              alt="{{ cover.alt }}"
+              class="archive-entry__image"
+              loading="lazy"
+              decoding="async"
+            >
+          </a>
+        {% endif %}
+        <div class="archive-entry__body">
+          <h2><a href="{{ gallery.url }}">{{ gallery.data.title }}</a></h2>
+          {% if gallery.data.summary %}
+            <p>{{ gallery.data.summary }}</p>
+          {% endif %}
+        </div>
+      </article>
     {% endfor %}
-  </ul>
+  </div>
 {% endif %}

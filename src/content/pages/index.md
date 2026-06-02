@@ -1,6 +1,6 @@
 ---
 layout: layouts/home.njk
 title: Predigten, Texte und Projekte
-summary: Eine ruhige, gut lesbare Startseite für Predigten, Materialien und digitale Projekte. Diese erste Implementierung priorisiert Zugänglichkeit, Typografie und stabile Inhalte.
+summary: Predigten, Texte, Materialien, Projekte und persönliche Einblicke von Christoph Fischer in einem ruhigen, gut lesbaren Aufbau.
 permalink: /
 ---

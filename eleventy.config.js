@@ -5,8 +5,6 @@ import { DateTime } from "luxon";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = __dirname;
-const outputDirName = process.env.SITE_OUTPUT_DIR || "_site";
-const outputRoot = path.resolve(projectRoot, outputDirName);
 
 function slugify(input) {
   return String(input || "")
@@ -60,11 +58,29 @@ function contentTags(item) {
     : Array.isArray(item.data.tags)
       ? item.data.tags
       : [];
-  return raw.filter((tag) => !["sermon", "post", "material", "project", "gallery", "page"].includes(tag));
+  return raw.filter((tag) => !["sermon", "post", "material", "project", "gallery", "page", "podcast", "podcast-series", "podcast-episode"].includes(tag));
 }
 
 function isPublicItem(item) {
   return item?.data?.draft !== true && item?.data?.listed !== false && item?.data?.index !== false;
+}
+
+function hasTag(item, tagName) {
+  const desired = String(tagName || "").trim().toLowerCase();
+  if (!desired) return false;
+  const raw = Array.isArray(item?.data?.tags)
+    ? item.data.tags
+    : Array.isArray(item?.data?.tagList)
+      ? item.data.tagList
+      : [];
+  return raw.some((tag) => String(tag || "").trim().toLowerCase() === desired);
+}
+
+function podcastPathParts(item) {
+  const normalized = item?.inputPath?.replace(/\\/g, "/") || "";
+  const match = normalized.match(/\/src\/content\/podcasts\/(.+)\/index\.md$/);
+  if (!match) return [];
+  return match[1].split("/").filter(Boolean);
 }
 
 function resolveImageSource(src, page) {
@@ -98,6 +114,14 @@ function resolveImageSource(src, page) {
   };
 }
 
+function escapeAttribute(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
 async function renderResponsiveImage(src, alt, options = {}, page = null) {
   const resolved = resolveImageSource(src, page);
   if (!resolved) {
@@ -114,12 +138,12 @@ async function renderResponsiveImage(src, alt, options = {}, page = null) {
 
   if (resolved.type === "remote" || resolved.type === "passthrough") {
     const finalSrc = resolved.src || resolved.url;
-    return `<img src="${finalSrc}" alt="${attrs.alt}" loading="${attrs.loading}" decoding="${attrs.decoding}"${attrs.class ? ` class="${attrs.class}"` : ""}>`;
+    return `<img src="${escapeAttribute(finalSrc)}" alt="${escapeAttribute(attrs.alt)}" loading="${escapeAttribute(attrs.loading)}" decoding="${escapeAttribute(attrs.decoding)}"${attrs.class ? ` class="${escapeAttribute(attrs.class)}"` : ""}>`;
   }
 
   const extension = path.extname(resolved.input).toLowerCase();
   if ([".svg", ".pdf"].includes(extension)) {
-    return `<img src="${resolved.url}" alt="${attrs.alt}" loading="${attrs.loading}" decoding="${attrs.decoding}"${attrs.class ? ` class="${attrs.class}"` : ""}>`;
+    return `<img src="${escapeAttribute(resolved.url)}" alt="${escapeAttribute(attrs.alt)}" loading="${escapeAttribute(attrs.loading)}" decoding="${escapeAttribute(attrs.decoding)}"${attrs.class ? ` class="${escapeAttribute(attrs.class)}"` : ""}>`;
   }
 
   const formats = extension === ".png" ? ["avif", "webp", "png"] : ["avif", "webp", "jpeg"];
@@ -127,7 +151,7 @@ async function renderResponsiveImage(src, alt, options = {}, page = null) {
     widths: options.widths || [320, 640, 960, 1280, 1600],
     formats,
     urlPath: "/assets/img/",
-    outputDir: path.join(outputRoot, "assets", "img"),
+    outputDir: path.join(projectRoot, "_site", "assets", "img"),
     sharpOptions: {
       animated: true
     }
@@ -141,7 +165,11 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/content/**/*.{jpg,jpeg,png,webp,avif,gif,svg,mp3,m4a,ogg,pdf}", {
     mode: "html-relative"
   });
-  eleventyConfig.addPassthroughCopy({ "../current/public/img": "img" });
+  eleventyConfig.addPassthroughCopy({ "../current/public/img/jingle.mp3": "img/jingle.mp3" });
+  eleventyConfig.addPassthroughCopy({ "../current/public/img/me": "img/me" });
+  eleventyConfig.addPassthroughCopy({ "../current/public/img/players": "img/players" });
+  eleventyConfig.addPassthroughCopy({ "../current/public/img/sermons": "img/sermons" });
+  eleventyConfig.addPassthroughCopy({ "../current/public/img/slider": "img/slider" });
   eleventyConfig.addPassthroughCopy({ "../current/public/fonts": "fonts" });
   eleventyConfig.addPassthroughCopy({ "../current/public/favicon.ico": "favicon.ico" });
   eleventyConfig.addPassthroughCopy({ "src/icon.svg": "icon.svg" });
@@ -156,6 +184,13 @@ export default function(eleventyConfig) {
   eleventyConfig.addFilter("htmlDateString", (value) => {
     if (!value) return "";
     return DateTime.fromJSDate(new Date(value), { zone: "Europe/Berlin" }).toFormat("yyyy-LL-dd");
+  });
+
+  eleventyConfig.addFilter("isoDateTimeString", (value) => {
+    if (!value) return "";
+    return DateTime.fromJSDate(new Date(value), { zone: "Europe/Berlin" }).toISO({
+      suppressMilliseconds: true
+    });
   });
 
   eleventyConfig.addFilter("absoluteUrl", (path, site) => {
@@ -178,6 +213,10 @@ export default function(eleventyConfig) {
     return plain.length <= length ? plain : `${plain.slice(0, length).trim()}…`;
   });
 
+  eleventyConfig.addFilter("podcastEpisodesForSeries", (items = [], seriesSlug = "") => {
+    return sortedItems(items.filter((item) => item?.data?.podcastSeriesSlug === seriesSlug));
+  });
+
   eleventyConfig.addNunjucksAsyncShortcode("responsiveImage", async (src, alt, options = {}, page = null) => {
     return renderResponsiveImage(src, alt, options, page);
   });
@@ -187,9 +226,26 @@ export default function(eleventyConfig) {
   });
   eleventyConfig.addCollection("posts", (collectionApi) => sortedItems(collectionApi.getFilteredByGlob("src/content/posts/**/index.md").filter(isPublicItem)));
   eleventyConfig.addCollection("materials", (collectionApi) => sortedItems(collectionApi.getFilteredByGlob("src/content/materials/**/index.md").filter(isPublicItem)));
+  eleventyConfig.addCollection("schoolMaterials", (collectionApi) => {
+    return sortedItems(collectionApi.getFilteredByGlob("src/content/materials/**/index.md").filter((item) => isPublicItem(item) && hasTag(item, "schule")));
+  });
   eleventyConfig.addCollection("projects", (collectionApi) => sortedItems(collectionApi.getFilteredByGlob("src/content/projects/**/index.md").filter(isPublicItem)));
   eleventyConfig.addCollection("galleries", (collectionApi) => sortedItems(collectionApi.getFilteredByGlob("src/content/galleries/**/index.@(md|njk)").filter(isPublicItem)));
-  eleventyConfig.addCollection("podcasts", (collectionApi) => sortedItems(collectionApi.getFilteredByGlob("src/content/podcasts/**/index.md").filter(isPublicItem)));
+  eleventyConfig.addCollection("podcastSeries", (collectionApi) => {
+    return sortedItems(collectionApi.getFilteredByGlob("src/content/podcasts/**/index.md").filter((item) => {
+      if (!isPublicItem(item)) return false;
+      return podcastPathParts(item).length === 1;
+    }));
+  });
+  eleventyConfig.addCollection("podcastEpisodes", (collectionApi) => {
+    return sortedItems(collectionApi.getFilteredByGlob("src/content/podcasts/**/index.md").filter((item) => {
+      if (!isPublicItem(item)) return false;
+      return podcastPathParts(item).length >= 2;
+    }));
+  });
+  eleventyConfig.addCollection("podcasts", (collectionApi) => {
+    return sortedItems(collectionApi.getFilteredByGlob("src/content/podcasts/**/index.md").filter(isPublicItem));
+  });
 
   eleventyConfig.addCollection("publishedContent", (collectionApi) => {
     const groups = [
@@ -244,12 +300,39 @@ export default function(eleventyConfig) {
     return uniqueValues(baseItems, contentTags);
   });
 
+  eleventyConfig.addCollection("upcomingServices", (collectionApi) => {
+    const now = DateTime.now().setZone("Europe/Berlin").startOf("day");
+    const services = [];
+
+    for (const sermon of collectionApi.getFilteredByGlob("src/content/sermons/**/index.md").filter(isPublicItem)) {
+      for (const event of sermon.data.events || []) {
+        if (!event?.date) continue;
+        const eventDate = DateTime.fromISO(event.date, { zone: "utc" }).setZone("Europe/Berlin");
+        if (!eventDate.isValid || eventDate < now) continue;
+
+        services.push({
+          title: event.title || "Gottesdienst",
+          location: event.location || "",
+          occasion: event.occasion || sermon.data.occasion || "",
+          scripture: sermon.data.scripture || "",
+          liturgyColor: event.liturgy_color || sermon.data.liturgy_color || "",
+          date: eventDate.toISO(),
+          displayTime: event.time || eventDate.toFormat("H:mm 'Uhr'"),
+          sermonTitle: sermon.data.title,
+          sermonUrl: sermon.url
+        });
+      }
+    }
+
+    return services.sort((a, b) => new Date(a.date) - new Date(b.date));
+  });
+
   return {
     dir: {
       input: "src",
       includes: "_includes",
       data: "_data",
-      output: outputDirName
+      output: "_site"
     },
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk"

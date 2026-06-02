@@ -10,6 +10,7 @@ loadEnv(projectRoot);
 const baseUrl = process.env.ACTIVITYPUB_BASE_URL || "https://www.christoph-fischer.de";
 const username = process.env.ACTIVITYPUB_USERNAME || "christoph";
 const dataDir = process.env.ACTIVITYPUB_DATA_DIR || path.join(backendRoot, "data");
+const dbPath = process.env.ACTIVITYPUB_DB_PATH || path.join(dataDir, "activitypub.sqlite");
 const baseDomain = new URL(baseUrl).hostname;
 const canonicalDomain = process.env.ACTIVITYPUB_DOMAIN || baseDomain.replace(/^www\./, "");
 
@@ -17,6 +18,7 @@ export const config = {
   backendRoot,
   projectRoot,
   dataDir,
+  dbPath,
   baseUrl,
   domain: canonicalDomain,
   username,
@@ -37,5 +39,12 @@ export const config = {
   privateKeyPath: process.env.ACTIVITYPUB_PRIVATE_KEY_PATH || path.join(projectRoot, "..", "current", "keys", "private.pem"),
   host: process.env.ACTIVITYPUB_HOST || "127.0.0.1",
   port: Number(process.env.ACTIVITYPUB_PORT || 8787),
-  requestBodyLimit: Number(process.env.ACTIVITYPUB_REQUEST_BODY_LIMIT || 1024 * 1024)
+  requestBodyLimit: Number(process.env.ACTIVITYPUB_REQUEST_BODY_LIMIT || 1024 * 1024),
+  collectionPageSize: Number(process.env.ACTIVITYPUB_COLLECTION_PAGE_SIZE || 20),
+  inboxRequireSignature: process.env.ACTIVITYPUB_INBOX_REQUIRE_SIGNATURE !== "false",
+  signatureMaxAgeSeconds: Number(process.env.ACTIVITYPUB_SIGNATURE_MAX_AGE_SECONDS || 600),
+  rateLimitWindowMs: Number(process.env.ACTIVITYPUB_RATE_LIMIT_WINDOW_MS || 60_000),
+  rateLimitMaxRequests: Number(process.env.ACTIVITYPUB_RATE_LIMIT_MAX_REQUESTS || 30),
+  deliveryRetries: Number(process.env.ACTIVITYPUB_DELIVERY_RETRIES || 2),
+  deliveryRetryDelayMs: Number(process.env.ACTIVITYPUB_DELIVERY_RETRY_DELAY_MS || 5_000)
 };

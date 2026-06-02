@@ -8,20 +8,28 @@ Eleventy-based rebuild of `christoph-fischer.de` with:
 - generated feeds, sitemap, OpenSearch, manifest, and icons
 - optional ActivityPub backend for federation
 
+This README is the short operator overview. The fuller runbook is here:
+
+- [2026/docs/RUNBOOK.md](/home/christoph/Dev/sites/cfde/2026/docs/RUNBOOK.md)
+
 ## Requirements
 
 - Node.js 20.x
 - npm
 - `rsync` for deployment
+- `sqlite3` for the ActivityPub backend
 
 ## Install
 
 ```bash
 cd 2026
 npm install
+cp .env.example .env
 ```
 
-## Daily Commands
+Then edit `.env` for your machine and deployment.
+
+## Most Common Commands
 
 Development server:
 
@@ -35,33 +43,43 @@ Full static build with validation:
 npm run build
 ```
 
-This build now runs in a staging directory first, generates the Pagefind assets there, validates the complete output, and only then promotes the finished result to `_site/`. That keeps the public output stable during long sermon rebuilds.
+This clears `_site/` first, then rebuilds it completely.
 
-Generate the Pagefind search index:
+Import repository entries from GitHub and Codeberg:
 
 ```bash
-npm run search
+npm run import:open-source
 ```
 
-Build, search, deploy, and federate:
+Manual podcast workflow:
+
+```bash
+# create src/content/podcasts/<show>/index.md
+# create src/content/podcasts/<show>/<episode>/index.md + audio file
+npm run build
+```
+
+Run the ActivityPub backend:
+
+```bash
+npm run backend
+```
+
+Build, deploy, and federate newly released public content:
 
 ```bash
 npm run publish
 ```
 
-## Hidden Sermons And Release Workflow
+## Sermon Workflow
 
-Sermons can exist on the site without appearing in archives, feeds, sitemap, search, or federation.
-
-Use that for content that should be reachable by direct URL but not publicly listed yet.
-
-Import the latest Pfarrplaner sermon as hidden:
+Import the newest Pfarrplaner sermon as hidden:
 
 ```bash
 npm run import:latest-sermon -- --hidden
 ```
 
-Optional local media overrides are supported:
+Import with local file overrides:
 
 ```bash
 npm run import:latest-sermon -- --hidden --audio ~/Audio/predigt.mp3 --image ~/Bilder/titel.jpg
@@ -73,98 +91,133 @@ Release a hidden sermon by slug:
 npm run release:sermon -- --slug nett
 ```
 
-Or by Pfarrplaner source id:
+Sync subtitle and liturgical color metadata from Pfarrplaner:
 
 ```bash
-npm run release:sermon -- --source-id 99999@host.example
+npm run sync:sermon-metadata -- --dry-run
 ```
 
-Releasing a sermon sets:
-
-- `listed: true`
-- `index: true`
-- `federate: true`
-
-After release, run:
+After release:
 
 ```bash
 npm run publish
 ```
 
-## Build Quality Gates
+## Open Source Workflow
 
-`npm run build` currently does all of this:
+Repository entries are imported as normal content pages under `src/content/projects/imported/`.
+They are published under `/open-source/`.
 
-- generate default icons and social image assets
-- validate frontmatter and referenced files
-- build the Eleventy site in a staging directory
-- generate the Pagefind search bundle
-- validate built HTML links, canonicals, and podcast enclosures
-- promote the validated build to `_site/`
+Dry run:
+
+```bash
+npm run import:open-source -- --dry-run
+```
+
+Real import:
+
+```bash
+npm run import:open-source
+```
+
+Include organization repositories by setting `OPEN_SOURCE_GITHUB_ORGS` and/or `OPEN_SOURCE_CODEBERG_ORGS` in `.env`.
+The full operator details are documented in [2026/docs/RUNBOOK.md](/home/christoph/Dev/sites/cfde/2026/docs/RUNBOOK.md).
+
+Optional cleanup of no-longer-present imported repositories:
+
+```bash
+npm run import:open-source -- --prune
+```
+
+## Manual Podcast Workflow
+
+The podcast area is split into podcast series and podcast episodes:
+
+- series page: `src/content/podcasts/<show>/index.md`
+- episode page: `src/content/podcasts/<show>/<episode>/index.md`
+- each episode folder contains its own audio file and optional cover
+
+Series example:
+
+```md
+---
+title: Christoph talks
+summary: Gespraeche, Beobachtungen und digitale Randnotizen.
+date: 2026-06-02
+cover: cover.jpg
+cover_alt: Podcastcover fuer Christoph talks.
+podcast_feed_title: Christoph talks
+podcast_feed_description: Gespraeche, Beobachtungen und digitale Randnotizen.
+podcast_categories:
+  - Society & Culture
+  - Personal Journals
+---
+Diese Seite beschreibt die Reihe. Die Folgen liegen in Unterordnern derselben Reihe.
+```
+
+Episode example:
+
+```md
+---
+title: Neue Folge
+summary: Kurze Beschreibung fuer Archiv, Feed und Suchseite.
+date: 2026-06-02
+subtitle: Ein moeglicher Untertitel
+audio: episode.mp3
+audio_duration: 28:14
+cover: cover.jpg
+cover_alt: Covermotiv der Folge.
+episode_number: 1
+season_number: 1
+---
+Einleitungstext, Shownotes, Links und weitere Hinweise.
+```
+
+After the files are in place, the series appears automatically:
+
+- in `/podcasts/`
+- on `/podcast/<show>/`
+- with its own feed on `/podcast/<show>/feed.xml`
+- in search and sitemap
+
+The existing sermon podcast stays separate at `/podcast.xml` and is represented by `Christoph predigt` in the overview. Full operator notes are in [2026/docs/RUNBOOK.md](/home/christoph/Dev/sites/cfde/2026/docs/RUNBOOK.md).
+
+## ActivityPub Notes
+
+The backend now stores its state in SQLite by default:
+
+- database: `2026/backend/data/activitypub.sqlite`
+- migrated automatically from legacy JSON files in `2026/backend/data/` on first start
+
+Operational helper scripts:
+
+```bash
+npm run activitypub:block -- --actor https://example.social/users/spam
+npm run activitypub:unblock -- --actor https://example.social/users/spam
+npm run activitypub:remove-follower -- --actor https://example.social/users/name
+npm run activitypub:retry-deliveries
+```
+
+The inbox requires valid HTTP signatures by default, outbound delivery retries are enabled, and followers/outbox are paginated.
+
+## Reverse Proxy
+
+A Caddy example is included here:
+
+- [2026/deploy/Caddyfile.activitypub](/home/christoph/Dev/sites/cfde/2026/deploy/Caddyfile.activitypub)
+
+Use a public HTTPS `ACTIVITYPUB_BASE_URL` in `.env`, even if the backend itself listens only on `127.0.0.1`.
 
 ## Accessibility Standard
 
 Target standard is WCAG 2.2 AA across the whole site, with AAA applied where feasible without harming content clarity.
-
-Current implementation priorities:
-
-- semantic page structure
-- visible keyboard focus
-- skip link
-- no JS dependency for core content
-- reduced-motion handling
-- minimum target sizing for interactive controls
-- high-contrast editorial palette
-- alt text validation for meaningful images
-
-Remaining accessibility work should be evaluated against real page output with manual keyboard testing and automated checks such as Lighthouse or axe after each substantial template change.
-
-## ActivityPub Backend
-
-Start the backend:
-
-```bash
-npm run backend
-```
-
-Important environment variables:
-
-- `ACTIVITYPUB_BASE_URL`
-- `ACTIVITYPUB_DOMAIN`
-- `ACTIVITYPUB_USERNAME`
-- `ACTIVITYPUB_PUBLIC_KEY_PATH`
-- `ACTIVITYPUB_PRIVATE_KEY_PATH`
-- `ACTIVITYPUB_DATA_DIR`
-- `ACTIVITYPUB_PORT`
-
-## Deployment
-
-Deployment uses `rsync`.
-
-Required environment variable:
-
-```bash
-export DEPLOY_TARGET='user@example:/var/www/christoph-fischer.de/'
-```
-
-Optional:
-
-```bash
-export DEPLOY_DELETE=true
-export DEPLOY_RSYNC_ARGS='--omit-dir-times'
-```
-
-Then run:
-
-```bash
-npm run deploy
-```
 
 ## Repository Layout
 
 ```text
 2026/
   backend/     ActivityPub service
+  docs/        runbook and operator docs
   scripts/     import, release, deploy, validation, migration tooling
   src/         Eleventy source
   _site/       generated output

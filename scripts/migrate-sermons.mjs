@@ -307,6 +307,17 @@ function eventOccasion(events) {
   return null;
 }
 
+function eventLiturgyColor(events) {
+  for (const event of events) {
+    const liturgy = event.liturgy;
+    if (Array.isArray(liturgy)) continue;
+    if (liturgy?.["CSS-Farbe"]) return String(liturgy["CSS-Farbe"]);
+    if (liturgy?.litColor) return String(liturgy.litColor);
+    if (liturgy?.Farbe) return String(liturgy.Farbe);
+  }
+  return null;
+}
+
 function isPublicSermon(row, data) {
   if (row.private === 1) return false;
   if (data.isPrivate === true) return false;
@@ -358,6 +369,7 @@ function migrateSermon(row) {
     slug: finalSlug,
     scripture: data.reference || data.scripture || row.reference || null,
     occasion: data.occasion || eventOccasion(legacyEvents),
+    liturgy_color: data.liturgy_color || eventLiturgyColor(legacyEvents),
     series: data.series || null,
     summary,
     source: "pfarrplaner",
@@ -377,7 +389,10 @@ function migrateSermon(row) {
       location: typeof event.location === "string" ? event.location : null,
       occasion: Array.isArray(event.liturgy)
         ? null
-        : event.liturgy?.Bezeichnung || event.liturgy?.title || null
+        : event.liturgy?.Bezeichnung || event.liturgy?.title || null,
+      liturgy_color: Array.isArray(event.liturgy)
+        ? null
+        : event.liturgy?.["CSS-Farbe"] || event.liturgy?.litColor || event.liturgy?.Farbe || null
     }))
   });
 

@@ -1,8 +1,8 @@
 ---
 layout: layouts/page.njk
-title: Projekte
-summary: Digitale und kreative Projekte.
-permalink: /projekte/
+title: Open Source
+summary: Eigene Repositories, Werkzeuge und öffentlich gepflegte Softwareprojekte.
+permalink: /open-source/
 ---
 {% if collections.projects.length %}
   {% set archiveItems = collections.projects %}
@@ -10,6 +10,6 @@ permalink: /projekte/
   {% include "components/archive-list.njk" %}
 {% else %}
   <div class="archive-placeholder">
-    <p>Projektseiten können jetzt im Dateisystem angelegt werden; konkrete Einträge folgen als nächster Inhaltsschritt.</p>
+    <p>Open-Source-Einträge können manuell angelegt oder per Importer aus GitHub und Codeberg erzeugt werden.</p>
   </div>
 {% endif %}

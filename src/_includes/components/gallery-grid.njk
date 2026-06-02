@@ -1,8 +1,10 @@
 {% if items and items.length %}
-  <div class="gallery-grid">
+  {% set variant = galleryVariant or "default" %}
+  {% set galleryId = galleryId or page.fileSlug or "gallery" %}
+  <div class="gallery-grid gallery-grid--{{ variant }}">
     {% for item in items %}
-      <figure class="gallery-card">
-        <a href="{{ item.src }}">
+      <figure class="gallery-card gallery-card--{{ variant }}">
+        <a href="{{ item.src }}"{% if not item.src.endsWith('.pdf') %} data-lightbox-src="{{ item.src }}" data-lightbox-alt="{{ item.alt }}" data-lightbox-caption="{{ (item.caption or item.title or '') | escape }}" data-lightbox-group="{{ galleryId }}"{% endif %}>
           {% if item.src.endsWith('.pdf') %}
             <div class="gallery-card__file">PDF</div>
           {% else %}
@@ -12,8 +14,25 @@
             }, page %}
           {% endif %}
         </a>
-        {% if item.title or item.caption %}
-          <figcaption>{{ item.title or item.caption }}</figcaption>
+        {% if item.title or item.caption or item.article or item.publication %}
+          <figcaption>
+            {% if variant == "press" %}
+              {% if item.article %}
+                <strong class="gallery-card__caption-title">{{ item.article }}</strong>
+              {% elif item.title %}
+                <strong class="gallery-card__caption-title">{{ item.title }}</strong>
+              {% endif %}
+              {% if item.publication or item.page or item.date %}
+                <span class="gallery-card__caption-meta">
+                  {% if item.publication %}{{ item.publication }}{% endif %}
+                  {% if item.page %}{% if item.publication %} · {% endif %}S. {{ item.page }}{% endif %}
+                  {% if item.date %}{% if item.publication or item.page %} · {% endif %}{{ item.date | readableDate("dd.MM.yyyy") }}{% endif %}
+                </span>
+              {% endif %}
+            {% else %}
+              {{ item.title or item.caption }}
+            {% endif %}
+          </figcaption>
         {% endif %}
       </figure>
     {% endfor %}

@@ -1,0 +1,47 @@
+---
+layout: layouts/page.njk
+title: Kunstprojekte
+summary: Überblick über künstlerische und experimentelle Arbeiten.
+permalink: /kunstprojekte/
+---
+<p>Kunst ist für mich eine konkrete Form von Verkündigung. Viele dieser Arbeiten sind aus Gemeindesituationen heraus entstanden: für Unterricht, Gottesdienste, Kirchenraum, Feste oder Zeiten, in denen Bilder und Installationen Menschen anders ansprechen konnten als Worte allein.</p>
+
+<div class="project-index">
+  {% for project in legacyMedia.artProjects %}
+    <section class="project-entry" aria-labelledby="projekt-{{ project.slug }}">
+      <header class="project-entry__header">
+        <h2 id="projekt-{{ project.slug }}">{{ project.title }}</h2>
+        {% if project.hasArchive %}
+          <p class="project-entry__link"><a href="/galerie/kunst-{{ project.slug }}/">Zur vollständigen Galerie</a></p>
+        {% endif %}
+      </header>
+
+      {% if project.description %}
+        <p>{{ project.description }}</p>
+      {% endif %}
+
+      {% if project.hasArchive %}
+        <a class="project-preview" href="/galerie/kunst-{{ project.slug }}/">
+          <div class="project-preview__grid" aria-hidden="true">
+            {% for image in project.images %}
+              {% if loop.index0 < 3 %}
+                <figure class="project-preview__item">
+                  <img
+                    src="{{ image.src }}"
+                    alt=""
+                    class="project-preview__image"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </figure>
+              {% endif %}
+            {% endfor %}
+          </div>
+          <span class="project-preview__cta">Galerie öffnen</span>
+        </a>
+      {% else %}
+        <p class="project-entry__note">Zu diesem Projekt ist im alten Dateibestand derzeit keine Bildserie mehr vorhanden. Der Projekteintrag bleibt hier dennoch bewusst erhalten.</p>
+      {% endif %}
+    </section>
+  {% endfor %}
+</div>

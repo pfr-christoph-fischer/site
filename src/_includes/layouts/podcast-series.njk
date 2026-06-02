@@ -1,0 +1,66 @@
+---
+layout: layouts/base.njk
+ogType: website
+---
+<article class="shell entry-page">
+  {% set eyebrow = contentLabel or null %}
+  {% set coverAlt = cover_alt or coverAlt or null %}
+  {% include "components/article-header.njk" %}
+
+  {% set metaItems = [] %}
+  {% if date %}
+    {% set metaItems = metaItems.concat([{ label: "Start", value: '<time datetime="' + (date | htmlDateString) + '">' + (date | readableDate("dd.MM.yyyy")) + '</time>' }]) %}
+  {% endif %}
+  {% if podcastFeedUrl %}
+    {% set metaItems = metaItems.concat([{ label: "Feed", value: '<a href="' + podcastFeedUrl + '">' + podcastFeedUrl + '</a>' }]) %}
+  {% endif %}
+  {% if podcast_categories and podcast_categories.length %}
+    {% set metaItems = metaItems.concat([{ label: "Kategorien", value: podcast_categories | join(", ") }]) %}
+  {% endif %}
+  {% set items = metaItems %}
+  {% include "components/metadata-list.njk" %}
+
+  <div class="entry-actions">
+    {% if podcastFeedUrl %}
+      <a class="button" href="{{ podcastFeedUrl }}">Feed öffnen</a>
+    {% endif %}
+    <a class="button button--subtle" href="/podcast-abonnieren/">Abonnieren</a>
+  </div>
+
+  {% if tagList and tagList.length %}
+    {% set tags = tagList %}
+    {% include "components/tag-links.njk" %}
+  {% endif %}
+
+  <div class="entry-page__body prose">
+    {{ content | safe }}
+  </div>
+
+  {% set podcastEpisodes = collections.podcastEpisodes | podcastEpisodesForSeries(podcastSeriesSlug) %}
+  {% if podcastEpisodes.length %}
+    <section class="page-section">
+      <h2>Folgen</h2>
+      {% set archiveItems = podcastEpisodes %}
+      {% set archiveClass = null %}
+      {% include "components/archive-list.njk" %}
+    </section>
+  {% endif %}
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "PodcastSeries",
+      "name": {{ title | dump | safe }},
+      "description": {{ (summary or site.podcast.description) | dump | safe }},
+      "url": {{ (page.url | absoluteUrl(site)) | dump | safe }},
+      {% if cover %}"image": [{{ ((page.url + cover) | absoluteUrl(site)) | dump | safe }}],{% endif %}
+      {% if podcastFeedUrl %}"feedUrl": {{ (podcastFeedUrl | absoluteUrl(site)) | dump | safe }},{% endif %}
+      "publisher": {
+        "@type": "Person",
+        "name": {{ site.author.name | dump | safe }}
+      },
+      "inLanguage": {{ site.language | dump | safe }},
+      "isAccessibleForFree": true
+    }
+  </script>
+</article>

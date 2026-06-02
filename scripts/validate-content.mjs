@@ -1,10 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 import yaml from "js-yaml";
 import { detectSchemaType, schemas } from "./lib/content-schemas.mjs";
-import { projectRoot, siteRoot } from "./lib/paths.mjs";
 
+const projectRoot = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const contentRoot = path.join(projectRoot, "src", "content");
+const siteRoot = path.join(projectRoot, "_site");
 const validateBuiltSite = process.argv.includes("--site");
 
 function getFiles(dir, predicate = () => true) {
@@ -29,10 +31,17 @@ function parseFrontmatter(file) {
   return yaml.load(raw.slice(4, end));
 }
 
-function validateSourceContent(errors) {
+async function loadGallerySlugs() {
+  const galleryDataUrl = pathToFileURL(path.join(projectRoot, "src", "_data", "generatedGalleries.js")).href;
+  const module = await import(galleryDataUrl);
+  return new Set((module.default || []).map((gallery) => gallery.slug).filter(Boolean));
+}
+
+async function validateSourceContent(errors) {
   const files = getFiles(contentRoot, (file) => /\.(md|njk)$/.test(file));
   const explicitPermalinks = new Map();
   const sourceIds = new Map();
+  const gallerySlugs = await loadGallerySlugs();
 
   for (const file of files) {
     const data = parseFrontmatter(file);
@@ -105,6 +114,14 @@ function validateSourceContent(errors) {
       }
     }
 
+    if (Array.isArray(data.galleries)) {
+      for (const gallerySlug of data.galleries) {
+        if (!gallerySlugs.has(gallerySlug)) {
+          errors.push(`${file}: invalid gallery reference ${gallerySlug}`);
+        }
+      }
+    }
+
     if (Array.isArray(data.images)) {
       for (const image of data.images) {
         if (!image?.file) {
@@ -169,10 +186,17 @@ function validateBuiltOutput(errors) {
     const canonicalMatch = html.match(/<link rel="canonical" href="([^"]+)"/i);
     if (!canonicalMatch) {
       errors.push(`${file}: missing canonical link`);
+    } else if (!/^https?:\/\//i.test(canonicalMatch[1])) {
+      errors.push(`${file}: canonical link must be absolute`);
     } else if (!isAliasRedirect && canonicals.has(canonicalMatch[1])) {
       errors.push(`${file}: duplicate canonical ${canonicalMatch[1]} also used by ${canonicals.get(canonicalMatch[1])}`);
     } else if (!isAliasRedirect) {
       canonicals.set(canonicalMatch[1], file);
+    }
+
+    const ogImageMatch = html.match(/<meta property="og:image" content="([^"]+)"/i);
+    if (ogImageMatch && !/<meta property="og:image:alt" content="[^"]+"/i.test(html)) {
+      errors.push(`${file}: og:image is present without og:image:alt`);
     }
 
     for (const match of html.matchAll(/<(a|img|script|source)\b[^>]+(?:href|src)="([^"]+)"/gi)) {
@@ -191,8 +215,7 @@ function validateBuiltOutput(errors) {
     }
   }
 
-  const podcastFeed = path.join(siteRoot, "podcast.xml");
-  if (fs.existsSync(podcastFeed)) {
+  for (const podcastFeed of walk(siteRoot).filter((file) => file.endsWith(".xml") && /\/podcast(?:s)?(?:\/|\.xml$)/.test(file.replace(/\\/g, "/")))) {
     const xml = fs.readFileSync(podcastFeed, "utf8");
     for (const match of xml.matchAll(/<enclosure[^>]+url="([^"]+)"/g)) {
       const builtTarget = normalizeBuiltPath(new URL(match[1]).pathname);
@@ -205,9 +228,9 @@ function validateBuiltOutput(errors) {
   return htmlFiles.length;
 }
 
-function main() {
+async function main() {
   const errors = [];
-  const contentCount = validateSourceContent(errors);
+  const contentCount = await validateSourceContent(errors);
   const builtCount = validateBuiltSite ? validateBuiltOutput(errors) : 0;
 
   if (errors.length) {
@@ -222,4 +245,4 @@ function main() {
   console.log(`Validated ${contentCount} content files${suffix} with no blocking errors.`);
 }
 
-main();
+await main();
