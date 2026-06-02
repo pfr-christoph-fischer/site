@@ -1,9 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 import sharp from "sharp";
 
 const projectRoot = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
+const cacheRoot = path.join(projectRoot, ".cache");
 const generatedRoot = path.join(projectRoot, "src", "assets", "generated");
+const manifestPath = path.join(cacheRoot, "generated-site-assets.json");
 
 function ensureDir(dirPath) {
   fs.mkdirSync(dirPath, { recursive: true });
@@ -12,6 +15,28 @@ function ensureDir(dirPath) {
 function writeFile(filePath, content) {
   ensureDir(path.dirname(filePath));
   fs.writeFileSync(filePath, content);
+}
+
+function writeTextIfChanged(filePath, content) {
+  if (fs.existsSync(filePath) && fs.readFileSync(filePath, "utf8") === content) {
+    return false;
+  }
+  writeFile(filePath, content);
+  return true;
+}
+
+function readManifest() {
+  if (!fs.existsSync(manifestPath)) return {};
+  try {
+    return JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+  } catch {
+    return {};
+  }
+}
+
+function writeManifest(data) {
+  ensureDir(path.dirname(manifestPath));
+  fs.writeFileSync(manifestPath, JSON.stringify(data, null, 2));
 }
 
 const svg = `
@@ -35,12 +60,28 @@ const svg = `
 
 async function main() {
   ensureDir(generatedRoot);
-  writeFile(path.join(projectRoot, "src", "icon.svg"), svg);
-  writeFile(path.join(generatedRoot, "social-default.svg"), svg);
+  const svgHash = crypto.createHash("sha256").update(svg).digest("hex");
+  const manifest = readManifest();
+  const iconSvgPath = path.join(projectRoot, "src", "icon.svg");
+  const socialSvgPath = path.join(generatedRoot, "social-default.svg");
+  const socialPngPath = path.join(generatedRoot, "social-default.png");
+  const appleTouchPath = path.join(generatedRoot, "apple-touch-icon.png");
 
-  const image = sharp(Buffer.from(svg));
-  await image.png().toFile(path.join(generatedRoot, "social-default.png"));
-  await image.resize(180, 180).png().toFile(path.join(generatedRoot, "apple-touch-icon.png"));
+  const wroteIcon = writeTextIfChanged(iconSvgPath, svg);
+  const wroteSocialSvg = writeTextIfChanged(socialSvgPath, svg);
+  const rasterOutputsMissing = !fs.existsSync(socialPngPath) || !fs.existsSync(appleTouchPath);
+  const rasterOutputsStale = Boolean(manifest.svgHash) && manifest.svgHash !== svgHash;
+
+  if (rasterOutputsMissing || rasterOutputsStale) {
+    const svgBuffer = Buffer.from(svg);
+    await sharp(svgBuffer).png().toFile(socialPngPath);
+    await sharp(svgBuffer).resize(180, 180).png().toFile(appleTouchPath);
+  }
+
+  writeManifest({ svgHash });
+  const regeneratedRasterCount = rasterOutputsMissing || rasterOutputsStale ? 2 : 0;
+  const rewrittenSvgCount = Number(wroteIcon) + Number(wroteSocialSvg);
+  console.log(`Generated ${regeneratedRasterCount} raster assets and refreshed ${rewrittenSvgCount} SVG files.`);
 }
 
 main().catch((error) => {

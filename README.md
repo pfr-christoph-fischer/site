@@ -43,7 +43,13 @@ Full static build with validation:
 npm run build
 ```
 
-This clears `_site/` first, then rebuilds it completely.
+This is the fast incremental build. It keeps `_site/` in place so unchanged media derivatives and copied entry assets are reused.
+
+For a full clean rebuild:
+
+```bash
+npm run build:clean
+```
 
 Import repository entries from GitHub and Codeberg:
 
