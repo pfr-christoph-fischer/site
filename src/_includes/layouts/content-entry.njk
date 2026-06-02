@@ -49,8 +49,9 @@ ogType: article
     {% endif %}
     {% set metaItems = metaItems.concat([{ label: "Eigentümer", value: ownerValue }]) %}
   {% endif %}
-  {% if language %}
-    {% set metaItems = metaItems.concat([{ label: "Sprache", value: language }]) %}
+  {% set programmingLanguage = repository_language or language %}
+  {% if programmingLanguage %}
+    {% set metaItems = metaItems.concat([{ label: "Sprache", value: programmingLanguage }]) %}
   {% endif %}
   {% if stars is defined %}
     {% set metaItems = metaItems.concat([{ label: "Sterne", value: stars }]) %}
@@ -124,7 +125,7 @@ ogType: article
       },
       {% if repository_url %}"codeRepository": {{ repository_url | dump | safe }},{% endif %}
       {% if homepage_url %}"url": {{ homepage_url | dump | safe }},{% endif %}
-      {% if language %}"programmingLanguage": {{ language | dump | safe }},{% endif %}
+      {% if programmingLanguage %}"programmingLanguage": {{ programmingLanguage | dump | safe }},{% endif %}
       {% if cover %}"image": [{{ ((page.url + cover) | absoluteUrl(site)) | dump | safe }}],{% endif %}
       {% if technologies and technologies.length %}"keywords": {{ technologies | join(", ") | dump | safe }},{% endif %}
       {% if tagList and tagList.length %}"about": {{ tagList | dump | safe }},{% endif %}

@@ -263,7 +263,7 @@ function repoToMarkdown(repo) {
     `homepage_url: ${escapeYamlString(repo.homepage)}`,
     `license: ${escapeYamlString(repo.license)}`,
     `license_url: ${escapeYamlString(repo.licenseUrl || "")}`,
-    `language: ${escapeYamlString(repo.language)}`,
+    `repository_language: ${escapeYamlString(repo.language)}`,
     "tags:"
   ];
 

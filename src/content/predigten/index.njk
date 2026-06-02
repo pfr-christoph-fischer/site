@@ -14,6 +14,7 @@ permalink: /predigten/
     <h2 id="year-{{ group.year }}">{{ group.year }}</h2>
     {% set archiveItems = group.items %}
     {% set archiveClass = null %}
+    {% set archiveHeadingLevel = "h3" %}
     {% include "components/archive-list.njk" %}
   </section>
 {% endfor %}

@@ -5,11 +5,11 @@
   --color-surface-2: #1a1f28;
   --color-ink: #f3efe7;
   --color-ink-soft: #d6cec1;
-  --color-muted: #a9a191;
+  --color-muted: #b7ae9c;
   --color-line: #333945;
   --color-accent: #d8b36d;
   --color-accent-strong: #f0c77b;
-  --color-focus: #ffe29f;
+  --color-focus: #f0c77b;
   --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.28);
   --font-body: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
   --font-ui: "Atkinson Hyperlegible", "Segoe UI", sans-serif;
@@ -76,7 +76,7 @@ summary:focus-visible {
   top: -4rem;
   z-index: 20;
   background: var(--color-focus);
-  color: #111;
+  color: #15110b;
   padding: 0.75rem 1rem;
 }
 

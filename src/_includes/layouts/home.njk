@@ -28,6 +28,7 @@ layout: layouts/base.njk
         <h2 id="latest-sermon-heading">Neueste Predigt</h2>
         {% set archiveItems = [latest] %}
         {% set archiveClass = "archive-list--featured" %}
+        {% set archiveHeadingLevel = "h3" %}
         {% include "components/archive-list.njk" %}
       {% else %}
         <p>Noch keine Predigten vorhanden.</p>
@@ -43,5 +44,6 @@ layout: layouts/base.njk
   </div>
   {% set archiveItems = collections.sermons.slice(1, 7) %}
   {% set archiveClass = null %}
+  {% set archiveHeadingLevel = "h3" %}
   {% include "components/archive-list.njk" %}
 </section>

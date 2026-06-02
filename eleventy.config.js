@@ -126,6 +126,10 @@ function escapeAttribute(value) {
     .replace(/>/g, "&gt;");
 }
 
+function addFocusableCodeBlocks(value) {
+  return String(value || "").replace(/<pre(?![^>]*\btabindex=)([^>]*)>/g, '<pre tabindex="0"$1>');
+}
+
 async function renderResponsiveImage(src, alt, options = {}, page = null) {
   const resolved = resolveImageSource(src, page);
   if (!resolved) {
@@ -247,6 +251,10 @@ export default function(eleventyConfig) {
 
   eleventyConfig.addFilter("imageUrl", (src, page = null) => {
     return resolveOutputImageUrl(src, page);
+  });
+
+  eleventyConfig.addFilter("focusableCodeBlocks", (value) => {
+    return addFocusableCodeBlocks(value);
   });
 
   eleventyConfig.addFilter("podcastEpisodesForSeries", (items = [], seriesSlug = "") => {

@@ -42,6 +42,7 @@ ogType: website
       <h2>Folgen</h2>
       {% set archiveItems = podcastEpisodes %}
       {% set archiveClass = null %}
+      {% set archiveHeadingLevel = "h3" %}
       {% include "components/archive-list.njk" %}
     </section>
   {% endif %}

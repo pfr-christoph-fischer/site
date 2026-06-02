@@ -33,15 +33,28 @@ Important:
 
 `npm run build`
 
-- clears `_site/` first so renamed or removed pages do not linger as stale output
 - generates default social/icon assets
 - validates frontmatter and referenced source files
 - runs Eleventy
 - copies local entry media into the generated output
+- runs automated accessibility audits
 - builds the Pagefind search index
 - validates generated HTML, canonicals, internal links, and podcast enclosures
 
 Use this before every deploy.
+
+### Accessibility audit only
+
+`npm run audit:a11y`
+
+- runs `pa11y-ci` with WCAG 2 AAA HTML_CodeSniffer checks on representative routes
+- runs `@axe-core/cli` on the same representative routes for automated AAA and WCAG 2.2 AA rules such as enhanced contrast and identical-link-purpose checks
+
+`npm run audit:a11y:full`
+
+- runs the same Axe representative pass
+- additionally crawls all generated HTML files in `_site/` with `pa11y-ci`
+- slower, intended for pre-release or deeper CI validation
 
 ### Search only
 

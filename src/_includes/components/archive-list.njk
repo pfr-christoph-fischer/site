@@ -1,4 +1,5 @@
 {% if archiveItems and archiveItems.length %}
+  {% set resolvedHeadingLevel = archiveHeadingLevel or "h2" %}
   <div class="archive-list{% if archiveClass %} {{ archiveClass }}{% endif %}">
     {% for item in archiveItems %}
       {% set entry = item.data %}
@@ -7,7 +8,7 @@
       {% endif %}
       <article class="archive-entry{% if entry.cover %} archive-entry--with-image{% endif %}">
         {% if entry.cover %}
-          <a class="archive-entry__media" href="{{ item.url }}" aria-hidden="true" tabindex="-1">
+          <a class="archive-entry__media" href="{{ item.url }}" aria-label="{{ entry.title }}">
             <img
               src="{{ entryCoverUrl }}"
               alt="{{ entry.cover_alt or ('Titelbild zu ' + entry.title) }}"
@@ -25,7 +26,7 @@
             {% if entry.occasion %} · {{ entry.occasion }}{% endif %}
             {% if entry.scripture %} · {{ entry.scripture }}{% endif %}
           </div>
-          <h3><a href="{{ item.url }}">{{ entry.title }}</a></h3>
+          <{{ resolvedHeadingLevel }}><a href="{{ item.url }}">{{ entry.title }}</a></{{ resolvedHeadingLevel }}>
           {% if entry.summary %}
             <p>{{ entry.summary }}</p>
           {% endif %}

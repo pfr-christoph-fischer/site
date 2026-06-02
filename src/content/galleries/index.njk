@@ -12,7 +12,7 @@ permalink: /galerie/
       {% set cover = gallery.data.images[0] if gallery.data.images and gallery.data.images.length else null %}
       <article class="archive-entry{% if cover %} archive-entry--with-image{% endif %}">
         {% if cover %}
-          <a class="archive-entry__media" href="{{ gallery.url }}" aria-hidden="true" tabindex="-1">
+          <a class="archive-entry__media" href="{{ gallery.url }}" aria-label="{{ gallery.data.title }}">
             <img
               src="{{ cover.src }}"
               alt="{{ cover.alt }}"

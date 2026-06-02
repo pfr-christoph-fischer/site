@@ -43,12 +43,24 @@ Full static build with validation:
 npm run build
 ```
 
-This is the fast incremental build. It keeps `_site/` in place so unchanged media derivatives and copied entry assets are reused.
+This is the fast incremental build. It keeps `_site/` in place so unchanged media derivatives and copied entry assets are reused, and now runs automated WCAG audits against a representative set of generated pages before the search index step.
 
 For a full clean rebuild:
 
 ```bash
 npm run build:clean
+```
+
+Run the representative accessibility audit by itself:
+
+```bash
+npm run audit:a11y
+```
+
+Run the slower full-site Pa11y crawl plus the representative Axe pass:
+
+```bash
+npm run audit:a11y:full
 ```
 
 Import repository entries from GitHub and Codeberg:
@@ -216,7 +228,7 @@ Use a public HTTPS `ACTIVITYPUB_BASE_URL` in `.env`, even if the backend itself 
 
 ## Accessibility Standard
 
-Target standard is WCAG 2.2 AA across the whole site, with AAA applied where feasible without harming content clarity.
+Target standard is WCAG 2.2 AA for editorial decisions, with automated build checks enforcing WCAG 2.2 AAA-applicable rules for contrast, names, structure, and repeated-link purpose where the tooling can verify them.
 
 ## Repository Layout
 
