@@ -33,7 +33,11 @@ ogType: article
     {% set metaItems = metaItems.concat([{ label: "Reihe", value: series }]) %}
   {% endif %}
   {% if license %}
-    {% set metaItems = metaItems.concat([{ label: "Lizenz", value: license }]) %}
+    {% set licenseValue = license %}
+    {% if license_url %}
+      {% set licenseValue = '<a href="' + license_url + '" target="_blank" rel="noopener">' + license + '</a>' %}
+    {% endif %}
+    {% set metaItems = metaItems.concat([{ label: "Lizenz", value: licenseValue }]) %}
   {% endif %}
   {% if repository_platform %}
     {% set metaItems = metaItems.concat([{ label: "Plattform", value: repository_platform }]) %}

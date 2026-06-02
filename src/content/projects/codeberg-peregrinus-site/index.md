@@ -1,3 +1,26 @@
+---
+title: "site"
+summary: "Eleventy based rebuild of christoph fischer.de with:"
+date: 2026-06-02
+updated: 2026-06-02
+repository_owner: "peregrinus"
+repository_owner_url: "https://christoph-fischer.de"
+repository_url: "https://codeberg.org/peregrinus/site"
+repository_platform: "Codeberg"
+homepage_url: ""
+license: "GPL 3.0+"
+license_url: "https://www.gnu.org/licenses/gpl-3.0.txt"
+language: "JavaScript"
+tags:
+  - "project"
+  - "open-source"
+  - "codeberg"
+  - "user"
+  - "javascript"
+technologies:
+  - "JavaScript"
+---
+
 # 2026 Static Rebuild
 
 Eleventy-based rebuild of `christoph-fischer.de` with:
@@ -43,13 +66,7 @@ Full static build with validation:
 npm run build
 ```
 
-This is the fast incremental build. It keeps `_site/` in place so unchanged media derivatives and copied entry assets are reused.
-
-For a full clean rebuild:
-
-```bash
-npm run build:clean
-```
+This clears `_site/` first, then rebuilds it completely.
 
 Import repository entries from GitHub and Codeberg:
 
@@ -111,7 +128,7 @@ npm run publish
 
 ## Open Source Workflow
 
-Repository entries are imported as normal content pages under `src/content/projects/`.
+Repository entries are imported as normal content pages under `src/content/projects/imported/`.
 They are published under `/open-source/`.
 
 Dry run:
@@ -228,3 +245,7 @@ Target standard is WCAG 2.2 AA across the whole site, with AAA applied where fea
   src/         Eleventy source
   _site/       generated output
 ```
+
+
+<!-- managed-by: import-open-source-repos -->
+

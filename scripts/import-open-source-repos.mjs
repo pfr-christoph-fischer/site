@@ -1,14 +1,18 @@
 import fs from "node:fs";
 import path from "node:path";
+import { Buffer } from "node:buffer";
 import { loadEnv } from "./lib/env.mjs";
 
 const projectRoot = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 loadEnv(projectRoot);
 
-const outputRoot = path.join(projectRoot, "src", "content", "projects", "imported");
+const outputRoot = path.join(projectRoot, "src", "content", "projects");
+const legacyOutputRoot = path.join(outputRoot, "imported");
 const includeForks = /^true$/i.test(process.env.OPEN_SOURCE_INCLUDE_FORKS || "false");
 const prune = process.argv.includes("--prune");
 const dryRun = process.argv.includes("--dry-run");
+const fallbackLicenseName = "GPL 3.0+";
+const fallbackLicenseUrl = "https://www.gnu.org/licenses/gpl-3.0.txt";
 
 function splitList(value) {
   return String(value || "")
@@ -46,6 +50,15 @@ async function fetchJson(url, options = {}) {
   return response.json();
 }
 
+async function fetchOptionalJson(url, options = {}) {
+  const response = await fetch(url, options);
+  if (response.status === 404) return null;
+  if (!response.ok) {
+    throw new Error(`Request failed ${response.status} ${response.statusText}: ${url}`);
+  }
+  return response.json();
+}
+
 async function fetchAllPages(urlBuilder, options = {}) {
   const all = [];
   let page = 1;
@@ -73,11 +86,9 @@ function normalizeGithubRepo(repo, scopeType) {
     description: repo.description || "",
     repositoryUrl: repo.html_url,
     homepage: repo.homepage || "",
-    stars: repo.stargazers_count || 0,
-    forks: repo.forks_count || 0,
-    watchers: repo.watchers_count || 0,
     language: repo.language || "",
     license: repo.license?.spdx_id && repo.license.spdx_id !== "NOASSERTION" ? repo.license.spdx_id : "",
+    licenseUrl: "",
     topics: Array.isArray(repo.topics) ? repo.topics : [],
     archived: !!repo.archived,
     fork: !!repo.fork,
@@ -100,17 +111,129 @@ function normalizeCodebergRepo(repo, scopeType) {
     description: repo.description || "",
     repositoryUrl: repo.html_url,
     homepage: repo.website || "",
-    stars: repo.stars_count || 0,
-    forks: repo.forks_count || 0,
-    watchers: repo.watchers_count || repo.watchers || 0,
     language: repo.language || "",
     license: repo.license || "",
+    licenseUrl: "",
     topics: Array.isArray(repo.topics) ? repo.topics : [],
     archived: !!repo.archived,
     fork: !!repo.fork,
     defaultBranch: repo.default_branch || "",
     createdAt: repo.created_at || new Date().toISOString(),
     updatedAt: repo.updated_at || repo.created_at || new Date().toISOString()
+  };
+}
+
+function decodeContent(content, encoding) {
+  if (!content) return "";
+  if (encoding === "base64") {
+    return Buffer.from(String(content).replace(/\n/g, ""), "base64").toString("utf8");
+  }
+  return String(content);
+}
+
+function stripReadmeNoise(markdown) {
+  return String(markdown || "")
+    .replace(/\r\n/g, "\n")
+    .replace(/<!--[\s\S]*?-->/g, "")
+    .trim();
+}
+
+function normalizeReadmeBody(markdown, repoTitle) {
+  let body = stripReadmeNoise(markdown);
+  if (!body) return "";
+
+  const headingPattern = new RegExp(`^#\\s+${repoTitle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*$`, "i");
+  body = body.replace(headingPattern, "").trim();
+  return body;
+}
+
+function plainTextFromMarkdown(markdown) {
+  return String(markdown || "")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/[*_>#-]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function extractSummary(readmeBody, fallback) {
+  const paragraphs = stripReadmeNoise(readmeBody)
+    .split(/\n\s*\n/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
+
+  for (const paragraph of paragraphs) {
+    if (paragraph.startsWith("#")) continue;
+    if (/^!\[.*\]\(.*\)$/.test(paragraph)) continue;
+    if (/^\[[^\]]+\]:\s+\S+/.test(paragraph)) continue;
+    const summary = plainTextFromMarkdown(paragraph);
+    if (summary) {
+      return summary.length > 220 ? `${summary.slice(0, 217).trimEnd()}...` : summary;
+    }
+  }
+
+  return fallback || "";
+}
+
+async function fetchGithubContents(owner, repo, filePath, headers, ref) {
+  const suffix = ref ? `?ref=${encodeURIComponent(ref)}` : "";
+  return fetchOptionalJson(
+    `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${filePath}${suffix}`,
+    { headers }
+  );
+}
+
+async function fetchGithubLicense(owner, repo, headers) {
+  return fetchOptionalJson(
+    `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/license`,
+    { headers }
+  );
+}
+
+async function fetchCodebergContents(owner, repo, filePath, headers, ref) {
+  const suffix = ref ? `?ref=${encodeURIComponent(ref)}` : "";
+  return fetchOptionalJson(
+    `https://codeberg.org/api/v1/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${filePath}${suffix}`,
+    { headers }
+  );
+}
+
+async function enrichGithubRepo(repo, headers) {
+  const readmeFile = await fetchGithubContents(repo.owner, repo.name, "README.md", headers, repo.defaultBranch);
+  const licenseFile = await fetchGithubLicense(repo.owner, repo.name, headers)
+    || await fetchGithubContents(repo.owner, repo.name, "LICENSE", headers, repo.defaultBranch);
+
+  const readmeBody = normalizeReadmeBody(
+    decodeContent(readmeFile?.content, readmeFile?.encoding),
+    repo.title
+  );
+
+  return {
+    ...repo,
+    readmeBody,
+    summary: extractSummary(readmeBody, repo.description || repo.summary),
+    license: licenseFile?.license?.spdx_id && licenseFile.license.spdx_id !== "NOASSERTION"
+      ? licenseFile.license.spdx_id
+      : repo.license || fallbackLicenseName,
+    licenseUrl: licenseFile?.html_url || repo.licenseUrl || (repo.license ? "" : fallbackLicenseUrl)
+  };
+}
+
+async function enrichCodebergRepo(repo, headers) {
+  const readmeFile = await fetchCodebergContents(repo.owner, repo.name, "README.md", headers, repo.defaultBranch);
+  const licenseFile = await fetchCodebergContents(repo.owner, repo.name, "LICENSE", headers, repo.defaultBranch);
+
+  const readmeBody = normalizeReadmeBody(
+    decodeContent(readmeFile?.content, readmeFile?.encoding),
+    repo.title
+  );
+
+  return {
+    ...repo,
+    readmeBody,
+    summary: extractSummary(readmeBody, repo.description || repo.summary),
+    license: repo.license || fallbackLicenseName,
+    licenseUrl: licenseFile?.html_url || (repo.license ? "" : fallbackLicenseUrl)
   };
 }
 
@@ -130,21 +253,14 @@ function repoToMarkdown(repo) {
     `summary: ${escapeYamlString(repo.summary)}`,
     `date: ${repo.createdAt.slice(0, 10)}`,
     `updated: ${repo.updatedAt.slice(0, 10)}`,
-    `source: ${repo.source}`,
-    `source_scope: ${repo.scopeType}`,
     `repository_owner: ${escapeYamlString(repo.owner)}`,
     `repository_owner_url: ${escapeYamlString(repo.ownerUrl)}`,
     `repository_url: ${escapeYamlString(repo.repositoryUrl)}`,
     `repository_platform: ${escapeYamlString(repo.source === "github" ? "GitHub" : "Codeberg")}`,
     `homepage_url: ${escapeYamlString(repo.homepage)}`,
     `license: ${escapeYamlString(repo.license)}`,
+    `license_url: ${escapeYamlString(repo.licenseUrl || "")}`,
     `language: ${escapeYamlString(repo.language)}`,
-    `stars: ${repo.stars}`,
-    `forks: ${repo.forks}`,
-    `watchers: ${repo.watchers}`,
-    `archived: ${repo.archived ? "true" : "false"}`,
-    `is_fork: ${repo.fork ? "true" : "false"}`,
-    `default_branch: ${escapeYamlString(repo.defaultBranch)}`,
     "tags:"
   ];
 
@@ -161,49 +277,12 @@ function repoToMarkdown(repo) {
 
   lines.push("---", "");
 
-  if (repo.description) {
+  if (repo.readmeBody) {
+    lines.push(repo.readmeBody, "");
+  } else if (repo.description) {
     lines.push(markdownEscape(repo.description), "");
   } else {
     lines.push("Automatisch importierter Repository-Eintrag.", "");
-  }
-
-  lines.push("## Repository", "");
-  lines.push(`- Plattform: ${repo.source === "github" ? "GitHub" : "Codeberg"}`);
-  lines.push(`- Typ: ${repo.scopeType === "organization" ? "Organisation" : "Persönlich"}`);
-  lines.push(`- Eigentümer: [${markdownEscape(repo.owner)}](${repo.ownerUrl || repo.repositoryUrl})`);
-  lines.push(`- Code: [${markdownEscape(repo.repositoryUrl)}](${repo.repositoryUrl})`);
-
-  if (repo.homepage) {
-    lines.push(`- Website: [${markdownEscape(repo.homepage)}](${repo.homepage})`);
-  }
-  if (repo.defaultBranch) {
-    lines.push(`- Standard-Branch: \`${markdownEscape(repo.defaultBranch)}\``);
-  }
-  if (repo.license) {
-    lines.push(`- Lizenz: ${markdownEscape(repo.license)}`);
-  }
-  if (repo.language) {
-    lines.push(`- Hauptsprache: ${markdownEscape(repo.language)}`);
-  }
-  lines.push(`- Sterne: ${repo.stars}`);
-  lines.push(`- Forks: ${repo.forks}`);
-  lines.push(`- Beobachter: ${repo.watchers}`);
-
-  if (repo.topics.length) {
-    lines.push("", "## Themen", "");
-    for (const topic of repo.topics) {
-      lines.push(`- ${markdownEscape(topic)}`);
-    }
-  }
-
-  if (repo.archived || repo.fork) {
-    lines.push("", "## Status", "");
-    if (repo.archived) {
-      lines.push("- Dieses Repository ist archiviert.");
-    }
-    if (repo.fork) {
-      lines.push("- Dieses Repository ist ein Fork.");
-    }
   }
 
   lines.push("", "<!-- managed-by: import-open-source-repos -->", "");
@@ -243,6 +322,29 @@ function pruneRemovedRepos(activeSlugs) {
   return removed;
 }
 
+function cleanupLegacyImportedRepos() {
+  if (!fs.existsSync(legacyOutputRoot)) return [];
+  const removed = [];
+
+  for (const entry of fs.readdirSync(legacyOutputRoot, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const dir = path.join(legacyOutputRoot, entry.name);
+    const marker = path.join(dir, "index.md");
+    if (!fs.existsSync(marker)) continue;
+    if (!fs.readFileSync(marker, "utf8").includes("managed-by: import-open-source-repos")) continue;
+    removed.push(dir);
+    if (!dryRun) {
+      fs.rmSync(dir, { recursive: true, force: true });
+    }
+  }
+
+  if (!dryRun && fs.existsSync(legacyOutputRoot) && fs.readdirSync(legacyOutputRoot).length === 0) {
+    fs.rmdirSync(legacyOutputRoot);
+  }
+
+  return removed;
+}
+
 async function importGithubRepos() {
   const users = splitList(process.env.OPEN_SOURCE_GITHUB_USERS);
   const orgs = splitList(process.env.OPEN_SOURCE_GITHUB_ORGS);
@@ -271,7 +373,13 @@ async function importGithubRepos() {
     repos.push(...items.map((repo) => normalizeGithubRepo(repo, "organization")));
   }
 
-  return repos;
+  const filtered = repos.filter((repo) => !repo.fork || includeForks);
+  const enriched = [];
+  for (const repo of filtered) {
+    enriched.push(await enrichGithubRepo(repo, headers));
+  }
+
+  return enriched;
 }
 
 async function importCodebergRepos() {
@@ -299,7 +407,13 @@ async function importCodebergRepos() {
     repos.push(...items.map((repo) => normalizeCodebergRepo(repo, "organization")));
   }
 
-  return repos;
+  const filtered = repos.filter((repo) => !repo.fork || includeForks);
+  const enriched = [];
+  for (const repo of filtered) {
+    enriched.push(await enrichCodebergRepo(repo, headers));
+  }
+
+  return enriched;
 }
 
 async function main() {
@@ -308,7 +422,7 @@ async function main() {
   const imported = [
     ...await importGithubRepos(),
     ...await importCodebergRepos()
-  ].filter((repo) => !repo.fork || includeForks);
+  ];
 
   const deduped = new Map();
   for (const repo of imported) {
@@ -321,10 +435,14 @@ async function main() {
   }
 
   const removed = prune ? pruneRemovedRepos(new Set(deduped.keys())) : [];
+  const legacyRemoved = cleanupLegacyImportedRepos();
 
   console.log(`${dryRun ? "Planned" : "Imported"} ${written.length} repositories into ${outputRoot}`);
   if (removed.length) {
     console.log(`${dryRun ? "Would remove" : "Removed"} ${removed.length} stale imported repository directories.`);
+  }
+  if (legacyRemoved.length) {
+    console.log(`${dryRun ? "Would remove" : "Removed"} ${legacyRemoved.length} legacy repository directories from ${legacyOutputRoot}.`);
   }
 }
 
