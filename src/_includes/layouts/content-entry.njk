@@ -11,9 +11,6 @@ ogType: article
   {% if date %}
     {% set metaItems = metaItems.concat([{ label: "Datum", value: '<time datetime="' + (date | htmlDateString) + '">' + (date | readableDate("dd.MM.yyyy")) + '</time>' }]) %}
   {% endif %}
-  {% if updated %}
-    {% set metaItems = metaItems.concat([{ label: "Aktualisiert", value: updated }]) %}
-  {% endif %}
   {% if subtitle %}
     {% set metaItems = metaItems.concat([{ label: "Untertitel", value: subtitle }]) %}
   {% endif %}
@@ -67,9 +64,6 @@ ogType: article
   {% endif %}
   {% if audio_duration %}
     {% set metaItems = metaItems.concat([{ label: "Länge", value: audio_duration }]) %}
-  {% endif %}
-  {% if technologies and technologies.length %}
-    {% set metaItems = metaItems.concat([{ label: "Technologien", value: technologies | join(", ") }]) %}
   {% endif %}
   {% set items = metaItems %}
   {% include "components/metadata-list.njk" %}
