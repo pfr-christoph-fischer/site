@@ -1,0 +1,3 @@
+[submodule "src/content/sermons"]
+	path = src/content/sermons
+	url = ssh://git@codeberg.org/christoph-fischer/predigten.git
