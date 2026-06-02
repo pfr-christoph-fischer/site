@@ -92,8 +92,7 @@ You can set up automatic email notifications by setting up a cron job to call no
 
 ## License
 This project is licensed under the **GPL-3.0-or-later** license.
-See the [LICENSE](LICENSE) file for details.
+See the LICENSE file for details.
 
 
 <!-- managed-by: import-open-source-repos -->
-

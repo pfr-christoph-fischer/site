@@ -257,6 +257,18 @@ summary:focus-visible {
   margin-top: var(--space-5);
 }
 
+.hero__media {
+  margin: var(--space-5) 0 0;
+}
+
+.hero__image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  box-shadow: var(--shadow-soft);
+}
+
 .button {
   display: inline-block;
   padding: 0.85rem 1.2rem;

@@ -3,11 +3,7 @@
     {% for item in archiveItems %}
       {% set entry = item.data %}
       {% if entry.cover %}
-        {% if entry.cover.startsWith('/') %}
-          {% set entryCoverUrl = entry.cover %}
-        {% else %}
-          {% set entryCoverUrl = item.url + entry.cover %}
-        {% endif %}
+        {% set entryCoverUrl = entry.cover | imageUrl(item) %}
       {% endif %}
       <article class="archive-entry{% if entry.cover %} archive-entry--with-image{% endif %}">
         {% if entry.cover %}

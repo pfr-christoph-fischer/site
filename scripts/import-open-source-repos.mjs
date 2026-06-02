@@ -135,6 +135,9 @@ function stripReadmeNoise(markdown) {
   return String(markdown || "")
     .replace(/\r\n/g, "\n")
     .replace(/<!--[\s\S]*?-->/g, "")
+    .replace(/^!\[[^\]]*\]\((?!https?:\/\/|\/)[^)]+\)\s*$/gm, "")
+    .replace(/\[([^\]]+)\]\(((?!https?:\/\/|mailto:|tel:|\/)[^)]+)\)/g, "$1")
+    .replace(/\[([^\]]+)\]\((\/home\/[^)]+)\)/g, "$1")
     .trim();
 }
 

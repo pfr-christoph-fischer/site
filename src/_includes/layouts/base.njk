@@ -4,8 +4,15 @@
     {% set pageTitle = title or site.title %}
     {% set pageDescription = description or summary or site.description %}
     {% set pageCanonical = (canonical or page.url) | absoluteUrl(site) %}
-    {% set pageImage = socialImage
-      or (cover and ((page.url + cover) | absoluteUrl(site)))
+    {% set resolvedCoverContext = coverContext or page %}
+    {% set resolvedSocialImageContext = socialImageContext or resolvedCoverContext %}
+    {% set coverImage = null %}
+    {% if cover %}
+      {% set coverImage = (cover | imageUrl(resolvedCoverContext)) | absoluteUrl(site) %}
+    {% endif %}
+    {% set socialPageImage = socialImage and ((socialImage | imageUrl(resolvedSocialImageContext)) | absoluteUrl(site)) %}
+    {% set pageImage = socialPageImage
+      or coverImage
       or site.defaultSocialImage | absoluteUrl(site) %}
     {% set pageImageAlt = socialImageAlt or coverAlt or cover_alt or site.defaultSocialImageAlt %}
     {% set resolvedPageImageAlt = pageImageAlt or site.defaultSocialImageAlt or "Bildvorschau zur Website von Christoph Fischer." %}

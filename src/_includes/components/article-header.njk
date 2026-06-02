@@ -1,4 +1,5 @@
 <header class="article-header{% if cover %} article-header--with-image{% endif %}">
+  {% set resolvedCoverContext = coverContext or page %}
   <div class="article-header__copy">
     {% if eyebrow %}
       <p class="eyebrow">{{ eyebrow }}</p>
@@ -17,7 +18,7 @@
         class: "article-header__image",
         sizes: "(min-width: 70rem) 34rem, 100vw",
         loading: "eager"
-      }, page %}
+      }, resolvedCoverContext %}
     </figure>
   {% endif %}
 </header>

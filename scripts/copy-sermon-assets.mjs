@@ -1,8 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import yaml from "js-yaml";
 
-const projectRoot = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
+const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const cacheRoot = path.join(projectRoot, ".cache");
 const manifestPath = path.join(cacheRoot, "copied-entry-media.json");
 const siteRoot = path.join(projectRoot, "_site");
@@ -109,7 +110,7 @@ function getOutputDir(indexFile, data) {
   return null;
 }
 
-function main() {
+export function copyEntryMedia() {
   const contentIndexes = getFiles(contentRoot, (file) => file.endsWith(`${path.sep}index.md`) || file.endsWith("/index.md"));
   const previousManifest = readManifest();
   const currentTargets = new Set();
@@ -158,4 +159,7 @@ function main() {
   console.log(`Copied ${copied} changed entry media files and removed ${removed} stale files.`);
 }
 
-main();
+const invokedPath = process.argv[1] ? path.resolve(process.argv[1]) : null;
+if (invokedPath && invokedPath === fileURLToPath(import.meta.url)) {
+  copyEntryMedia();
+}

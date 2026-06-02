@@ -45,7 +45,6 @@ entsprechenden Kontakten erstellt.
 4. Führen Sie das Setup-Programm aus und übernehmen Sie die vorgeschlagenen Einstellungen.
 5. Starten Sie Outlook. Falls Sie die folgende Sicherheitsabfrage (nur beim ersten Start nach der Installation) sehen, klicken Sie auf "Installieren":
 
-![Security Message](DistributionListUpdater/docs/SecurityWarningOnInstall.png)
 6. Nach dem Start fragt das Add-In einmalig nach dem zu durchsuchenden Kontaktordner, sowie nach einem Ordner für die Verteilerlisten. *Bitte beachten: Der Ordner für die 
 Verteilerlisten wird bei jeder Aktualisierung durch das Add-In komplett gelöscht und neu angelegt. Legen Sie hier keine eigenen Einträge an!* Die beim ersten Start getroffene 
 Zuweisung kann jederzeit über die Schaltflächen "Ko" und "List" verändert werden.
@@ -55,19 +54,9 @@ Zuweisung kann jederzeit über die Schaltflächen "Ko" und "List" verändert wer
 
 1. Ordnen sie den Kontakten im ausgewählten Kontaktordner beliebige Kategorien zu.
 
-![Categorize Contact](DistributionListUpdater/docs/CategorizeContact.png)
-
-
-
 2. Klicken Sie im Bereich "Verteilerlisten" des Menübands auf die Schaltfläche "Alle aktualisieren". (Der Bereich "Verteilerlisten" erscheint unter dem Reiter "Start", wenn Sie sich im Bereich E-Mails oder Kontakte von Outlook befinden).
 
-![Ribbon With Button](DistributionListUpdater/docs/RibbonWithButton.png)
-
-
-
 3. Im Verteilerlistenordner finden Sie ihre neuen Verteilerlisten. Zum einfacheren Auffinden bei der Adresseingabe wird dem Titel der Kategorie jeweils "VL." vorangestellt.
-
-![Distribution Lists](DistributionListUpdater/docs/DistributionLists.png)
 
 ## Wichtige Informationen
 
@@ -79,8 +68,7 @@ Zuweisung kann jederzeit über die Schaltflächen "Ko" und "List" verändert wer
 Das Installationsprogramm zum Add-In wurde mit Daniel Kraus' ausgezeichnetem [VstoAdd-InInstaller](https://github.com/bovender/VstoAdd-InInstaller) erstellt.
 
 ## Lizenz
-Dieses Add-In wird unter der GNU GPLv3-Lizenz angeboten. Nähere Informationen dazu finden sich in der Datei [LICENSE](LICENSE). Ausführliche deutschsprachige Lizenzinformationen finden sich [hier](http://www.gnu.de/documents/gpl.de.html).
+Dieses Add-In wird unter der GNU GPLv3-Lizenz angeboten. Nähere Informationen dazu finden sich in der Datei LICENSE. Ausführliche deutschsprachige Lizenzinformationen finden sich [hier](http://www.gnu.de/documents/gpl.de.html).
 
 
 <!-- managed-by: import-open-source-repos -->
-

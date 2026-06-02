@@ -62,7 +62,7 @@ Pfarrplaner ist eine Anwendung auf Basis von Laravel mit Inertia.js und Vue. Das
 
 ## Danke
 
-Ein besonderer Dank gilt den Entwicklerinnen und Entwicklern des [Laravel Frameworks](https://laravel.com) sowie den Autorinnen und Autoren der eingesetzten Open-Source-Bibliotheken. Eine Übersicht der verwendeten Komponenten befindet sich in [CREDITS.md](CREDITS.md).
+Ein besonderer Dank gilt den Entwicklerinnen und Entwicklern des [Laravel Frameworks](https://laravel.com) sowie den Autorinnen und Autoren der eingesetzten Open-Source-Bibliotheken. Eine Übersicht der verwendeten Komponenten befindet sich in `CREDITS.md`.
 
 ## Lizenz
 
@@ -70,4 +70,3 @@ Pfarrplaner steht unter der [GNU General Public License, Version 3](https://www.
 
 
 <!-- managed-by: import-open-source-repos -->
-

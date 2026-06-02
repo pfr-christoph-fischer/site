@@ -215,7 +215,7 @@ function validateBuiltOutput(errors) {
     }
   }
 
-  for (const podcastFeed of walk(siteRoot).filter((file) => file.endsWith(".xml") && /\/podcast(?:s)?(?:\/|\.xml$)/.test(file.replace(/\\/g, "/")))) {
+  for (const podcastFeed of getFiles(siteRoot, (file) => file.endsWith(".xml") && /\/podcast(?:s)?(?:\/|\.xml$)/.test(file.replace(/\\/g, "/")))) {
     const xml = fs.readFileSync(podcastFeed, "utf8");
     for (const match of xml.matchAll(/<enclosure[^>]+url="([^"]+)"/g)) {
       const builtTarget = normalizeBuiltPath(new URL(match[1]).pathname);

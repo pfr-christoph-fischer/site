@@ -4,9 +4,19 @@ layout: layouts/base.njk
 <section class="hero">
   <div class="shell hero__inner">
     <div class="hero__copy">
+      {% set resolvedCoverContext = coverContext or page %}
       <p class="eyebrow">Christoph Fischer</p>
       <h1>{{ title }}</h1>
       <p class="lede">{{ summary }}</p>
+      {% if cover %}
+        <figure class="hero__media">
+          {% responsiveImage cover, coverAlt or cover_alt or ("Titelbild zu " + title), {
+            class: "hero__image",
+            sizes: "(min-width: 70rem) 42rem, 100vw",
+            loading: "eager"
+          }, resolvedCoverContext %}
+        </figure>
+      {% endif %}
       <div class="hero__actions">
         <a class="button" href="/predigten/">Predigten lesen</a>
         <a class="button button--subtle" href="/podcast-abonnieren/">Podcast abonnieren</a>

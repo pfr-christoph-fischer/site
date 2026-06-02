@@ -2,6 +2,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import Image from "@11ty/eleventy-img";
 import { DateTime } from "luxon";
+import { copyEntryMedia } from "./scripts/copy-sermon-assets.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = __dirname;
@@ -102,7 +103,10 @@ function resolveImageSource(src, page) {
     };
   }
   if (src.startsWith("/")) {
-    return null;
+    return {
+      type: "passthrough",
+      url: src
+    };
   }
   if (!page?.inputPath) {
     return null;
@@ -160,6 +164,34 @@ async function renderResponsiveImage(src, alt, options = {}, page = null) {
   return Image.generateHTML(metadata, attrs);
 }
 
+function resolveOutputImageUrl(src, page = null, options = {}) {
+  const resolved = resolveImageSource(src, page);
+  if (!resolved) return null;
+
+  if (resolved.type === "remote" || resolved.type === "passthrough") {
+    return resolved.src || resolved.url;
+  }
+
+  const extension = path.extname(resolved.input).toLowerCase();
+  if ([".svg", ".pdf"].includes(extension)) {
+    return resolved.url;
+  }
+
+  const formats = extension === ".png" ? ["avif", "webp", "png"] : ["avif", "webp", "jpeg"];
+  const metadata = Image.statsSync(resolved.input, {
+    widths: options.widths || [320, 640, 960, 1280, 1600],
+    formats,
+    urlPath: "/assets/img/",
+    outputDir: path.join(projectRoot, "_site", "assets", "img"),
+    sharpOptions: {
+      animated: true
+    }
+  });
+
+  const preferred = metadata.jpeg || metadata.png || Object.values(metadata)[0];
+  return Array.isArray(preferred) && preferred.length ? preferred[preferred.length - 1].url : null;
+}
+
 export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy("src/content/**/*.{jpg,jpeg,png,webp,avif,gif,svg,mp3,m4a,ogg,pdf}", {
@@ -213,12 +245,20 @@ export default function(eleventyConfig) {
     return plain.length <= length ? plain : `${plain.slice(0, length).trim()}…`;
   });
 
+  eleventyConfig.addFilter("imageUrl", (src, page = null) => {
+    return resolveOutputImageUrl(src, page);
+  });
+
   eleventyConfig.addFilter("podcastEpisodesForSeries", (items = [], seriesSlug = "") => {
     return sortedItems(items.filter((item) => item?.data?.podcastSeriesSlug === seriesSlug));
   });
 
   eleventyConfig.addNunjucksAsyncShortcode("responsiveImage", async (src, alt, options = {}, page = null) => {
     return renderResponsiveImage(src, alt, options, page);
+  });
+
+  eleventyConfig.on("eleventy.after", () => {
+    copyEntryMedia();
   });
 
   eleventyConfig.addCollection("sermons", (collectionApi) => {

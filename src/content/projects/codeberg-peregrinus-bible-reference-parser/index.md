@@ -235,7 +235,7 @@ tested via Orchestra Testbench.
 
 ## License
 
-GPL-3.0-or-later. See [LICENSE](LICENSE).
+GPL-3.0-or-later. See LICENSE.
 
 ## Author
 
@@ -243,4 +243,3 @@ Christoph Fischer — [christoph-fischer.de](https://christoph-fischer.de) — c
 
 
 <!-- managed-by: import-open-source-repos -->
-

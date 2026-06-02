@@ -90,8 +90,7 @@ romanize(3999); // 'MMMCMXCIX'
 
 ## License
 
-[GPL-3.0-or-later](LICENSE) — © Christoph Fischer <chris@toph.de>
+GPL-3.0-or-later — © Christoph Fischer <chris@toph.de>
 
 
 <!-- managed-by: import-open-source-repos -->
-

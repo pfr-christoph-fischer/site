@@ -33,7 +33,7 @@ Eleventy-based rebuild of `christoph-fischer.de` with:
 
 This README is the short operator overview. The fuller runbook is here:
 
-- [2026/docs/RUNBOOK.md](/home/christoph/Dev/sites/cfde/2026/docs/RUNBOOK.md)
+- `2026/docs/RUNBOOK.md`
 
 ## Requirements
 
@@ -144,7 +144,7 @@ npm run import:open-source
 ```
 
 Include organization repositories by setting `OPEN_SOURCE_GITHUB_ORGS` and/or `OPEN_SOURCE_CODEBERG_ORGS` in `.env`.
-The full operator details are documented in [2026/docs/RUNBOOK.md](/home/christoph/Dev/sites/cfde/2026/docs/RUNBOOK.md).
+The full operator details are documented in `2026/docs/RUNBOOK.md`.
 
 Optional cleanup of no-longer-present imported repositories:
 
@@ -203,7 +203,7 @@ After the files are in place, the series appears automatically:
 - with its own feed on `/podcast/<show>/feed.xml`
 - in search and sitemap
 
-The existing sermon podcast stays separate at `/podcast.xml` and is represented by `Christoph predigt` in the overview. Full operator notes are in [2026/docs/RUNBOOK.md](/home/christoph/Dev/sites/cfde/2026/docs/RUNBOOK.md).
+The existing sermon podcast stays separate at `/podcast.xml` and is represented by `Christoph predigt` in the overview. Full operator notes are in `2026/docs/RUNBOOK.md`.
 
 ## ActivityPub Notes
 
@@ -227,7 +227,7 @@ The inbox requires valid HTTP signatures by default, outbound delivery retries a
 
 A Caddy example is included here:
 
-- [2026/deploy/Caddyfile.activitypub](/home/christoph/Dev/sites/cfde/2026/deploy/Caddyfile.activitypub)
+- `2026/deploy/Caddyfile.activitypub`
 
 Use a public HTTPS `ACTIVITYPUB_BASE_URL` in `.env`, even if the backend itself listens only on `127.0.0.1`.
 
@@ -248,4 +248,3 @@ Target standard is WCAG 2.2 AA across the whole site, with AAA applied where fea
 
 
 <!-- managed-by: import-open-source-repos -->
-
