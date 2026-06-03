@@ -1048,3 +1048,8 @@
 	path = src/content/sermons/2023-02-02-der-traum-vom-berg
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-02-02-der-traum-vom-berg.git
 	branch = main
+
+[submodule "src/content/sermons/2023-02-05-voll-verkackt"]
+	path = src/content/sermons/2023-02-05-voll-verkackt
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-02-05-voll-verkackt.git
+	branch = main
