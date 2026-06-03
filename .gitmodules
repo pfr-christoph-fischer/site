@@ -1098,3 +1098,8 @@
 	path = src/content/sermons/2023-04-07-ecce-homo
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-04-07-ecce-homo.git
 	branch = main
+
+[submodule "src/content/sermons/2023-04-09-nicht-zu-fassen"]
+	path = src/content/sermons/2023-04-09-nicht-zu-fassen
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-04-09-nicht-zu-fassen.git
+	branch = main
