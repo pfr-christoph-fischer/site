@@ -1233,3 +1233,8 @@
 	path = src/content/sermons/2023-12-31-alles-hat-seine-zeit
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-12-31-alles-hat-seine-zeit.git
 	branch = main
+
+[submodule "src/content/sermons/2024-01-01-nicht-nur-poster-und-herzchen"]
+	path = src/content/sermons/2024-01-01-nicht-nur-poster-und-herzchen
+	url = git@github.com:pfr-christoph-fischer/predigt-2024-01-01-nicht-nur-poster-und-herzchen.git
+	branch = main
