@@ -1423,3 +1423,8 @@
 	path = src/content/sermons/2025-01-01-orange-plakette
 	url = git@github.com:pfr-christoph-fischer/predigt-2025-01-01-orange-plakette.git
 	branch = main
+
+[submodule "src/content/sermons/2025-01-12-platsch"]
+	path = src/content/sermons/2025-01-12-platsch
+	url = git@github.com:pfr-christoph-fischer/predigt-2025-01-12-platsch.git
+	branch = main
