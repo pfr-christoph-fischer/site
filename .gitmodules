@@ -643,3 +643,8 @@
 	path = src/content/sermons/2021-04-29-ode-an-die-freude-2
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-04-29-ode-an-die-freude-2.git
 	branch = main
+
+[submodule "src/content/sermons/2021-05-02-ein-neues-lied"]
+	path = src/content/sermons/2021-05-02-ein-neues-lied
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-05-02-ein-neues-lied.git
+	branch = main
