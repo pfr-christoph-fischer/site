@@ -888,3 +888,8 @@
 	path = src/content/sermons/2022-05-12-jubilate
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-05-12-jubilate.git
 	branch = main
+
+[submodule "src/content/sermons/2022-05-15-rote-rosen"]
+	path = src/content/sermons/2022-05-15-rote-rosen
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-05-15-rote-rosen.git
+	branch = main
