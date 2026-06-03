@@ -758,3 +758,8 @@
 	path = src/content/sermons/2021-10-31-gott-naeher-kommen-und-dem-teufel-fliehen
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-10-31-gott-naeher-kommen-und-dem-teufel-fliehen.git
 	branch = main
+
+[submodule "src/content/sermons/2021-10-31-immer-mehr-von-dir-2"]
+	path = src/content/sermons/2021-10-31-immer-mehr-von-dir-2
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-10-31-immer-mehr-von-dir-2.git
+	branch = main
