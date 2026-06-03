@@ -118,3 +118,8 @@
 	path = src/content/sermons/2019-04-11-dornenkoenig
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-04-11-dornenkoenig.git
 	branch = main
+
+[submodule "src/content/sermons/2019-04-19-elend-nackt-und-bloss"]
+	path = src/content/sermons/2019-04-19-elend-nackt-und-bloss
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-04-19-elend-nackt-und-bloss.git
+	branch = main
