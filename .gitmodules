@@ -1248,3 +1248,8 @@
 	path = src/content/sermons/2024-01-14-noch-ein-schritt
 	url = git@github.com:pfr-christoph-fischer/predigt-2024-01-14-noch-ein-schritt.git
 	branch = main
+
+[submodule "src/content/sermons/2024-01-28-irdene-gefaesse"]
+	path = src/content/sermons/2024-01-28-irdene-gefaesse
+	url = git@github.com:pfr-christoph-fischer/predigt-2024-01-28-irdene-gefaesse.git
+	branch = main
