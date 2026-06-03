@@ -7,6 +7,10 @@ function normalizeWhitespace(value) {
     .replace(/\r\n/g, "\n");
 }
 
+function stripBibleVersionTagSuffix(value) {
+  return value.replace(/[ \t]+\[[A-Z]{2,}\d{0,4}\]\s*$/u, "").trimEnd();
+}
+
 function escapeMarkdown(value) {
   return value.replace(/([*_`])/g, "\\$1");
 }
@@ -128,6 +132,18 @@ export function textExcerpt(input, maxLength = 220) {
     .trim();
   if (!plain) return "";
   return plain.length <= maxLength ? plain : `${plain.slice(0, maxLength).trim()}…`;
+}
+
+export function stripBibleVersionTag(input) {
+  if (input === null || input === undefined) return input;
+  return stripBibleVersionTagSuffix(normalizeWhitespace(input).trim());
+}
+
+export function stripBibleVersionTagsFromText(input) {
+  if (input === null || input === undefined) return input;
+  return normalizeWhitespace(input)
+    .replace(/(?<=[0-9A-Za-zÄÖÜäöüß])(?:[ \t]+)\[[A-Z]{2,}\d{0,4}\](?=$|[),.;:!?])/gu, "")
+    .replace(/\(([^(]*?)\s+\[([A-Z]{2,}\d{0,4})\]\)/gu, "($1)");
 }
 
 export function normalizeSermonBody(input, summary = "") {

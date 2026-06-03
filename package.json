@@ -23,11 +23,13 @@
     "publish": "npm run build:clean && npm run deploy && npm run federate",
     "import:latest-sermon": "node scripts/import-latest-sermon.mjs",
     "release:sermon": "node scripts/release-sermon.mjs",
+    "commit:sermons-submodule": "node scripts/commit-sermons-submodule.mjs",
     "import:open-source": "node scripts/import-open-source-repos.mjs",
     "sync:sermon-metadata": "node scripts/sync-sermon-metadata.mjs",
     "migrate:sermons": "node scripts/migrate-sermons.mjs",
     "rewrite:sermons-markdown": "node scripts/rewrite-sermons-markdown.mjs",
-    "fix:sermon-cover-extensions": "node scripts/fix-sermon-cover-extensions.mjs"
+    "fix:sermon-cover-extensions": "node scripts/fix-sermon-cover-extensions.mjs",
+    "fix:sermon-bible-version-tags": "node scripts/strip-sermon-bible-version-tags.mjs"
   },
   "dependencies": {
     "@11ty/eleventy": "^3.1.0",

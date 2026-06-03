@@ -1,6 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
-import { normalizeSermonBody, textExcerpt } from "./lib/sermon-markdown.mjs";
+import {
+  normalizeSermonBody,
+  stripBibleVersionTag,
+  stripBibleVersionTagsFromText,
+  textExcerpt
+} from "./lib/sermon-markdown.mjs";
 
 const repoRoot = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..", "..");
 const configPath = path.join(repoRoot, "current", "config", "pfarrplaner.json");
@@ -167,6 +172,9 @@ async function main() {
   fs.mkdirSync(targetDir, { recursive: true });
   let coverFile = null;
   let audioFile = null;
+  const sanitizedReference = stripBibleVersionTag(sermon.reference || null);
+  const sanitizedSummary = stripBibleVersionTagsFromText(sermon.summary || "") || "";
+  const sanitizedText = stripBibleVersionTagsFromText(sermon.text || "") || "";
 
   if (overrides.image) {
     const ext = path.extname(overrides.image) || ".jpg";
@@ -197,11 +205,11 @@ async function main() {
     subtitle: resolveSubtitle(sermon),
     date,
     slug,
-    scripture: sermon.reference || null,
+    scripture: sanitizedReference,
     occasion: sermon.occasion || resolveOccasion(sermon.events || []),
     liturgy_color: resolvePrimaryLiturgyColor(sermon.events || []),
     series: sermon.series || null,
-    summary: sermon.summary || textExcerpt(sermon.text || ""),
+    summary: sanitizedSummary || textExcerpt(sanitizedText),
     source: "pfarrplaner",
     source_id: sourceId,
     cover: coverFile,
@@ -221,9 +229,9 @@ async function main() {
     }))
   });
 
-  const body = sermon.text
-    ? `${normalizeSermonBody(sermon.text, sermon.summary || "")}\n`
-    : `${sermon.summary || ""}\n`;
+  const body = sanitizedText
+    ? `${normalizeSermonBody(sanitizedText, sanitizedSummary)}\n`
+    : `${sanitizedSummary}\n`;
 
   fs.writeFileSync(path.join(targetDir, "index.md"), `${frontmatter}${body}`);
   console.log(`Imported latest sermon to ${targetDir}`);
