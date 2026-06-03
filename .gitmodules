@@ -58,3 +58,8 @@
 	path = src/content/sermons/2018-12-20-freudige-erwartung
 	url = git@github.com:pfr-christoph-fischer/predigt-2018-12-20-freudige-erwartung.git
 	branch = main
+
+[submodule "src/content/sermons/2018-12-21-strohkoenig"]
+	path = src/content/sermons/2018-12-21-strohkoenig
+	url = git@github.com:pfr-christoph-fischer/predigt-2018-12-21-strohkoenig.git
+	branch = main
