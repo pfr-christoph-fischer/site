@@ -688,3 +688,8 @@
 	path = src/content/sermons/2021-07-08-im-zeichen-des-kreuzes
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-07-08-im-zeichen-des-kreuzes.git
 	branch = main
+
+[submodule "src/content/sermons/2021-07-16-getauft-auf-seinen-namen"]
+	path = src/content/sermons/2021-07-16-getauft-auf-seinen-namen
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-07-16-getauft-auf-seinen-namen.git
+	branch = main
