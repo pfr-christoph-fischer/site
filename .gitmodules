@@ -333,3 +333,8 @@
 	path = src/content/sermons/2020-02-23-herr-dass-ich-sehen-kann
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-02-23-herr-dass-ich-sehen-kann.git
 	branch = main
+
+[submodule "src/content/sermons/2020-03-01-nackte-tatsachen"]
+	path = src/content/sermons/2020-03-01-nackte-tatsachen
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-03-01-nackte-tatsachen.git
+	branch = main
