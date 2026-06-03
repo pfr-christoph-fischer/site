@@ -1258,3 +1258,8 @@
 	path = src/content/sermons/2024-02-04-samenbombe
 	url = git@github.com:pfr-christoph-fischer/predigt-2024-02-04-samenbombe.git
 	branch = main
+
+[submodule "src/content/sermons/2024-02-11-wenn-das-so-ist-dann-gehe-ich"]
+	path = src/content/sermons/2024-02-11-wenn-das-so-ist-dann-gehe-ich
+	url = git@github.com:pfr-christoph-fischer/predigt-2024-02-11-wenn-das-so-ist-dann-gehe-ich.git
+	branch = main
