@@ -88,3 +88,8 @@
 	path = src/content/sermons/2019-01-17-ueber-den-jordan
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-01-17-ueber-den-jordan.git
 	branch = main
+
+[submodule "src/content/sermons/2019-01-27-weil-der-der-bei-mir-ist-mich-stark-macht"]
+	path = src/content/sermons/2019-01-27-weil-der-der-bei-mir-ist-mich-stark-macht
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-01-27-weil-der-der-bei-mir-ist-mich-stark-macht.git
+	branch = main
