@@ -1483,3 +1483,8 @@
 	path = src/content/sermons/2025-04-17-tischgemeinschaft
 	url = git@github.com:pfr-christoph-fischer/predigt-2025-04-17-tischgemeinschaft.git
 	branch = main
+
+[submodule "src/content/sermons/2025-04-20-begegnung-im-garten"]
+	path = src/content/sermons/2025-04-20-begegnung-im-garten
+	url = git@github.com:pfr-christoph-fischer/predigt-2025-04-20-begegnung-im-garten.git
+	branch = main
