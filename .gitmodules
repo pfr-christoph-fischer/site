@@ -898,3 +898,8 @@
 	path = src/content/sermons/2022-05-26-sein-reich-hat-kein-ende
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-05-26-sein-reich-hat-kein-ende.git
 	branch = main
+
+[submodule "src/content/sermons/2022-05-29-seufzen"]
+	path = src/content/sermons/2022-05-29-seufzen
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-05-29-seufzen.git
+	branch = main
