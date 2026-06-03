@@ -1403,3 +1403,8 @@
 	path = src/content/sermons/2024-12-22-wie-soll-das-moeglich-sein
 	url = git@github.com:pfr-christoph-fischer/predigt-2024-12-22-wie-soll-das-moeglich-sein.git
 	branch = main
+
+[submodule "src/content/sermons/2024-12-24-he-has-come"]
+	path = src/content/sermons/2024-12-24-he-has-come
+	url = git@github.com:pfr-christoph-fischer/predigt-2024-12-24-he-has-come.git
+	branch = main
