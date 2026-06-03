@@ -208,3 +208,8 @@
 	path = src/content/sermons/2019-09-12-geknicktes-rohr
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-09-12-geknicktes-rohr.git
 	branch = main
+
+[submodule "src/content/sermons/2019-09-14-andere-gibts-schon-genug"]
+	path = src/content/sermons/2019-09-14-andere-gibts-schon-genug
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-09-14-andere-gibts-schon-genug.git
+	branch = main
