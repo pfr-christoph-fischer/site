@@ -753,3 +753,8 @@
 	path = src/content/sermons/2021-10-30-werkstattgottesdienst-thesen
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-10-30-werkstattgottesdienst-thesen.git
 	branch = main
+
+[submodule "src/content/sermons/2021-10-31-gott-naeher-kommen-und-dem-teufel-fliehen"]
+	path = src/content/sermons/2021-10-31-gott-naeher-kommen-und-dem-teufel-fliehen
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-10-31-gott-naeher-kommen-und-dem-teufel-fliehen.git
+	branch = main
