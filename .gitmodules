@@ -413,3 +413,8 @@
 	path = src/content/sermons/2020-07-26-englische-gaeste
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-07-26-englische-gaeste.git
 	branch = main
+
+[submodule "src/content/sermons/2020-07-26-englische-gaeste-2"]
+	path = src/content/sermons/2020-07-26-englische-gaeste-2
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-07-26-englische-gaeste-2.git
+	branch = main
