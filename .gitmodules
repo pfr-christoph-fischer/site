@@ -1083,3 +1083,8 @@
 	path = src/content/sermons/2023-03-19-aber-1
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-03-19-aber-1.git
 	branch = main
+
+[submodule "src/content/sermons/2023-04-02-tochter-zion"]
+	path = src/content/sermons/2023-04-02-tochter-zion
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-04-02-tochter-zion.git
+	branch = main
