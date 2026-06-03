@@ -443,3 +443,8 @@
 	path = src/content/sermons/2020-08-27-ode-an-die-freude-1
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-08-27-ode-an-die-freude-1.git
 	branch = main
+
+[submodule "src/content/sermons/2020-09-13-malta"]
+	path = src/content/sermons/2020-09-13-malta
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-09-13-malta.git
+	branch = main
