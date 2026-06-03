@@ -1158,3 +1158,8 @@
 	path = src/content/sermons/2023-08-17-sein-volk
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-08-17-sein-volk.git
 	branch = main
+
+[submodule "src/content/sermons/2023-08-20-und-sei-unser-gast"]
+	path = src/content/sermons/2023-08-20-und-sei-unser-gast
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-08-20-und-sei-unser-gast.git
+	branch = main
