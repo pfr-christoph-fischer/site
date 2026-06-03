@@ -718,3 +718,8 @@
 	path = src/content/sermons/2021-08-22-effata
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-08-22-effata.git
 	branch = main
+
+[submodule "src/content/sermons/2021-08-22-effata-1"]
+	path = src/content/sermons/2021-08-22-effata-1
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-08-22-effata-1.git
+	branch = main
