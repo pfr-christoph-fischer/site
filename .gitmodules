@@ -433,3 +433,8 @@
 	path = src/content/sermons/2020-08-13-hoffnungsboten
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-08-13-hoffnungsboten.git
 	branch = main
+
+[submodule "src/content/sermons/2020-08-16-aufruhr-in-thessaloniki"]
+	path = src/content/sermons/2020-08-16-aufruhr-in-thessaloniki
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-08-16-aufruhr-in-thessaloniki.git
+	branch = main
