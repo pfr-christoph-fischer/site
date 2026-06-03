@@ -313,3 +313,8 @@
 	path = src/content/sermons/2020-02-02-fuerchte-dich-nicht-1
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-02-02-fuerchte-dich-nicht-1.git
 	branch = main
+
+[submodule "src/content/sermons/2020-02-07-fuerchte-dich-nicht"]
+	path = src/content/sermons/2020-02-07-fuerchte-dich-nicht
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-02-07-fuerchte-dich-nicht.git
+	branch = main
