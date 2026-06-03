@@ -1073,3 +1073,8 @@
 	path = src/content/sermons/2023-03-16-untreu
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-03-16-untreu.git
 	branch = main
+
+[submodule "src/content/sermons/2023-03-18-saatgut-und-ernte"]
+	path = src/content/sermons/2023-03-18-saatgut-und-ernte
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-03-18-saatgut-und-ernte.git
+	branch = main
