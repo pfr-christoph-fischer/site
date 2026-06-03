@@ -1038,3 +1038,8 @@
 	path = src/content/sermons/2023-01-19-spuren-von-herrlichkeit
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-01-19-spuren-von-herrlichkeit.git
 	branch = main
+
+[submodule "src/content/sermons/2023-01-22-achtung-baustelle"]
+	path = src/content/sermons/2023-01-22-achtung-baustelle
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-01-22-achtung-baustelle.git
+	branch = main
