@@ -1198,3 +1198,8 @@
 	path = src/content/sermons/2023-11-12-die-zukunft-ist-sein-land
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-11-12-die-zukunft-ist-sein-land.git
 	branch = main
+
+[submodule "src/content/sermons/2023-11-19-kinder-des-lichts"]
+	path = src/content/sermons/2023-11-19-kinder-des-lichts
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-11-19-kinder-des-lichts.git
+	branch = main
