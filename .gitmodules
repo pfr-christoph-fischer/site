@@ -1623,3 +1623,8 @@
 	path = src/content/sermons/2026-03-08-hinter-jesus-her
 	url = git@github.com:pfr-christoph-fischer/predigt-2026-03-08-hinter-jesus-her.git
 	branch = main
+
+[submodule "src/content/sermons/2026-03-29-vertrauen-exklusiv"]
+	path = src/content/sermons/2026-03-29-vertrauen-exklusiv
+	url = git@github.com:pfr-christoph-fischer/predigt-2026-03-29-vertrauen-exklusiv.git
+	branch = main
