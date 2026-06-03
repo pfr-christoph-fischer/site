@@ -2,6 +2,7 @@ import path from "node:path";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import Image from "@11ty/eleventy-img";
+import MarkdownIt from "markdown-it";
 import { DateTime } from "luxon";
 import { copyEntryMedia } from "./scripts/copy-sermon-assets.mjs";
 import { readAudioFileSize, readMp3Duration } from "./scripts/lib/audio-metadata.mjs";
@@ -10,6 +11,11 @@ import { loadEnv } from "./scripts/lib/env.mjs";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = __dirname;
 loadEnv(projectRoot);
+const markdownRenderer = new MarkdownIt({
+  html: false,
+  linkify: true,
+  breaks: false
+});
 
 function slugify(input) {
   return String(input || "")
@@ -211,6 +217,169 @@ function audioMetadataForItem(item) {
   };
 }
 
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function renderMarkdown(value) {
+  return markdownRenderer.render(String(value || "").trim());
+}
+
+function renderMarkdownInline(value) {
+  return markdownRenderer.renderInline(String(value || "").trim());
+}
+
+function normalizeYoutubeUrl(input) {
+  const raw = String(input || "").trim();
+  if (!raw) return null;
+
+  if (/^[A-Za-z0-9_-]{11}$/.test(raw)) {
+    return `https://www.youtube-nocookie.com/embed/${raw}`;
+  }
+
+  let parsed;
+  try {
+    parsed = new URL(raw);
+  } catch {
+    return null;
+  }
+
+  const host = parsed.hostname.replace(/^www\./i, "").toLowerCase();
+  let videoId = "";
+
+  if (host === "youtu.be") {
+    videoId = parsed.pathname.split("/").filter(Boolean)[0] || "";
+  } else if (host === "youtube.com" || host === "m.youtube.com" || host === "youtube-nocookie.com") {
+    if (parsed.pathname === "/watch") {
+      videoId = parsed.searchParams.get("v") || "";
+    } else if (parsed.pathname.startsWith("/embed/")) {
+      videoId = parsed.pathname.split("/")[2] || "";
+    } else if (parsed.pathname.startsWith("/shorts/")) {
+      videoId = parsed.pathname.split("/")[2] || "";
+    }
+  }
+
+  if (!/^[A-Za-z0-9_-]{11}$/.test(videoId)) return null;
+
+  const start = parsed.searchParams.get("t") || parsed.searchParams.get("start");
+  const startSeconds = Number.parseInt(start, 10);
+  const embedUrl = new URL(`https://www.youtube-nocookie.com/embed/${videoId}`);
+  if (Number.isInteger(startSeconds) && startSeconds > 0) {
+    embedUrl.searchParams.set("start", String(startSeconds));
+  }
+
+  return embedUrl.toString();
+}
+
+function renderYoutubeEmbed(input, title, caption = "") {
+  const url = normalizeYoutubeUrl(input);
+  const embedTitle = String(title || "").trim();
+  if (!url || !embedTitle) return "";
+
+  const figcaption = String(caption || "").trim()
+    ? `<figcaption class="media-embed__caption">${escapeHtml(caption)}</figcaption>`
+    : "";
+
+  return `<figure class="media-embed"><div class="media-embed__frame"><iframe src="${escapeAttribute(url)}" title="${escapeAttribute(embedTitle)}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>${figcaption}</figure>`;
+}
+
+function resolveEntryAsset(src, page = null) {
+  if (!src) return null;
+  if (/^https?:\/\//i.test(src)) {
+    return { type: "remote", url: src, input: null };
+  }
+  if (src.startsWith("/")) {
+    return {
+      type: "passthrough",
+      url: src,
+      input: path.join(projectRoot, "src", src.slice(1))
+    };
+  }
+  if (!page?.inputPath) return null;
+  return {
+    type: "local",
+    url: src,
+    input: path.join(path.dirname(page.inputPath), src)
+  };
+}
+
+function formatBytes(bytes) {
+  if (!Number.isFinite(bytes) || bytes < 0) return null;
+  if (bytes < 1024) return `${bytes} B`;
+  const units = ["KB", "MB", "GB"];
+  let value = bytes;
+  let index = -1;
+  do {
+    value /= 1024;
+    index += 1;
+  } while (value >= 1024 && index < units.length - 1);
+  const precision = value >= 100 ? 0 : value >= 10 ? 1 : 2;
+  return `${value.toFixed(precision).replace(/\.0+$/, "").replace(/(\.\d*[1-9])0$/, "$1")} ${units[index]}`;
+}
+
+function fileTypeLabel(src) {
+  const extension = path.extname(String(src || "")).toLowerCase().replace(/^\./, "");
+  if (!extension) return null;
+  const labels = {
+    jpg: "JPG",
+    jpeg: "JPG",
+    png: "PNG",
+    webp: "WEBP",
+    avif: "AVIF",
+    gif: "GIF",
+    svg: "SVG",
+    pdf: "PDF",
+    mp3: "MP3",
+    m4a: "M4A",
+    ogg: "OGG",
+    zip: "ZIP",
+    doc: "DOC",
+    docx: "DOCX",
+    ppt: "PPT",
+    pptx: "PPTX",
+    xls: "XLS",
+    xlsx: "XLSX"
+  };
+  return labels[extension] || extension.toUpperCase();
+}
+
+function isYoutubeGalleryItem(item) {
+  return Boolean(normalizeYoutubeUrl(item?.youtube));
+}
+
+function downloadMetadata(download, page = null) {
+  const file = download?.file;
+  const resolved = resolveEntryAsset(file, page);
+  const stat = resolved?.input && fs.existsSync(resolved.input) && fs.statSync(resolved.input).isFile()
+    ? fs.statSync(resolved.input)
+    : null;
+  return {
+    type: download?.type || fileTypeLabel(file),
+    size: download?.size || formatBytes(stat?.size ?? NaN)
+  };
+}
+
+function galleryItems(items = [], page = null) {
+  const imageExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif", ".svg"]);
+  return Array.isArray(items)
+    ? items.filter((item) => {
+      if (isYoutubeGalleryItem(item)) {
+        return typeof item?.title === "string" && item.title.trim().length > 0;
+      }
+      const src = typeof item?.src === "string" ? item.src.trim() : "";
+      if (!src) return false;
+      const extension = path.extname(src).toLowerCase();
+      if (!imageExtensions.has(extension)) return false;
+      if (/^https?:\/\//i.test(src) || src.startsWith("/")) return true;
+      const resolved = resolveEntryAsset(src, page);
+      return Boolean(resolved?.input && fs.existsSync(resolved.input) && fs.statSync(resolved.input).isFile());
+    })
+    : [];
+}
+
 function shareTitleLine(item) {
   const title = String(item?.data?.title || "").trim();
   const subtitle = String(item?.data?.subtitle || "").trim();
@@ -366,6 +535,14 @@ export default function(eleventyConfig) {
     return plainTextFromHtml(value);
   });
 
+  eleventyConfig.addFilter("markdown", (value) => {
+    return renderMarkdown(value);
+  });
+
+  eleventyConfig.addFilter("markdownInline", (value) => {
+    return renderMarkdownInline(value);
+  });
+
   eleventyConfig.addFilter("xmlCdata", (value) => {
     return wrapCdata(value);
   });
@@ -376,6 +553,22 @@ export default function(eleventyConfig) {
 
   eleventyConfig.addFilter("audioLengthBytes", (item) => {
     return audioMetadataForItem(item).bytes;
+  });
+
+  eleventyConfig.addFilter("downloadMeta", (download, page = null) => {
+    return downloadMetadata(download, page);
+  });
+
+  eleventyConfig.addFilter("galleryItems", (items = [], page = null) => {
+    return galleryItems(items, page);
+  });
+
+  eleventyConfig.addFilter("youtubeEmbedUrl", (input) => {
+    return normalizeYoutubeUrl(input);
+  });
+
+  eleventyConfig.addShortcode("youtubeEmbed", (input, title, caption = "") => {
+    return renderYoutubeEmbed(input, title, caption);
   });
 
   eleventyConfig.addFilter("shareTitleLine", (item) => {

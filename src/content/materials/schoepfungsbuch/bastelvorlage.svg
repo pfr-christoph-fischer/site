@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 1754" role="img" aria-labelledby="title desc">
+  <title id="title">Bastelvorlage Platzhalter fuer Schopfungsbuch</title>
+  <desc id="desc">Bearbeitbarer Platzhalter fuer eine herunterladbare Bastelvorlage.</desc>
+  <rect width="1240" height="1754" fill="#ffffff" />
+  <rect x="80" y="80" width="1080" height="1594" fill="#f9fbff" stroke="#1f3b4d" stroke-width="6" />
+  <text x="130" y="200" fill="#1f3b4d" font-family="'Atkinson Hyperlegible Next', sans-serif" font-size="52" font-weight="700">Schopfungsbuch</text>
+  <text x="130" y="280" fill="#1f3b4d" font-family="'Atkinson Hyperlegible Next', sans-serif" font-size="34">Bastelvorlage Platzhalter</text>
+  <text x="130" y="380" fill="#355070" font-family="'Atkinson Hyperlegible Next', sans-serif" font-size="26">Diese Datei kann durch eine echte Bastelvorlage ersetzt werden.</text>
+  <circle cx="350" cy="760" r="140" fill="none" stroke="#355070" stroke-width="8" />
+  <rect x="560" y="620" width="300" height="280" rx="32" fill="none" stroke="#355070" stroke-width="8" />
+  <path d="M240 1130h760" stroke="#355070" stroke-width="8" stroke-dasharray="20 20" />
+  <path d="M240 1260h760" stroke="#355070" stroke-width="8" stroke-dasharray="20 20" />
+</svg>

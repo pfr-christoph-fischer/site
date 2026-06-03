@@ -3,11 +3,12 @@
     <h2>Downloads</h2>
     <ul class="download-list">
       {% for download in downloads %}
+        {% set meta = download | downloadMeta(page) %}
         <li>
           <a href="{{ download.file }}">{{ download.title }}</a>
-          {% if download.type or download.size %}
+          {% if meta.type or meta.size %}
             <span class="meta">
-              {% if download.type %}{{ download.type }}{% endif %}{% if download.type and download.size %} · {% endif %}{% if download.size %}{{ download.size }}{% endif %}
+              {% if meta.type %}{{ meta.type }}{% endif %}{% if meta.type and meta.size %} · {% endif %}{% if meta.size %}{{ meta.size }}{% endif %}
             </span>
           {% endif %}
         </li>

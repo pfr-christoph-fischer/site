@@ -10,6 +10,8 @@ export default {
     contentLabel: (data) => isEntryPage(data) ? "Material" : data.contentLabel,
     schemaType: (data) => isEntryPage(data) ? "LearningResource" : data.schemaType,
     description: (data) => data.summary || data.description || null,
+    license: (data) => data.license || "CC BY-SA 4.0",
+    license_url: (data) => data.license_url || "https://creativecommons.org/licenses/by-sa/4.0/deed.de",
     coverAlt: (data) => data.cover_alt || null,
     socialImageAlt: (data) => data.cover_alt || data.socialImageAlt || null,
     tagList: (data) => isEntryPage(data) && Array.isArray(data.tags) ? data.tags.filter((tag) => tag !== "material") : (data.tagList || []),

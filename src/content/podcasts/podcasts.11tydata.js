@@ -52,6 +52,8 @@ export default {
       return data.schemaType;
     },
     description: (data) => data.summary || data.description || null,
+    license: (data) => data.license || "CC BY-SA 4.0",
+    license_url: (data) => data.license_url || "https://creativecommons.org/licenses/by-sa/4.0/deed.de",
     coverAlt: (data) => data.cover_alt || null,
     socialImageAlt: (data) => data.cover_alt || data.socialImageAlt || null,
     podcastSeriesSlug: (data) => seriesSlug(data),

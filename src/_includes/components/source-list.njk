@@ -1,0 +1,21 @@
+{% if sources and sources.length %}
+  <section class="detail-block">
+    <h2>Quellenangaben</h2>
+    <ul>
+      {% for source in sources %}
+        <li>
+          {% if source.title %}
+            {% if source.url %}
+              <a href="{{ source.url }}" target="_blank" rel="noopener">{{ source.title }}</a>
+            {% else %}
+              {{ source.title }}
+            {% endif %}
+            {% if source.note %} · {{ source.note | markdownInline | safe }}{% endif %}
+          {% else %}
+            {{ source | markdownInline | safe }}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endif %}

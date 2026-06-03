@@ -40,9 +40,8 @@ ogType: article
     {{ content | safe }}
   </div>
 
-  <section class="detail-block">
-    <small>Dieser Inhalt wird unter einer <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de" title="Lizenzbedingungen zur CC-BY-SA 4.0 Lizenz" target="_blank">Creative Commons 4.0 CC-BY-SA-Lizenz</a> veröffentlicht.</small>
-  </section>
+  {% include "components/source-list.njk" %}
+  {% include "components/license-notice.njk" %}
   {% if relatedSermons and relatedSermons.length %}
     <section class="detail-block">
       <h2>Verwandte Predigten</h2>

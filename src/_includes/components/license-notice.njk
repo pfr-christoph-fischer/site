@@ -1,0 +1,11 @@
+{% if license %}
+  <section class="detail-block">
+    <h2>Nutzungsbedingungen</h2>
+    <p>Dieser Inhalt wird unter folgender Lizenz veröffentlicht: {{ license }}. Was das bedeutet, steht <a href="{{ license_url }}" target="_blank" rel="noopener">hier</a>.</p>
+    {% if additional_license_info %}
+      <div class="prose">
+        {{ additional_license_info | markdown | safe }}
+      </div>
+    {% endif %}
+  </section>
+{% endif %}

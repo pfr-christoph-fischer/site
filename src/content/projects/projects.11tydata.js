@@ -10,6 +10,8 @@ export default {
     contentLabel: (data) => isEntryPage(data) ? "Open Source" : data.contentLabel,
     schemaType: (data) => isEntryPage(data) ? "SoftwareSourceCode" : data.schemaType,
     description: (data) => data.summary || data.description || null,
+    license: (data) => data.license || "GPL 3.0 or later",
+    license_url: (data) => data.license_url || "https://www.gnu.org/licenses/gpl-3.0.txt",
     coverAlt: (data) => data.cover_alt || null,
     socialImageAlt: (data) => data.cover_alt || data.socialImageAlt || null,
     tagList: (data) => isEntryPage(data) && Array.isArray(data.tags) ? data.tags.filter((tag) => tag !== "project") : (data.tagList || []),

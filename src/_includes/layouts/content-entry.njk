@@ -29,13 +29,6 @@ ogType: article
   {% if series %}
     {% set metaItems = metaItems.concat([{ label: "Reihe", value: series }]) %}
   {% endif %}
-  {% if license %}
-    {% set licenseValue = license %}
-    {% if license_url %}
-      {% set licenseValue = '<a href="' + license_url + '" target="_blank" rel="noopener">' + license + '</a>' %}
-    {% endif %}
-    {% set metaItems = metaItems.concat([{ label: "Lizenz", value: licenseValue }]) %}
-  {% endif %}
   {% if repository_platform %}
     {% set metaItems = metaItems.concat([{ label: "Plattform", value: repository_platform }]) %}
   {% endif %}
@@ -85,13 +78,28 @@ ogType: article
   {% endif %}
 
   {% include "components/audio-player.njk" %}
-  {% include "components/download-list.njk" %}
 
   <div class="entry-page__body prose">
     {{ content | safe }}
   </div>
 
+  {% set inlineGalleryItems = gallery_images | galleryItems(page) %}
+  {% if inlineGalleryItems and inlineGalleryItems.length %}
+    <section class="linked-gallery">
+      <div class="section-heading">
+        <h2>{{ gallery_heading or "Galerie" }}</h2>
+      </div>
+      {% set items = inlineGalleryItems %}
+      {% set galleryVariant = gallery_variant or "default" %}
+      {% set galleryId = page.fileSlug + "-gallery" %}
+      {% include "components/gallery-grid.njk" %}
+    </section>
+  {% endif %}
+
   {% include "components/linked-galleries.njk" %}
+  {% include "components/download-list.njk" %}
+  {% include "components/source-list.njk" %}
+  {% include "components/license-notice.njk" %}
 
   <script type="application/ld+json">
     {

@@ -692,6 +692,21 @@ summary:focus-visible {
   text-decoration: none;
 }
 
+.gallery-card__embed,
+.media-embed__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.gallery-card__embed iframe,
+.media-embed__frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 .gallery-card__image {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -726,6 +741,15 @@ summary:focus-visible {
   font-size: 1rem;
   color: var(--color-muted);
   line-height: 1.5;
+}
+
+.media-embed {
+  margin: 2rem 0;
+}
+
+.media-embed__caption {
+  margin-top: 0.75rem;
+  color: var(--color-ink-soft);
 }
 
 .gallery-card__caption-title,

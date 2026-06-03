@@ -3,8 +3,14 @@
   {% set galleryId = galleryId or page.fileSlug or "gallery" %}
   <div class="gallery-grid gallery-grid--{{ variant }}">
     {% for item in items %}
+      {% set isYoutube = item.youtube | youtubeEmbedUrl %}
       <figure class="gallery-card gallery-card--{{ variant }}">
-        <a href="{{ item.src }}"{% if not item.src.endsWith('.pdf') %} data-lightbox-src="{{ item.src }}" data-lightbox-alt="{{ item.alt }}" data-lightbox-caption="{{ (item.caption or item.title or '') | escape }}" data-lightbox-group="{{ galleryId }}"{% endif %}>
+        {% if isYoutube %}
+          <div class="gallery-card__embed">
+            <iframe src="{{ isYoutube }}" title="{{ item.title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        {% else %}
+          <a href="{{ item.src }}"{% if not item.src.endsWith('.pdf') %} data-lightbox-src="{{ item.src }}" data-lightbox-alt="{{ item.alt }}" data-lightbox-caption="{{ (item.caption or item.title or '') | escape }}" data-lightbox-group="{{ galleryId }}"{% endif %}>
           {% if item.src.endsWith('.pdf') %}
             <div class="gallery-card__file">PDF</div>
           {% else %}
@@ -13,7 +19,8 @@
               sizes: "(min-width: 70rem) 22rem, (min-width: 44rem) 45vw, 100vw"
             }, page %}
           {% endif %}
-        </a>
+          </a>
+        {% endif %}
         {% if item.title or item.caption or item.article or item.publication %}
           <figcaption>
             {% if variant == "press" %}
