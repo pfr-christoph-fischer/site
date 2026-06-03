@@ -788,3 +788,8 @@
 	path = src/content/sermons/2021-12-09-reiss-die-himmel-auf
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-12-09-reiss-die-himmel-auf.git
 	branch = main
+
+[submodule "src/content/sermons/2021-12-12-das-geheimnis-von-weihnachten"]
+	path = src/content/sermons/2021-12-12-das-geheimnis-von-weihnachten
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-12-12-das-geheimnis-von-weihnachten.git
+	branch = main
