@@ -533,3 +533,8 @@
 	path = src/content/sermons/2020-12-24-fuerchtet-euch-nicht
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-12-24-fuerchtet-euch-nicht.git
 	branch = main
+
+[submodule "src/content/sermons/2020-12-25-freudenbotschaft"]
+	path = src/content/sermons/2020-12-25-freudenbotschaft
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-12-25-freudenbotschaft.git
+	branch = main
