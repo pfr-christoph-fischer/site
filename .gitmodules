@@ -328,3 +328,8 @@
 	path = src/content/sermons/2020-02-13-honigsuesse-worte
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-02-13-honigsuesse-worte.git
 	branch = main
+
+[submodule "src/content/sermons/2020-02-23-herr-dass-ich-sehen-kann"]
+	path = src/content/sermons/2020-02-23-herr-dass-ich-sehen-kann
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-02-23-herr-dass-ich-sehen-kann.git
+	branch = main
