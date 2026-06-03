@@ -1213,3 +1213,8 @@
 	path = src/content/sermons/2023-12-03-die-tor-macht-weit
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-12-03-die-tor-macht-weit.git
 	branch = main
+
+[submodule "src/content/sermons/2023-12-10-post-vom-himmel"]
+	path = src/content/sermons/2023-12-10-post-vom-himmel
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-12-10-post-vom-himmel.git
+	branch = main
