@@ -833,3 +833,8 @@
 	path = src/content/sermons/2022-02-13-vom-tailfinger-weinberg
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-02-13-vom-tailfinger-weinberg.git
 	branch = main
+
+[submodule "src/content/sermons/2022-03-03-feste-burg"]
+	path = src/content/sermons/2022-03-03-feste-burg
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-03-03-feste-burg.git
+	branch = main
