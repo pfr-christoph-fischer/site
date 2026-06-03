@@ -1368,3 +1368,8 @@
 	path = src/content/sermons/2024-10-27-hoert-doch
 	url = git@github.com:pfr-christoph-fischer/predigt-2024-10-27-hoert-doch.git
 	branch = main
+
+[submodule "src/content/sermons/2024-11-10-wind-of-change"]
+	path = src/content/sermons/2024-11-10-wind-of-change
+	url = git@github.com:pfr-christoph-fischer/predigt-2024-11-10-wind-of-change.git
+	branch = main
