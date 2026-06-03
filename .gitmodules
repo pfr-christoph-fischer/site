@@ -648,3 +648,8 @@
 	path = src/content/sermons/2021-05-02-ein-neues-lied
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-05-02-ein-neues-lied.git
 	branch = main
+
+[submodule "src/content/sermons/2021-05-09-durch-die-wolken"]
+	path = src/content/sermons/2021-05-09-durch-die-wolken
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-05-09-durch-die-wolken.git
+	branch = main
