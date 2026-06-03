@@ -1308,3 +1308,8 @@
 	path = src/content/sermons/2024-05-05-der-mein-gebet-nicht-verwirft
 	url = git@github.com:pfr-christoph-fischer/predigt-2024-05-05-der-mein-gebet-nicht-verwirft.git
 	branch = main
+
+[submodule "src/content/sermons/2024-05-12-beistand"]
+	path = src/content/sermons/2024-05-12-beistand
+	url = git@github.com:pfr-christoph-fischer/predigt-2024-05-12-beistand.git
+	branch = main
