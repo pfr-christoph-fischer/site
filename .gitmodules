@@ -1603,3 +1603,8 @@
 	path = src/content/sermons/2026-01-25-ueber-alle-grenzen
 	url = git@github.com:pfr-christoph-fischer/predigt-2026-01-25-ueber-alle-grenzen.git
 	branch = main
+
+[submodule "src/content/sermons/2026-02-01-durchblick"]
+	path = src/content/sermons/2026-02-01-durchblick
+	url = git@github.com:pfr-christoph-fischer/predigt-2026-02-01-durchblick.git
+	branch = main
