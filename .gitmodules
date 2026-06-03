@@ -1333,3 +1333,8 @@
 	path = src/content/sermons/2024-06-30-erntebitte
 	url = git@github.com:pfr-christoph-fischer/predigt-2024-06-30-erntebitte.git
 	branch = main
+
+[submodule "src/content/sermons/2024-07-07-freudenbotin"]
+	path = src/content/sermons/2024-07-07-freudenbotin
+	url = git@github.com:pfr-christoph-fischer/predigt-2024-07-07-freudenbotin.git
+	branch = main
