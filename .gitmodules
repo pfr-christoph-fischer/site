@@ -78,3 +78,8 @@
 	path = src/content/sermons/2019-01-03-hilf-dass-wir-ihn-tun
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-01-03-hilf-dass-wir-ihn-tun.git
 	branch = main
+
+[submodule "src/content/sermons/2019-01-06-zeig-uns-den-weg"]
+	path = src/content/sermons/2019-01-06-zeig-uns-den-weg
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-01-06-zeig-uns-den-weg.git
+	branch = main
