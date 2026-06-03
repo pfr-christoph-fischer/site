@@ -1543,3 +1543,8 @@
 	path = src/content/sermons/2025-10-19-herzstillstand
 	url = git@github.com:pfr-christoph-fischer/predigt-2025-10-19-herzstillstand.git
 	branch = main
+
+[submodule "src/content/sermons/2025-10-31-re-formatio"]
+	path = src/content/sermons/2025-10-31-re-formatio
+	url = git@github.com:pfr-christoph-fischer/predigt-2025-10-31-re-formatio.git
+	branch = main
