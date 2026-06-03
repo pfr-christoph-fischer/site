@@ -1563,3 +1563,8 @@
 	path = src/content/sermons/2025-11-23-verlasst-euch-darauf
 	url = git@github.com:pfr-christoph-fischer/predigt-2025-11-23-verlasst-euch-darauf.git
 	branch = main
+
+[submodule "src/content/sermons/2025-12-07-zeitzeichen"]
+	path = src/content/sermons/2025-12-07-zeitzeichen
+	url = git@github.com:pfr-christoph-fischer/predigt-2025-12-07-zeitzeichen.git
+	branch = main
