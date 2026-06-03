@@ -43,3 +43,8 @@
 	path = src/content/sermons/2018-11-22-sie-haben-gewonnen
 	url = git@github.com:pfr-christoph-fischer/predigt-2018-11-22-sie-haben-gewonnen.git
 	branch = main
+
+[submodule "src/content/sermons/2018-12-07-eselsreiter"]
+	path = src/content/sermons/2018-12-07-eselsreiter
+	url = git@github.com:pfr-christoph-fischer/predigt-2018-12-07-eselsreiter.git
+	branch = main
