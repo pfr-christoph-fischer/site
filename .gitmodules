@@ -323,3 +323,8 @@
 	path = src/content/sermons/2020-02-09-honigsuesse-worte-1
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-02-09-honigsuesse-worte-1.git
 	branch = main
+
+[submodule "src/content/sermons/2020-02-13-honigsuesse-worte"]
+	path = src/content/sermons/2020-02-13-honigsuesse-worte
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-02-13-honigsuesse-worte.git
+	branch = main
