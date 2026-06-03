@@ -708,3 +708,8 @@
 	path = src/content/sermons/2021-08-14-tanz-der-flammen
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-08-14-tanz-der-flammen.git
 	branch = main
+
+[submodule "src/content/sermons/2021-08-19-wer-bin-ich"]
+	path = src/content/sermons/2021-08-19-wer-bin-ich
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-08-19-wer-bin-ich.git
+	branch = main
