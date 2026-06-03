@@ -1593,3 +1593,8 @@
 	path = src/content/sermons/2026-01-11-alles-neu-1
 	url = git@github.com:pfr-christoph-fischer/predigt-2026-01-11-alles-neu-1.git
 	branch = main
+
+[submodule "src/content/sermons/2026-01-18-du-bist-doch-mitten-unter-uns"]
+	path = src/content/sermons/2026-01-18-du-bist-doch-mitten-unter-uns
+	url = git@github.com:pfr-christoph-fischer/predigt-2026-01-18-du-bist-doch-mitten-unter-uns.git
+	branch = main
