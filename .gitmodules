@@ -593,3 +593,8 @@
 	path = src/content/sermons/2021-02-21-verrat-1
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-02-21-verrat-1.git
 	branch = main
+
+[submodule "src/content/sermons/2021-03-04-weinberglied"]
+	path = src/content/sermons/2021-03-04-weinberglied
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-03-04-weinberglied.git
+	branch = main
