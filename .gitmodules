@@ -858,3 +858,8 @@
 	path = src/content/sermons/2022-04-10-gott-erkannt
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-04-10-gott-erkannt.git
 	branch = main
+
+[submodule "src/content/sermons/2022-04-13-verrat-2"]
+	path = src/content/sermons/2022-04-13-verrat-2
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-04-13-verrat-2.git
+	branch = main
