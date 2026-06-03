@@ -1508,3 +1508,8 @@
 	path = src/content/sermons/2025-06-22-komm-zu-jesus
 	url = git@github.com:pfr-christoph-fischer/predigt-2025-06-22-komm-zu-jesus.git
 	branch = main
+
+[submodule "src/content/sermons/2025-07-06-deine-geschichte"]
+	path = src/content/sermons/2025-07-06-deine-geschichte
+	url = git@github.com:pfr-christoph-fischer/predigt-2025-07-06-deine-geschichte.git
+	branch = main
