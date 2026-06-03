@@ -1618,3 +1618,8 @@
 	path = src/content/sermons/2026-02-15-sehhilfe
 	url = git@github.com:pfr-christoph-fischer/predigt-2026-02-15-sehhilfe.git
 	branch = main
+
+[submodule "src/content/sermons/2026-03-08-hinter-jesus-her"]
+	path = src/content/sermons/2026-03-08-hinter-jesus-her
+	url = git@github.com:pfr-christoph-fischer/predigt-2026-03-08-hinter-jesus-her.git
+	branch = main
