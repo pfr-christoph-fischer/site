@@ -1268,3 +1268,8 @@
 	path = src/content/sermons/2024-02-18-wuestentage
 	url = git@github.com:pfr-christoph-fischer/predigt-2024-02-18-wuestentage.git
 	branch = main
+
+[submodule "src/content/sermons/2024-03-03-alle-augen-auf-dich"]
+	path = src/content/sermons/2024-03-03-alle-augen-auf-dich
+	url = git@github.com:pfr-christoph-fischer/predigt-2024-03-03-alle-augen-auf-dich.git
+	branch = main
