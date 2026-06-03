@@ -623,3 +623,8 @@
 	path = src/content/sermons/2021-04-01-einladung-1
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-04-01-einladung-1.git
 	branch = main
+
+[submodule "src/content/sermons/2021-04-04-aber"]
+	path = src/content/sermons/2021-04-04-aber
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-04-04-aber.git
+	branch = main
