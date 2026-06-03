@@ -1458,3 +1458,8 @@
 	path = src/content/sermons/2025-03-02-luft-holen
 	url = git@github.com:pfr-christoph-fischer/predigt-2025-03-02-luft-holen.git
 	branch = main
+
+[submodule "src/content/sermons/2025-03-09-auf-herz-und-nieren"]
+	path = src/content/sermons/2025-03-09-auf-herz-und-nieren
+	url = git@github.com:pfr-christoph-fischer/predigt-2025-03-09-auf-herz-und-nieren.git
+	branch = main
