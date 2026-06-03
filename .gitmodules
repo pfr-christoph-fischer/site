@@ -1503,3 +1503,8 @@
 	path = src/content/sermons/2025-06-01-zwischenzeit
 	url = git@github.com:pfr-christoph-fischer/predigt-2025-06-01-zwischenzeit.git
 	branch = main
+
+[submodule "src/content/sermons/2025-06-22-komm-zu-jesus"]
+	path = src/content/sermons/2025-06-22-komm-zu-jesus
+	url = git@github.com:pfr-christoph-fischer/predigt-2025-06-22-komm-zu-jesus.git
+	branch = main
