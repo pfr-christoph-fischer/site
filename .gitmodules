@@ -383,3 +383,8 @@
 	path = src/content/sermons/2020-05-24-es-kommt-die-zeit
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-05-24-es-kommt-die-zeit.git
 	branch = main
+
+[submodule "src/content/sermons/2020-06-07-facetime"]
+	path = src/content/sermons/2020-06-07-facetime
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-06-07-facetime.git
+	branch = main
