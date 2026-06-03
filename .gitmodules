@@ -613,3 +613,8 @@
 	path = src/content/sermons/2021-03-28-ob-der-eselskoenig-helfen-kann
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-03-28-ob-der-eselskoenig-helfen-kann.git
 	branch = main
+
+[submodule "src/content/sermons/2021-04-01-einladung"]
+	path = src/content/sermons/2021-04-01-einladung
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-04-01-einladung.git
+	branch = main
