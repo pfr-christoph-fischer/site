@@ -873,3 +873,8 @@
 	path = src/content/sermons/2022-04-15-kreuzestod
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-04-15-kreuzestod.git
 	branch = main
+
+[submodule "src/content/sermons/2022-04-17-er-ist-nicht-hier"]
+	path = src/content/sermons/2022-04-17-er-ist-nicht-hier
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-04-17-er-ist-nicht-hier.git
+	branch = main
