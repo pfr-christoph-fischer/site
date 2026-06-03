@@ -1638,3 +1638,8 @@
 	path = src/content/sermons/2026-04-19-found
 	url = git@github.com:pfr-christoph-fischer/predigt-2026-04-19-found.git
 	branch = main
+
+[submodule "src/content/sermons/2026-05-10-von-gott-gekroent"]
+	path = src/content/sermons/2026-05-10-von-gott-gekroent
+	url = git@github.com:pfr-christoph-fischer/predigt-2026-05-10-von-gott-gekroent.git
+	branch = main
