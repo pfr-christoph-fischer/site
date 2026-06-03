@@ -1648,3 +1648,8 @@
 	path = src/content/sermons/2026-05-14-anders-da
 	url = git@github.com:pfr-christoph-fischer/predigt-2026-05-14-anders-da.git
 	branch = main
+
+[submodule "src/content/sermons/2026-05-17-die-zeit-kommt"]
+	path = src/content/sermons/2026-05-17-die-zeit-kommt
+	url = git@github.com:pfr-christoph-fischer/predigt-2026-05-17-die-zeit-kommt.git
+	branch = main
