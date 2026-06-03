@@ -23,3 +23,8 @@
 	path = src/content/sermons/2018-10-05-alles-oder-nichts
 	url = git@github.com:pfr-christoph-fischer/predigt-2018-10-05-alles-oder-nichts.git
 	branch = main
+
+[submodule "src/content/sermons/2018-10-14-die-zeit-ist-kurz"]
+	path = src/content/sermons/2018-10-14-die-zeit-ist-kurz
+	url = git@github.com:pfr-christoph-fischer/predigt-2018-10-14-die-zeit-ist-kurz.git
+	branch = main
