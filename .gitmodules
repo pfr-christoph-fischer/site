@@ -1608,3 +1608,8 @@
 	path = src/content/sermons/2026-02-01-durchblick
 	url = git@github.com:pfr-christoph-fischer/predigt-2026-02-01-durchblick.git
 	branch = main
+
+[submodule "src/content/sermons/2026-02-08-kein-honigschlecken"]
+	path = src/content/sermons/2026-02-08-kein-honigschlecken
+	url = git@github.com:pfr-christoph-fischer/predigt-2026-02-08-kein-honigschlecken.git
+	branch = main
