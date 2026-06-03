@@ -738,3 +738,8 @@
 	path = src/content/sermons/2021-10-14-bestelltes-haus
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-10-14-bestelltes-haus.git
 	branch = main
+
+[submodule "src/content/sermons/2021-10-16-zwei-lagerfeuer"]
+	path = src/content/sermons/2021-10-16-zwei-lagerfeuer
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-10-16-zwei-lagerfeuer.git
+	branch = main
