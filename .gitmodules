@@ -733,3 +733,8 @@
 	path = src/content/sermons/2021-09-30-endstation-1
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-09-30-endstation-1.git
 	branch = main
+
+[submodule "src/content/sermons/2021-10-14-bestelltes-haus"]
+	path = src/content/sermons/2021-10-14-bestelltes-haus
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-10-14-bestelltes-haus.git
+	branch = main
