@@ -698,3 +698,8 @@
 	path = src/content/sermons/2021-07-18-glaube-verleiht-fluegel
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-07-18-glaube-verleiht-fluegel.git
 	branch = main
+
+[submodule "src/content/sermons/2021-08-05-platzregen"]
+	path = src/content/sermons/2021-08-05-platzregen
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-08-05-platzregen.git
+	branch = main
