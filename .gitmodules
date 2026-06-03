@@ -1123,3 +1123,8 @@
 	path = src/content/sermons/2023-05-25-psst
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-05-25-psst.git
 	branch = main
+
+[submodule "src/content/sermons/2023-06-04-dreimal-heilig"]
+	path = src/content/sermons/2023-06-04-dreimal-heilig
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-06-04-dreimal-heilig.git
+	branch = main
