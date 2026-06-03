@@ -793,3 +793,8 @@
 	path = src/content/sermons/2021-12-12-das-geheimnis-von-weihnachten
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-12-12-das-geheimnis-von-weihnachten.git
 	branch = main
+
+[submodule "src/content/sermons/2021-12-23-wie-soll-man-sich-da-freuen"]
+	path = src/content/sermons/2021-12-23-wie-soll-man-sich-da-freuen
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-12-23-wie-soll-man-sich-da-freuen.git
+	branch = main
