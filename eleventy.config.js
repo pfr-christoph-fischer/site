@@ -3,9 +3,11 @@ import { fileURLToPath } from "node:url";
 import Image from "@11ty/eleventy-img";
 import { DateTime } from "luxon";
 import { copyEntryMedia } from "./scripts/copy-sermon-assets.mjs";
+import { loadEnv } from "./scripts/lib/env.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = __dirname;
+loadEnv(projectRoot);
 
 function slugify(input) {
   return String(input || "")
@@ -66,6 +68,8 @@ function isPublicItem(item) {
   return item?.data?.draft !== true && item?.data?.listed !== false && item?.data?.index !== false;
 }
 
+const shareableTags = new Set(["sermon", "post", "material", "project", "gallery", "podcast-series", "podcast-episode"]);
+
 function hasTag(item, tagName) {
   const desired = String(tagName || "").trim().toLowerCase();
   if (!desired) return false;
@@ -75,6 +79,16 @@ function hasTag(item, tagName) {
       ? item.data.tagList
       : [];
   return raw.some((tag) => String(tag || "").trim().toLowerCase() === desired);
+}
+
+function isShareableItem(item) {
+  if (!item?.url || !isPublicItem(item) || !item?.data?.title) return false;
+  const raw = Array.isArray(item.data.tags)
+    ? item.data.tags
+    : Array.isArray(item.data.tagList)
+      ? item.data.tagList
+      : [];
+  return raw.some((tag) => shareableTags.has(String(tag || "").trim().toLowerCase()));
 }
 
 function podcastPathParts(item) {
@@ -128,6 +142,74 @@ function escapeAttribute(value) {
 
 function addFocusableCodeBlocks(value) {
   return String(value || "").replace(/<pre(?![^>]*\btabindex=)([^>]*)>/g, '<pre tabindex="0"$1>');
+}
+
+function decodeHtmlEntities(value) {
+  return String(value || "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, "\"")
+    .replace(/&#39;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">");
+}
+
+function normalizePlainText(value) {
+  const lines = String(value || "")
+    .replace(/\r\n/g, "\n")
+    .split("\n")
+    .map((line) => line.replace(/[ \t]+/g, " ").trim());
+
+  const normalized = [];
+  let previousBlank = false;
+  for (const line of lines) {
+    const isBlank = !line;
+    if (isBlank && previousBlank) continue;
+    normalized.push(line);
+    previousBlank = isBlank;
+  }
+
+  return normalized.join("\n").trim();
+}
+
+function plainTextFromHtml(value) {
+  const prepared = String(value || "")
+    .replace(/<\s*br\s*\/?>/gi, "\n")
+    .replace(/<\s*li[^>]*>/gi, "\n- ")
+    .replace(/<\/\s*(p|div|section|article|blockquote|h1|h2|h3|h4|h5|h6|ul|ol|pre)\s*>/gi, "\n\n")
+    .replace(/<\/\s*tr\s*>/gi, "\n")
+    .replace(/<\/\s*td\s*>/gi, "\t")
+    .replace(/<[^>]+>/g, " ");
+  return normalizePlainText(decodeHtmlEntities(prepared));
+}
+
+function shareTitleLine(item) {
+  const title = String(item?.data?.title || "").trim();
+  const subtitle = String(item?.data?.subtitle || "").trim();
+  if (title && subtitle) return `${title}: ${subtitle}`;
+  return title || subtitle;
+}
+
+function shareSummary(item) {
+  const summary = String(item?.data?.summary || "").trim();
+  if (summary) return summary;
+  return plainTextFromHtml(item?.templateContent || "").slice(0, 280).trim();
+}
+
+function shareComplexText(item) {
+  const parts = [
+    shareTitleLine(item),
+    String(item?.data?.scripture || "").trim(),
+    "",
+    shareSummary(item),
+    "",
+    "--> zum Nachhoeren und Nachlesen unter dem Link oben",
+    "",
+    "--",
+    "",
+    plainTextFromHtml(item?.templateContent || "")
+  ].filter((part, index) => part || [2, 4, 6, 8].includes(index));
+  return normalizePlainText(parts.join("\n"));
 }
 
 async function renderResponsiveImage(src, alt, options = {}, page = null) {
@@ -198,16 +280,15 @@ function resolveOutputImageUrl(src, page = null, options = {}) {
 
 export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+  eleventyConfig.addPassthroughCopy("src/content/img", { mode: "html-relative" });
   eleventyConfig.addPassthroughCopy("src/content/**/*.{jpg,jpeg,png,webp,avif,gif,svg,mp3,m4a,ogg,pdf}", {
     mode: "html-relative"
   });
-  eleventyConfig.addPassthroughCopy({ "../current/public/img/jingle.mp3": "img/jingle.mp3" });
-  eleventyConfig.addPassthroughCopy({ "../current/public/img/me": "img/me" });
-  eleventyConfig.addPassthroughCopy({ "../current/public/img/players": "img/players" });
-  eleventyConfig.addPassthroughCopy({ "../current/public/img/sermons": "img/sermons" });
-  eleventyConfig.addPassthroughCopy({ "../current/public/img/slider": "img/slider" });
-  eleventyConfig.addPassthroughCopy({ "../current/public/fonts": "fonts" });
-  eleventyConfig.addPassthroughCopy({ "../current/public/favicon.ico": "favicon.ico" });
+  eleventyConfig.addPassthroughCopy({ "src/content/img/jingle.mp3": "img/jingle.mp3" });
+  eleventyConfig.addPassthroughCopy({ "src/content/img/me": "img/me" });
+  eleventyConfig.addPassthroughCopy({ "src/content/img/players": "img/players" });
+  eleventyConfig.addPassthroughCopy({ "src/content/img/sermons": "img/sermons" });
+  eleventyConfig.addPassthroughCopy({ "src/content/img/slider": "img/slider" });
   eleventyConfig.addPassthroughCopy({ "src/icon.svg": "icon.svg" });
   eleventyConfig.addPassthroughCopy({ "src/site.webmanifest": "site.webmanifest" });
   eleventyConfig.addPassthroughCopy({ "src/assets/generated/apple-touch-icon.png": "apple-touch-icon.png" });
@@ -249,6 +330,22 @@ export default function(eleventyConfig) {
     return plain.length <= length ? plain : `${plain.slice(0, length).trim()}…`;
   });
 
+  eleventyConfig.addFilter("plainText", (value) => {
+    return plainTextFromHtml(value);
+  });
+
+  eleventyConfig.addFilter("shareTitleLine", (item) => {
+    return shareTitleLine(item);
+  });
+
+  eleventyConfig.addFilter("shareSummary", (item) => {
+    return shareSummary(item);
+  });
+
+  eleventyConfig.addFilter("shareComplexText", (item) => {
+    return shareComplexText(item);
+  });
+
   eleventyConfig.addFilter("imageUrl", (src, page = null) => {
     return resolveOutputImageUrl(src, page);
   });
@@ -278,7 +375,9 @@ export default function(eleventyConfig) {
     return sortedItems(collectionApi.getFilteredByGlob("src/content/materials/**/index.md").filter((item) => isPublicItem(item) && hasTag(item, "schule")));
   });
   eleventyConfig.addCollection("projects", (collectionApi) => sortedItems(collectionApi.getFilteredByGlob("src/content/projects/**/index.md").filter(isPublicItem)));
-  eleventyConfig.addCollection("galleries", (collectionApi) => sortedItems(collectionApi.getFilteredByGlob("src/content/galleries/**/index.@(md|njk)").filter(isPublicItem)));
+  eleventyConfig.addCollection("galleries", (collectionApi) => {
+    return sortedItems(collectionApi.getAll().filter((item) => item?.url && isPublicItem(item) && hasTag(item, "gallery")));
+  });
   eleventyConfig.addCollection("podcastSeries", (collectionApi) => {
     return sortedItems(collectionApi.getFilteredByGlob("src/content/podcasts/**/index.md").filter((item) => {
       if (!isPublicItem(item)) return false;
@@ -295,20 +394,12 @@ export default function(eleventyConfig) {
     return sortedItems(collectionApi.getFilteredByGlob("src/content/podcasts/**/index.md").filter(isPublicItem));
   });
 
-  eleventyConfig.addCollection("publishedContent", (collectionApi) => {
-    const groups = [
-      collectionApi.getFilteredByGlob("src/content/sermons/**/index.md"),
-      collectionApi.getFilteredByGlob("src/content/posts/**/index.md"),
-      collectionApi.getFilteredByGlob("src/content/materials/**/index.md"),
-      collectionApi.getFilteredByGlob("src/content/projects/**/index.md"),
-      collectionApi.getFilteredByGlob("src/content/galleries/**/index.@(md|njk)"),
-      collectionApi.getFilteredByGlob("src/content/podcasts/**/index.md")
-    ];
+  eleventyConfig.addCollection("shareableContent", (collectionApi) => {
+    return sortedItems(collectionApi.getAll().filter(isShareableItem));
+  });
 
-    return sortedItems(groups.flat().filter((item) => {
-      if (!item.url || !isPublicItem(item)) return false;
-      return !!item.data.title;
-    }));
+  eleventyConfig.addCollection("publishedContent", (collectionApi) => {
+    return sortedItems(collectionApi.getAll().filter(isShareableItem));
   });
 
   eleventyConfig.addCollection("sermonsByYear", (collectionApi) => {

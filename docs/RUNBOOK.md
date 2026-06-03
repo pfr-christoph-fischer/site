@@ -310,9 +310,17 @@ At minimum, set:
 DEPLOY_TARGET=user@example:/var/www/christoph-fischer.de/
 ACTIVITYPUB_BASE_URL=https://www.christoph-fischer.de
 ACTIVITYPUB_DOMAIN=christoph-fischer.de
-ACTIVITYPUB_PUBLIC_KEY_PATH=/absolute/path/to/cfde/current/keys/public.pem
-ACTIVITYPUB_PRIVATE_KEY_PATH=/absolute/path/to/cfde/current/keys/private.pem
+ACTIVITYPUB_PUBLIC_KEY_PATH=/absolute/path/to/keys/public.pem
+ACTIVITYPUB_PRIVATE_KEY_PATH=/absolute/path/to/keys/private.pem
 ```
+
+Optional:
+
+```dotenv
+SHARE_BATCH_URLS=https://www.facebook.com/sharer/sharer.php?u=<permalink>,https://kirche.social/@christoph
+```
+
+`SHARE_BATCH_URLS` accepts comma- or newline-separated URLs. Supported placeholders are `<permalink>`, `<title>`, `<summary>`, and `<text>`.
 
 ### Deploy only
 

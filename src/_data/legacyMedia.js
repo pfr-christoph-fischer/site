@@ -1,12 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const repoRoot = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..", "..", "..");
-const legacyPublic = path.join(repoRoot, "current", "public");
-const meRoot = path.join(legacyPublic, "img", "me");
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
+const imageRoot = path.join(repoRoot, "src", "content", "img");
+const meRoot = path.join(imageRoot, "me");
 
 function toPublicUrl(filePath) {
-  return filePath.replace(legacyPublic, "").split(path.sep).join("/");
+  return filePath.replace(imageRoot, "/img").split(path.sep).join("/");
 }
 
 function listImageFiles(dirPath) {

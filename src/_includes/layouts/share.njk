@@ -1,0 +1,82 @@
+---
+layout: layouts/base.njk
+ogType: article
+dcType: Text
+---
+{% set originalUrl = entry.url | absoluteUrl(site) %}
+{% set titleLine = entry | shareTitleLine %}
+{% set summaryText = entry | shareSummary %}
+{% set primaryText = summaryText + "\n\n" + originalUrl %}
+{% set bioText = summaryText + "\n\nLink in meiner Bio\n\n" + originalUrl %}
+{% set complexText = entry | shareComplexText %}
+{% set batchUrls = shareConfig.batchUrls or [] %}
+<article class="shell entry-page">
+  {% set eyebrow = "Teilen" %}
+  {% include "components/article-header.njk" %}
+
+  <section class="detail-block share-page">
+    <p><a href="{{ entry.url }}">Zum Inhalt</a></p>
+
+    <div class="share-page__actions">
+      <button
+        class="button"
+        type="button"
+        data-fediverse-share
+        data-text-target="share-primary-text"
+      >Im Fediverse veroeffentlichen</button>
+      <button
+        class="button button--subtle"
+        type="button"
+        data-batch-share
+        data-text-target="share-primary-text"
+      >Teilen</button>
+    </div>
+
+    <input id="share-summary-only" type="hidden" value="{{ summaryText }}">
+
+    <div class="share-page__fields">
+      <section class="share-field">
+        <header class="share-field__header">
+          <h2>Zusammenfassung mit Link</h2>
+          <button class="button button--subtle" type="button" data-copy-target="share-primary-text">Kopieren</button>
+        </header>
+        <textarea id="share-primary-text" class="share-field__textarea" rows="7" readonly>{{ primaryText }}</textarea>
+      </section>
+
+      <section class="share-field">
+        <header class="share-field__header">
+          <h2>Zusammenfassung mit Bio-Hinweis</h2>
+          <button class="button button--subtle" type="button" data-copy-target="share-bio-text">Kopieren</button>
+        </header>
+        <textarea id="share-bio-text" class="share-field__textarea" rows="8" readonly>{{ bioText }}</textarea>
+      </section>
+
+      <section class="share-field">
+        <header class="share-field__header">
+          <h2>Titelzeile</h2>
+          <button class="button button--subtle" type="button" data-copy-target="share-title-line">Kopieren</button>
+        </header>
+        <input id="share-title-line" class="share-field__input" type="text" value="{{ titleLine }}" readonly>
+      </section>
+
+      <section class="share-field">
+        <header class="share-field__header">
+          <h2>Permalink</h2>
+          <button class="button button--subtle" type="button" data-copy-target="share-permalink">Kopieren</button>
+        </header>
+        <input id="share-permalink" class="share-field__input" type="text" value="{{ originalUrl }}" readonly>
+      </section>
+
+      <section class="share-field">
+        <header class="share-field__header">
+          <h2>Langfassung</h2>
+          <button class="button button--subtle" type="button" data-copy-target="share-complex-text">Kopieren</button>
+        </header>
+        <textarea id="share-complex-text" class="share-field__textarea" rows="18" readonly>{{ complexText }}</textarea>
+      </section>
+    </div>
+  </section>
+
+  <script id="share-batch-urls" type="application/json">{{ batchUrls | dump | safe }}</script>
+  <script src="/assets/js/share-page.js"></script>
+</article>

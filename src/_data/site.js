@@ -4,7 +4,7 @@ export default {
   description: "Predigten, Texte, Materialien und Open-Source-Projekte von Christoph Fischer.",
   language: "de",
   locale: "de_DE",
-  url: "https://www.christoph-fischer.de",
+  url: "https://christoph-fischer.de",
   themeColor: "#0b0d10",
   defaultSocialImage: "/assets/generated/social-default.png",
   defaultSocialImageAlt: "Portraet und Wortmarke von Christoph Fischer.",

@@ -14,6 +14,14 @@ const dbPath = process.env.ACTIVITYPUB_DB_PATH || path.join(dataDir, "activitypu
 const baseDomain = new URL(baseUrl).hostname;
 const canonicalDomain = process.env.ACTIVITYPUB_DOMAIN || baseDomain.replace(/^www\./, "");
 
+function requiredPathEnv(name) {
+  const value = process.env[name];
+  if (!value) {
+    throw new Error(`Missing required environment variable: ${name}`);
+  }
+  return path.isAbsolute(value) ? value : path.resolve(projectRoot, value);
+}
+
 export const config = {
   backendRoot,
   projectRoot,
@@ -35,8 +43,8 @@ export const config = {
   websiteUrl: process.env.ACTIVITYPUB_WEBSITE_URL || baseUrl,
   iconUrl: process.env.ACTIVITYPUB_ICON_URL || `${baseUrl}/img/podcast.jpg`,
   imageUrl: process.env.ACTIVITYPUB_IMAGE_URL || `${baseUrl}/img/me/official/202302-01.jpg`,
-  publicKeyPath: process.env.ACTIVITYPUB_PUBLIC_KEY_PATH || path.join(projectRoot, "..", "current", "keys", "public.pem"),
-  privateKeyPath: process.env.ACTIVITYPUB_PRIVATE_KEY_PATH || path.join(projectRoot, "..", "current", "keys", "private.pem"),
+  publicKeyPath: requiredPathEnv("ACTIVITYPUB_PUBLIC_KEY_PATH"),
+  privateKeyPath: requiredPathEnv("ACTIVITYPUB_PRIVATE_KEY_PATH"),
   host: process.env.ACTIVITYPUB_HOST || "127.0.0.1",
   port: Number(process.env.ACTIVITYPUB_PORT || 8787),
   requestBodyLimit: Number(process.env.ACTIVITYPUB_REQUEST_BODY_LIMIT || 1024 * 1024),
