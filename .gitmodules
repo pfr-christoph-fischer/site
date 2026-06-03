@@ -963,3 +963,8 @@
 	path = src/content/sermons/2022-09-25-entlastung-1
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-09-25-entlastung-1.git
 	branch = main
+
+[submodule "src/content/sermons/2022-10-13-was-mache-ich-hier-eigentlich"]
+	path = src/content/sermons/2022-10-13-was-mache-ich-hier-eigentlich
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-10-13-was-mache-ich-hier-eigentlich.git
+	branch = main
