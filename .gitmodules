@@ -903,3 +903,8 @@
 	path = src/content/sermons/2022-05-29-seufzen
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-05-29-seufzen.git
 	branch = main
+
+[submodule "src/content/sermons/2022-06-23-drei-affen"]
+	path = src/content/sermons/2022-06-23-drei-affen
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-06-23-drei-affen.git
+	branch = main
