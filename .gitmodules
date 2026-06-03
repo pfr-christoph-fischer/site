@@ -933,3 +933,8 @@
 	path = src/content/sermons/2022-08-07-kleingeld-und-kleine-lichter
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-08-07-kleingeld-und-kleine-lichter.git
 	branch = main
+
+[submodule "src/content/sermons/2022-08-18-ausgepackt"]
+	path = src/content/sermons/2022-08-18-ausgepackt
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-08-18-ausgepackt.git
+	branch = main
