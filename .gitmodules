@@ -198,3 +198,8 @@
 	path = src/content/sermons/2019-08-18-mach-es-wie-lukas
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-08-18-mach-es-wie-lukas.git
 	branch = main
+
+[submodule "src/content/sermons/2019-09-08-besser-als-trostpflaster"]
+	path = src/content/sermons/2019-09-08-besser-als-trostpflaster
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-09-08-besser-als-trostpflaster.git
+	branch = main
