@@ -1,3 +1,5 @@
+import { readFrontmatterTags } from "../../../scripts/lib/frontmatter.mjs";
+
 function normalizedInputPath(data) {
   return data.page?.inputPath?.replace(/\\/g, "/") || "";
 }
@@ -29,6 +31,10 @@ function seriesFeedUrl(data) {
   return null;
 }
 
+function entryTags(data) {
+  return readFrontmatterTags(data.page?.inputPath);
+}
+
 export default {
   eleventyComputed: {
     layout: (data) => {
@@ -37,8 +43,8 @@ export default {
       return data.layout;
     },
     tags: (data) => {
-      if (isSeriesPage(data)) return ["podcast-series"];
-      if (isEpisodePage(data)) return ["podcast-episode"];
+      if (isSeriesPage(data)) return ["podcast-series", ...entryTags(data).filter((tag) => tag !== "podcast-series")];
+      if (isEpisodePage(data)) return ["podcast-episode", ...entryTags(data).filter((tag) => tag !== "podcast-episode")];
       return data.tags || [];
     },
     contentLabel: (data) => {
@@ -59,8 +65,8 @@ export default {
     podcastSeriesSlug: (data) => seriesSlug(data),
     podcastFeedUrl: (data) => seriesFeedUrl(data),
     tagList: (data) => {
-      if (isSeriesPage(data)) return Array.isArray(data.tags) ? data.tags.filter((tag) => tag !== "podcast-series") : (data.tagList || []);
-      if (isEpisodePage(data)) return Array.isArray(data.tags) ? data.tags.filter((tag) => tag !== "podcast-episode") : (data.tagList || []);
+      if (isSeriesPage(data)) return entryTags(data).filter((tag) => tag !== "podcast-series");
+      if (isEpisodePage(data)) return entryTags(data).filter((tag) => tag !== "podcast-episode");
       return data.tagList || [];
     },
     permalink: (data) => {

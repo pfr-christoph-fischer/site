@@ -1,12 +1,18 @@
+import { readFrontmatterTags } from "../../../scripts/lib/frontmatter.mjs";
+
 function isEntryPage(data) {
   const inputPath = data.page?.inputPath?.replace(/\\/g, "/") || "";
   return /\/src\/content\/posts\/[^/]+\/index\.md$/.test(inputPath);
 }
 
+function entryTags(data) {
+  return readFrontmatterTags(data.page?.inputPath);
+}
+
 export default {
   eleventyComputed: {
     layout: (data) => isEntryPage(data) ? "layouts/content-entry.njk" : data.layout,
-    tags: (data) => isEntryPage(data) ? ["post"] : (data.tags || []),
+    tags: (data) => isEntryPage(data) ? ["post", ...entryTags(data).filter((tag) => tag !== "post")] : (data.tags || []),
     contentLabel: (data) => isEntryPage(data) ? "Blog" : data.contentLabel,
     schemaType: (data) => isEntryPage(data) ? "BlogPosting" : data.schemaType,
     description: (data) => data.summary || data.description || null,
@@ -14,7 +20,7 @@ export default {
     license_url: (data) => data.license_url || "https://creativecommons.org/licenses/by-sa/4.0/deed.de",
     coverAlt: (data) => data.cover_alt || null,
     socialImageAlt: (data) => data.cover_alt || data.socialImageAlt || null,
-    tagList: (data) => isEntryPage(data) && Array.isArray(data.tags) ? data.tags.filter((tag) => tag !== "post") : (data.tagList || []),
+    tagList: (data) => isEntryPage(data) ? entryTags(data).filter((tag) => tag !== "post") : (data.tagList || []),
     permalink: (data) => isEntryPage(data) ? `/blog/${data.page.fileSlug}/` : data.permalink
   }
 };
