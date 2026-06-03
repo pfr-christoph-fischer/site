@@ -1058,3 +1058,8 @@
 	path = src/content/sermons/2023-02-16-aber-du-weisst-den-weg-fuer-mich
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-02-16-aber-du-weisst-den-weg-fuer-mich.git
 	branch = main
+
+[submodule "src/content/sermons/2023-03-02-schirm-im-sturm"]
+	path = src/content/sermons/2023-03-02-schirm-im-sturm
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-03-02-schirm-im-sturm.git
+	branch = main
