@@ -168,3 +168,8 @@
 	path = src/content/sermons/2019-07-14-maria-magdalena-20
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-07-14-maria-magdalena-20.git
 	branch = main
+
+[submodule "src/content/sermons/2019-07-18-mir-ist-erbarmen-widerfahren"]
+	path = src/content/sermons/2019-07-18-mir-ist-erbarmen-widerfahren
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-07-18-mir-ist-erbarmen-widerfahren.git
+	branch = main
