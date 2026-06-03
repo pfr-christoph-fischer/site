@@ -1453,3 +1453,8 @@
 	path = src/content/sermons/2025-02-23-honigsuesse-worte-ii
 	url = git@github.com:pfr-christoph-fischer/predigt-2025-02-23-honigsuesse-worte-ii.git
 	branch = main
+
+[submodule "src/content/sermons/2025-03-02-luft-holen"]
+	path = src/content/sermons/2025-03-02-luft-holen
+	url = git@github.com:pfr-christoph-fischer/predigt-2025-03-02-luft-holen.git
+	branch = main
