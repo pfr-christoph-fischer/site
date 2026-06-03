@@ -1413,3 +1413,8 @@
 	path = src/content/sermons/2024-12-25-ans-licht-gekommen
 	url = git@github.com:pfr-christoph-fischer/predigt-2024-12-25-ans-licht-gekommen.git
 	branch = main
+
+[submodule "src/content/sermons/2024-12-29-nunc-dimittis"]
+	path = src/content/sermons/2024-12-29-nunc-dimittis
+	url = git@github.com:pfr-christoph-fischer/predigt-2024-12-29-nunc-dimittis.git
+	branch = main
