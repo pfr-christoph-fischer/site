@@ -1183,3 +1183,8 @@
 	path = src/content/sermons/2023-10-01-endstation
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-10-01-endstation.git
 	branch = main
+
+[submodule "src/content/sermons/2023-10-08-das-grossgedruckte"]
+	path = src/content/sermons/2023-10-08-das-grossgedruckte
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-10-08-das-grossgedruckte.git
+	branch = main
