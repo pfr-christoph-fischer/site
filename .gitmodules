@@ -1518,3 +1518,8 @@
 	path = src/content/sermons/2025-07-20-hoffnungssommer
 	url = git@github.com:pfr-christoph-fischer/predigt-2025-07-20-hoffnungssommer.git
 	branch = main
+
+[submodule "src/content/sermons/2025-08-24-gelassenheit"]
+	path = src/content/sermons/2025-08-24-gelassenheit
+	url = git@github.com:pfr-christoph-fischer/predigt-2025-08-24-gelassenheit.git
+	branch = main
