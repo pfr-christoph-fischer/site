@@ -1,3 +1,7 @@
 [submodule "src/content/sermons"]
 	path = src/content/sermons
 	url = ssh://git@codeberg.org/christoph-fischer/predigten.git
+[submodule "src/content/materials/schoepfungsbuch"]
+	path = src/content/materials/schoepfungsbuch
+	url = git@github.com:pfr-christoph-fischer/material-schoepfungsbuch.git
+	branch = main
