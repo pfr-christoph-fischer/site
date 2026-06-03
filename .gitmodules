@@ -483,3 +483,8 @@
 	path = src/content/sermons/2020-10-22-jetzt-zieh-dich-doch-mal-anstaendig-an
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-10-22-jetzt-zieh-dich-doch-mal-anstaendig-an.git
 	branch = main
+
+[submodule "src/content/sermons/2020-11-15-plan-b"]
+	path = src/content/sermons/2020-11-15-plan-b
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-11-15-plan-b.git
+	branch = main
