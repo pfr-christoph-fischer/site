@@ -1108,3 +1108,8 @@
 	path = src/content/sermons/2023-04-23-herzensgrund-und-weideglueck
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-04-23-herzensgrund-und-weideglueck.git
 	branch = main
+
+[submodule "src/content/sermons/2023-05-06-bruecke-zum-versager"]
+	path = src/content/sermons/2023-05-06-bruecke-zum-versager
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-05-06-bruecke-zum-versager.git
+	branch = main
