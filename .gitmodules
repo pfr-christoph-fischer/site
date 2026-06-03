@@ -233,3 +233,8 @@
 	path = src/content/sermons/2019-10-06-brot-brechen
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-10-06-brot-brechen.git
 	branch = main
+
+[submodule "src/content/sermons/2019-10-27-bis-hierher-und-noch-weiter"]
+	path = src/content/sermons/2019-10-27-bis-hierher-und-noch-weiter
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-10-27-bis-hierher-und-noch-weiter.git
+	branch = main
