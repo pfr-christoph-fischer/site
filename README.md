@@ -12,6 +12,10 @@ This README is the short operator overview. The fuller runbook is here:
 
 - [2026/docs/RUNBOOK.md](/home/christoph/Dev/sites/cfde/2026/docs/RUNBOOK.md)
 
+Server-side ActivityPub installation behind Caddy is documented here:
+
+- [docs/ACTIVITYPUB_SERVER_SETUP.md](/home/christoph/dev/christoph/site/docs/ACTIVITYPUB_SERVER_SETUP.md)
+
 ## Requirements
 
 - Node.js 20.x
@@ -87,6 +91,12 @@ Build, deploy, and federate newly released public content:
 
 ```bash
 npm run publish
+```
+
+Deploy the backend code bundle and generated backend `.env` to `BACKEND_SERVER_PATH`:
+
+```bash
+npm run deploy:backend
 ```
 
 ## Sermon Workflow

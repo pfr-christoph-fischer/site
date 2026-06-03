@@ -19,6 +19,7 @@
     "activitypub:remove-follower": "node scripts/activitypub-remove-follower.mjs",
     "activitypub:retry-deliveries": "node scripts/activitypub-retry-deliveries.mjs",
     "deploy": "node scripts/deploy.mjs",
+    "deploy:backend": "node scripts/deploy-backend.mjs",
     "publish": "npm run build:clean && npm run deploy && npm run federate",
     "import:latest-sermon": "node scripts/import-latest-sermon.mjs",
     "release:sermon": "node scripts/release-sermon.mjs",

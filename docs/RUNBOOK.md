@@ -19,6 +19,7 @@ Important:
 - `ACTIVITYPUB_BASE_URL` must be the public HTTPS origin, not the localhost backend URL
 - `ACTIVITYPUB_HOST` and `ACTIVITYPUB_PORT` are the local bind address for the backend
 - `DEPLOY_TARGET` is where `rsync` uploads the generated `_site/`
+- `BACKEND_SERVER_PATH` is the backend checkout path on the deployment server
 
 ## 2. What The Main Scripts Do
 
@@ -73,6 +74,16 @@ Use this before every deploy.
 - federates newly released public ActivityPub content
 
 This is the high-level “ship it” command.
+
+### Backend deploy
+
+`npm run deploy:backend`
+
+- stages the backend runtime files into a temporary bundle
+- generates a backend `.env` from local `ACTIVITYPUB_*` variables
+- uploads that bundle to `BACKEND_SERVER_PATH` on the same host as `DEPLOY_TARGET`
+- does not upload key files
+- does not delete backend runtime state such as `backend/data/` or `node_modules/`
 
 ## 3. Content Import And Sermon Workflow
 
@@ -336,6 +347,10 @@ SHARE_BATCH_URLS=https://www.facebook.com/sharer/sharer.php?u=<permalink>,https:
 - the usual production path
 
 ## 6. ActivityPub Backend
+
+Server installation and `systemd` setup are documented separately in:
+
+- [ACTIVITYPUB_SERVER_SETUP.md](/home/christoph/dev/christoph/site/docs/ACTIVITYPUB_SERVER_SETUP.md)
 
 ### Start the backend
 
