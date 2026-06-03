@@ -1243,3 +1243,8 @@
 	path = src/content/sermons/2024-01-07-gottes-kinder
 	url = git@github.com:pfr-christoph-fischer/predigt-2024-01-07-gottes-kinder.git
 	branch = main
+
+[submodule "src/content/sermons/2024-01-14-noch-ein-schritt"]
+	path = src/content/sermons/2024-01-14-noch-ein-schritt
+	url = git@github.com:pfr-christoph-fischer/predigt-2024-01-14-noch-ein-schritt.git
+	branch = main
