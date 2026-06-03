@@ -268,3 +268,8 @@
 	path = src/content/sermons/2019-12-15-otterngezuecht-1
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-12-15-otterngezuecht-1.git
 	branch = main
+
+[submodule "src/content/sermons/2019-12-19-otterngezuecht"]
+	path = src/content/sermons/2019-12-19-otterngezuecht
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-12-19-otterngezuecht.git
+	branch = main
