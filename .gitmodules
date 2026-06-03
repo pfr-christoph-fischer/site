@@ -1578,3 +1578,8 @@
 	path = src/content/sermons/2025-12-21-ja-und-amen
 	url = git@github.com:pfr-christoph-fischer/predigt-2025-12-21-ja-und-amen.git
 	branch = main
+
+[submodule "src/content/sermons/2025-12-24-mitbewohner"]
+	path = src/content/sermons/2025-12-24-mitbewohner
+	url = git@github.com:pfr-christoph-fischer/predigt-2025-12-24-mitbewohner.git
+	branch = main
