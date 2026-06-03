@@ -943,3 +943,8 @@
 	path = src/content/sermons/2022-08-21-304805-buchstaben
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-08-21-304805-buchstaben.git
 	branch = main
+
+[submodule "src/content/sermons/2022-09-15-die-herberge-zum-barmherzigen-samariter"]
+	path = src/content/sermons/2022-09-15-die-herberge-zum-barmherzigen-samariter
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-09-15-die-herberge-zum-barmherzigen-samariter.git
+	branch = main
