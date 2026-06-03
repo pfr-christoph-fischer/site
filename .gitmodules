@@ -1498,3 +1498,8 @@
 	path = src/content/sermons/2025-05-25-lebendger-fisch
 	url = git@github.com:pfr-christoph-fischer/predigt-2025-05-25-lebendger-fisch.git
 	branch = main
+
+[submodule "src/content/sermons/2025-06-01-zwischenzeit"]
+	path = src/content/sermons/2025-06-01-zwischenzeit
+	url = git@github.com:pfr-christoph-fischer/predigt-2025-06-01-zwischenzeit.git
+	branch = main
