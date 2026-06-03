@@ -1628,3 +1628,8 @@
 	path = src/content/sermons/2026-03-29-vertrauen-exklusiv
 	url = git@github.com:pfr-christoph-fischer/predigt-2026-03-29-vertrauen-exklusiv.git
 	branch = main
+
+[submodule "src/content/sermons/2026-04-05-alles-in-allem"]
+	path = src/content/sermons/2026-04-05-alles-in-allem
+	url = git@github.com:pfr-christoph-fischer/predigt-2026-04-05-alles-in-allem.git
+	branch = main
