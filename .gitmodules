@@ -663,3 +663,8 @@
 	path = src/content/sermons/2021-05-30-brunn-allen-heils
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-05-30-brunn-allen-heils.git
 	branch = main
+
+[submodule "src/content/sermons/2021-06-10-denn-er-laesst-nicht-von-mir"]
+	path = src/content/sermons/2021-06-10-denn-er-laesst-nicht-von-mir
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-06-10-denn-er-laesst-nicht-von-mir.git
+	branch = main
