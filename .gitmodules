@@ -1658,3 +1658,8 @@
 	path = src/content/sermons/2026-05-17-du-bist-nicht-allein
 	url = git@github.com:pfr-christoph-fischer/predigt-2026-05-17-du-bist-nicht-allein.git
 	branch = main
+
+[submodule "src/content/sermons/2026-05-24-atem-gottes"]
+	path = src/content/sermons/2026-05-24-atem-gottes
+	url = git@github.com:pfr-christoph-fischer/predigt-2026-05-24-atem-gottes.git
+	branch = main
