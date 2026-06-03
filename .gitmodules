@@ -1313,3 +1313,8 @@
 	path = src/content/sermons/2024-05-12-beistand
 	url = git@github.com:pfr-christoph-fischer/predigt-2024-05-12-beistand.git
 	branch = main
+
+[submodule "src/content/sermons/2024-05-20-es-rauscht"]
+	path = src/content/sermons/2024-05-20-es-rauscht
+	url = git@github.com:pfr-christoph-fischer/predigt-2024-05-20-es-rauscht.git
+	branch = main
