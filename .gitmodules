@@ -1043,3 +1043,8 @@
 	path = src/content/sermons/2023-01-22-achtung-baustelle
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-01-22-achtung-baustelle.git
 	branch = main
+
+[submodule "src/content/sermons/2023-02-02-der-traum-vom-berg"]
+	path = src/content/sermons/2023-02-02-der-traum-vom-berg
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-02-02-der-traum-vom-berg.git
+	branch = main
