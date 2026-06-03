@@ -153,3 +153,8 @@
 	path = src/content/sermons/2019-06-30-erfrischung-gefaellig-1
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-06-30-erfrischung-gefaellig-1.git
 	branch = main
+
+[submodule "src/content/sermons/2019-06-30-erfrischung-gefaellig-2"]
+	path = src/content/sermons/2019-06-30-erfrischung-gefaellig-2
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-06-30-erfrischung-gefaellig-2.git
+	branch = main
