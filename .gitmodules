@@ -303,3 +303,8 @@
 	path = src/content/sermons/2020-01-19-auf-dem-trockenen
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-01-19-auf-dem-trockenen.git
 	branch = main
+
+[submodule "src/content/sermons/2020-01-26-du-zeigst-uns-deine-herrlichkeit"]
+	path = src/content/sermons/2020-01-26-du-zeigst-uns-deine-herrlichkeit
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-01-26-du-zeigst-uns-deine-herrlichkeit.git
+	branch = main
