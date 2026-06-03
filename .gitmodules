@@ -248,3 +248,8 @@
 	path = src/content/sermons/2019-11-21-irgendwann-reichts
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-11-21-irgendwann-reichts.git
 	branch = main
+
+[submodule "src/content/sermons/2019-11-24-er-ruft"]
+	path = src/content/sermons/2019-11-24-er-ruft
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-11-24-er-ruft.git
+	branch = main
