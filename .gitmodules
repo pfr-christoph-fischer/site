@@ -983,3 +983,8 @@
 	path = src/content/sermons/2022-10-30-todesstark-und-hoffnungstrotzig
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-10-30-todesstark-und-hoffnungstrotzig.git
 	branch = main
+
+[submodule "src/content/sermons/2022-11-10-wann-kommt-das-reich-gottes"]
+	path = src/content/sermons/2022-11-10-wann-kommt-das-reich-gottes
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-11-10-wann-kommt-das-reich-gottes.git
+	branch = main
