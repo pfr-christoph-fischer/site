@@ -1003,3 +1003,8 @@
 	path = src/content/sermons/2022-11-27-er-vor-der-tuer
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-11-27-er-vor-der-tuer.git
 	branch = main
+
+[submodule "src/content/sermons/2022-12-08-huegelhuepfer"]
+	path = src/content/sermons/2022-12-08-huegelhuepfer
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-12-08-huegelhuepfer.git
+	branch = main
