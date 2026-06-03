@@ -13,3 +13,8 @@
 	path = src/content/sermons/2018-09-09-wie-kann-man-nur-so-blind-sein
 	url = git@github.com:pfr-christoph-fischer/predigt-2018-09-09-wie-kann-man-nur-so-blind-sein.git
 	branch = main
+
+[submodule "src/content/sermons/2018-09-30-alles-gute-kommt-von-dir"]
+	path = src/content/sermons/2018-09-30-alles-gute-kommt-von-dir
+	url = git@github.com:pfr-christoph-fischer/predigt-2018-09-30-alles-gute-kommt-von-dir.git
+	branch = main
