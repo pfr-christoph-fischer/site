@@ -1118,3 +1118,8 @@
 	path = src/content/sermons/2023-05-07-brueckenbau-gmbh
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-05-07-brueckenbau-gmbh.git
 	branch = main
+
+[submodule "src/content/sermons/2023-05-25-psst"]
+	path = src/content/sermons/2023-05-25-psst
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-05-25-psst.git
+	branch = main
