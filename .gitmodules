@@ -453,3 +453,8 @@
 	path = src/content/sermons/2020-09-24-gartenarbeit
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-09-24-gartenarbeit.git
 	branch = main
+
+[submodule "src/content/sermons/2020-09-27-nachtlicht"]
+	path = src/content/sermons/2020-09-27-nachtlicht
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-09-27-nachtlicht.git
+	branch = main
