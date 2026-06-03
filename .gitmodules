@@ -128,3 +128,8 @@
 	path = src/content/sermons/2019-04-25-fettes-mahl
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-04-25-fettes-mahl.git
 	branch = main
+
+[submodule "src/content/sermons/2019-04-28-die-hoffnung-stirbt-zuerst"]
+	path = src/content/sermons/2019-04-28-die-hoffnung-stirbt-zuerst
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-04-28-die-hoffnung-stirbt-zuerst.git
+	branch = main
