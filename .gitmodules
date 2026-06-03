@@ -98,3 +98,8 @@
 	path = src/content/sermons/2019-02-14-sturmstiller
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-02-14-sturmstiller.git
 	branch = main
+
+[submodule "src/content/sermons/2019-02-17-jenseits-des-ponyhofs"]
+	path = src/content/sermons/2019-02-17-jenseits-des-ponyhofs
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-02-17-jenseits-des-ponyhofs.git
+	branch = main
