@@ -1103,3 +1103,8 @@
 	path = src/content/sermons/2023-04-09-nicht-zu-fassen
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-04-09-nicht-zu-fassen.git
 	branch = main
+
+[submodule "src/content/sermons/2023-04-23-herzensgrund-und-weideglueck"]
+	path = src/content/sermons/2023-04-23-herzensgrund-und-weideglueck
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-04-23-herzensgrund-und-weideglueck.git
+	branch = main
