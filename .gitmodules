@@ -293,3 +293,8 @@
 	path = src/content/sermons/2019-12-29-nun-hat-mein-auge-dich-gesehen
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-12-29-nun-hat-mein-auge-dich-gesehen.git
 	branch = main
+
+[submodule "src/content/sermons/2020-01-16-an-meiner-seite"]
+	path = src/content/sermons/2020-01-16-an-meiner-seite
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-01-16-an-meiner-seite.git
+	branch = main
