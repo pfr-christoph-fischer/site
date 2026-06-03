@@ -1223,3 +1223,8 @@
 	path = src/content/sermons/2023-12-24-krippenspiel
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-12-24-krippenspiel.git
 	branch = main
+
+[submodule "src/content/sermons/2023-12-25-hoffnungskind"]
+	path = src/content/sermons/2023-12-25-hoffnungskind
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-12-25-hoffnungskind.git
+	branch = main
