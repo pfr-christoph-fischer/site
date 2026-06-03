@@ -813,3 +813,8 @@
 	path = src/content/sermons/2021-12-31-unkraut-und-weizen
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-12-31-unkraut-und-weizen.git
 	branch = main
+
+[submodule "src/content/sermons/2022-01-02-gott-zum-anfassen"]
+	path = src/content/sermons/2022-01-02-gott-zum-anfassen
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-01-02-gott-zum-anfassen.git
+	branch = main
