@@ -883,3 +883,8 @@
 	path = src/content/sermons/2022-04-28-neue-menschen
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-04-28-neue-menschen.git
 	branch = main
+
+[submodule "src/content/sermons/2022-05-12-jubilate"]
+	path = src/content/sermons/2022-05-12-jubilate
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-05-12-jubilate.git
+	branch = main
