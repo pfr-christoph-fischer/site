@@ -18,3 +18,8 @@
 	path = src/content/sermons/2018-09-30-alles-gute-kommt-von-dir
 	url = git@github.com:pfr-christoph-fischer/predigt-2018-09-30-alles-gute-kommt-von-dir.git
 	branch = main
+
+[submodule "src/content/sermons/2018-10-05-alles-oder-nichts"]
+	path = src/content/sermons/2018-10-05-alles-oder-nichts
+	url = git@github.com:pfr-christoph-fischer/predigt-2018-10-05-alles-oder-nichts.git
+	branch = main
