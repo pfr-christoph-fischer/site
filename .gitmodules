@@ -578,3 +578,8 @@
 	path = src/content/sermons/2021-02-04-lichtblick
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-02-04-lichtblick.git
 	branch = main
+
+[submodule "src/content/sermons/2021-02-18-fastenzeit"]
+	path = src/content/sermons/2021-02-18-fastenzeit
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-02-18-fastenzeit.git
+	branch = main
