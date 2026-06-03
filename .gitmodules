@@ -73,3 +73,8 @@
 	path = src/content/sermons/2018-12-24-weihnachten-in-gefahr
 	url = git@github.com:pfr-christoph-fischer/predigt-2018-12-24-weihnachten-in-gefahr.git
 	branch = main
+
+[submodule "src/content/sermons/2019-01-03-hilf-dass-wir-ihn-tun"]
+	path = src/content/sermons/2019-01-03-hilf-dass-wir-ihn-tun
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-01-03-hilf-dass-wir-ihn-tun.git
+	branch = main
