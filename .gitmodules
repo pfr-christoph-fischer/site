@@ -133,3 +133,8 @@
 	path = src/content/sermons/2019-04-28-die-hoffnung-stirbt-zuerst
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-04-28-die-hoffnung-stirbt-zuerst.git
 	branch = main
+
+[submodule "src/content/sermons/2019-05-23-im-dunkeln-singen"]
+	path = src/content/sermons/2019-05-23-im-dunkeln-singen
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-05-23-im-dunkeln-singen.git
+	branch = main
