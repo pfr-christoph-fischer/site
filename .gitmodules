@@ -353,3 +353,8 @@
 	path = src/content/sermons/2020-04-05-duft-der-liebe
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-04-05-duft-der-liebe.git
 	branch = main
+
+[submodule "src/content/sermons/2020-04-09-was-ist-anders-in-dieser-nacht"]
+	path = src/content/sermons/2020-04-09-was-ist-anders-in-dieser-nacht
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-04-09-was-ist-anders-in-dieser-nacht.git
+	branch = main
