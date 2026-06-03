@@ -1128,3 +1128,8 @@
 	path = src/content/sermons/2023-06-04-dreimal-heilig
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-06-04-dreimal-heilig.git
 	branch = main
+
+[submodule "src/content/sermons/2023-06-11-apostelinnen-und-propheten"]
+	path = src/content/sermons/2023-06-11-apostelinnen-und-propheten
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-06-11-apostelinnen-und-propheten.git
+	branch = main
