@@ -1013,3 +1013,8 @@
 	path = src/content/sermons/2022-12-22-freudensonn
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-12-22-freudensonn.git
 	branch = main
+
+[submodule "src/content/sermons/2022-12-24-zeitenwende"]
+	path = src/content/sermons/2022-12-24-zeitenwende
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-12-24-zeitenwende.git
+	branch = main
