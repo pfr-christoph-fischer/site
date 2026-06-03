@@ -138,3 +138,8 @@
 	path = src/content/sermons/2019-05-23-im-dunkeln-singen
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-05-23-im-dunkeln-singen.git
 	branch = main
+
+[submodule "src/content/sermons/2019-05-26-auf-dass-eure-freude-vollkommen-sei"]
+	path = src/content/sermons/2019-05-26-auf-dass-eure-freude-vollkommen-sei
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-05-26-auf-dass-eure-freude-vollkommen-sei.git
+	branch = main
