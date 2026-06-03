@@ -348,3 +348,8 @@
 	path = src/content/sermons/2020-03-22-muttertrost-kurz
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-03-22-muttertrost-kurz.git
 	branch = main
+
+[submodule "src/content/sermons/2020-04-05-duft-der-liebe"]
+	path = src/content/sermons/2020-04-05-duft-der-liebe
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-04-05-duft-der-liebe.git
+	branch = main
