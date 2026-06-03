@@ -403,3 +403,8 @@
 	path = src/content/sermons/2020-07-02-gnade-gefunden
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-07-02-gnade-gefunden.git
 	branch = main
+
+[submodule "src/content/sermons/2020-07-19-ausgewaehlte-gurken"]
+	path = src/content/sermons/2020-07-19-ausgewaehlte-gurken
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-07-19-ausgewaehlte-gurken.git
+	branch = main
