@@ -1278,3 +1278,8 @@
 	path = src/content/sermons/2024-03-10-hahnenschrei
 	url = git@github.com:pfr-christoph-fischer/predigt-2024-03-10-hahnenschrei.git
 	branch = main
+
+[submodule "src/content/sermons/2024-03-17-stocksauer-stinkwuetend"]
+	path = src/content/sermons/2024-03-17-stocksauer-stinkwuetend
+	url = git@github.com:pfr-christoph-fischer/predigt-2024-03-17-stocksauer-stinkwuetend.git
+	branch = main
