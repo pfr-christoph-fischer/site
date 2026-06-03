@@ -968,3 +968,8 @@
 	path = src/content/sermons/2022-10-13-was-mache-ich-hier-eigentlich
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-10-13-was-mache-ich-hier-eigentlich.git
 	branch = main
+
+[submodule "src/content/sermons/2022-10-16-final-countdown"]
+	path = src/content/sermons/2022-10-16-final-countdown
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-10-16-final-countdown.git
+	branch = main
