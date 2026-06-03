@@ -1238,3 +1238,8 @@
 	path = src/content/sermons/2024-01-01-nicht-nur-poster-und-herzchen
 	url = git@github.com:pfr-christoph-fischer/predigt-2024-01-01-nicht-nur-poster-und-herzchen.git
 	branch = main
+
+[submodule "src/content/sermons/2024-01-07-gottes-kinder"]
+	path = src/content/sermons/2024-01-07-gottes-kinder
+	url = git@github.com:pfr-christoph-fischer/predigt-2024-01-07-gottes-kinder.git
+	branch = main
