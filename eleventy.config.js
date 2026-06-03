@@ -476,6 +476,8 @@ function resolveOutputImageUrl(src, page = null, options = {}) {
 }
 
 export default function(eleventyConfig) {
+  eleventyConfig.ignores.add("src/content/**/**/README.md");
+
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/content/img": "img" });
   eleventyConfig.addPassthroughCopy("src/content/**/*.{jpg,jpeg,png,webp,avif,gif,svg,mp3,m4a,ogg,pdf}", {

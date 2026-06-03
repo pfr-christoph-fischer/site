@@ -28,6 +28,21 @@ export default {
   ],
   relMe: [
     "https://kirche.social/@christoph",
+    "https://christoph-fischer.d/users/christoph",
+    "https://www.facebook.com/christoph.fischer",
+    "https://www.instagram.com/pfarrer.christoph",
+    "https://open.spotify.com/show/0N42Mwfq7xXTPQrD4HrRBp",
+    "https://pixelfed.de/@pfr.christoph",
+    "https://gaeufelden.communiapp.de/page/detail/tab/user-251633",
+    "https://bsky.app/profile/christoph-fischer.de",
+    "https://www.threads.com/@pfarrer.christoph",
+    "https://codeberg.org/peregrinus/",
+    "https://codeberg.org/pfarr.tools/",
+    "https://codeberg.org/christoph-fischer/",
+    "https://github.com/christoph-fischer/",
+    "https://github.com/pfr-christoph-fischer",
+    "https://orcid.org/0009-0002-2605-0068",
+    "https://www.linkedin.com/in/christoph-fischer-a06240162/",
     "https://www.pfarrplaner.de/"
   ],
   podcast: {

@@ -99,11 +99,26 @@
               "@type": "Person",
               "name": {{ site.author.name | dump | safe }},
               "url": {{ site.url | dump | safe }},
-              "jobTitle": {{ site.author.jobTitle | dump | safe }},
-              "worksFor": {
-                "@type": "Organization",
-                "name": {{ site.organization.name | dump | safe }}
+              "email": "chris@toph.de",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Gäufelden, Germany",
+                "postalCode": "D-71083",
+                "streetAddress": "Buchenstr. 29"
               },
+              "jobTitle": {{ site.author.jobTitle | dump | safe }},
+              "worksFor": [
+                {
+                  "@type": "Organization",
+                  "name": "Evangelische Landeskirche in Württemberg",
+                  "url": "https://www.elk-wue.de"
+                },
+                {
+                  "@type": "Organization",
+                  "name": "Evangelische Kirchengemeinde Gäufelden",
+                  "url": "https://www.evangelisch-in-gaeufelden.de"
+                }
+              ],
               "sameAs": {{ site.relMe | dump | safe }}
             }
           ]

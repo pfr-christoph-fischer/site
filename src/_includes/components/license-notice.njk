@@ -1,11 +1,16 @@
-{% if license %}
+{% if license or repository %}
   <section class="detail-block">
-    <h2>Nutzungsbedingungen</h2>
-    <p>Dieser Inhalt wird unter folgender Lizenz veröffentlicht: {{ license }}. Was das bedeutet, steht <a href="{{ license_url }}" target="_blank" rel="noopener">hier</a>.</p>
+    <h2>Nutzung</h2>
+    {% if license %}
+    <p>Dieser Inhalt wird unter einer {{ license }}-Lizenz veröffentlicht. Was das bedeutet, steht <a href="{{ license_url }}" target="_blank" rel="noopener" aria-label="Details zur {{ license }}-Lizenz.">hier</a>.</p>
     {% if additional_license_info %}
       <div class="prose">
         {{ additional_license_info | markdown | safe }}
       </div>
+      {% endif %}
+    {% endif %}
+    {% if repository %}
+    <p>Dieser Inhalt ist <a href="{{ repository }}" target="_blank" noopener aria-label="Link zum {{ repositoryProvider}}-Repository mit den Daten zu diesem Inhalt">in einem Git-Repository auf {{ repositoryProvider }}</a> verfügbar.
     {% endif %}
   </section>
 {% endif %}

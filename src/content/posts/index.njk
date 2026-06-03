@@ -1,7 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Blog
-summary: Texte und Essays aus dem neuen statischen Aufbau.
+summary: Artikel, Gedanken Ideen und Schnipsel.
 permalink: /blog/
 ---
 {% if collections.posts.length %}
@@ -10,6 +10,6 @@ permalink: /blog/
   {% include "components/archive-list.njk" %}
 {% else %}
   <div class="archive-placeholder">
-    <p>Für den Blog sind noch keine Inhalte im neuen Dateisystem veröffentlicht.</p>
+    <p>Für den Blog sind noch keine Inhalte veröffentlicht.</p>
   </div>
 {% endif %}

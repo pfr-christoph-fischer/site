@@ -16,24 +16,26 @@ Deutschland
 E-Mail: [chris@toph.de](mailto:chris@toph.de)  
 Weitere Kontaktdaten im [Impressum](/impressum/).
 
+## Grundsatz
+
+Dieses Angebot versucht, so weit wie möglich ohne Datenspeicherung auszukommen. Persönliche Nutzerdaten sollen weder gespeichert noch ausgewertet werden. 
+
 ## Arten der verarbeiteten Daten
 
-- Bestandsdaten, etwa Namen und Adressen
-- Kontaktdaten, etwa E-Mail-Adressen und Telefonnummern
-- Inhaltsdaten, etwa Texteingaben, Fotografien, Dateien oder Audioinhalte
-- Nutzungsdaten, etwa besuchte Seiten, Interesse an Inhalten und Zugriffszeiten
-- Meta- und Kommunikationsdaten, etwa Geräteinformationen und IP-Adressen
+- Nutzungsdaten, etwa besuchte Seiten, Interesse an Inhalten und Zugriffszeiten, sowie Meta- und Kommunikationsdaten, etwa Geräteinformationen und IP-Adressen **ausschließlich** beim Zugriff die FediVerse-Integration, z.B. beim Abonnieren von @christoph@christoph-fischer.de von Mastodon oder ähnlichen Diensten im Fediverse aus.
+- Beim Abonnieren von @christoph@christoph-fischer.de aus dem FediVerse wird darüber hinaus die Benutzerkennung des/der Abonnent:in gespeichert.
 
 ## Kategorien betroffener Personen
 
-Betroffen sind Besucherinnen und Besucher sowie Nutzerinnen und Nutzer dieses Onlineangebots.
+Betroffen sind Besucher:innen sowie Nutzer:innen dieses Onlineangebots über ActivityPub aus dem FediVerse. 
+
+Benutzer:innen, die dieses Angebot über den regulären Browser nutzen, sind nicht betroffen.
 
 ## Zweck der Verarbeitung
 
 - Bereitstellung des Onlineangebots, seiner Funktionen und Inhalte
-- Beantwortung von Kontaktanfragen und Kommunikation
 - Sicherheitsmaßnahmen und technische Stabilität
-- Reichweitenbeobachtung im Rahmen des statischen Such- und Veröffentlichungsbetriebs
+- Auslieferung abonnierter Inhalte
 
 ## Rechtsgrundlagen
 
@@ -77,7 +79,9 @@ Sie können der künftigen Verarbeitung Ihrer Daten nach Maßgabe des Art. 21 DS
 
 ## Cookies
 
-Dieses statische Angebot ist so aufgebaut, dass es möglichst ohne zustimmungspflichtige Cookies auskommt. Sofern technische Funktionen oder eingebundene Dienste im Einzelfall dennoch browserseitige Daten speichern, geschieht dies ausschließlich im Rahmen ihrer jeweiligen technischen Erforderlichkeit. Browser können zudem so eingestellt werden, dass das Speichern von Cookies eingeschränkt oder deaktiviert wird.
+Dieses statische Angebot ist so aufgebaut, dass es ohne zustimmungspflichtige Cookies auskommt. Sofern technische Funktionen oder eingebundene Dienste im Einzelfall dennoch browserseitige Daten speichern, geschieht dies ausschließlich im Rahmen ihrer jeweiligen tecnischen Erforderlichkeit. Browser können zudem so eingestellt werden, dass das Speichern von Cookies eingeschränkt oder deaktiviert wird.
+
+Bei Nutzung der Funktion "Text vergrößern/verkleinern" wird die aktuelle Größenstufe lokal im Browser des/der Benutzer:in gespeichert. Der gespeicherte Wert verbleibt nur auf dem lokalen Rechner und wird nicht übermittelt.
 
 ## Löschung von Daten
 
@@ -102,7 +106,3 @@ Auf der Seite zum Podcast-Abo finden sich Verweise auf externe Podcast-Plattform
 ## Suchfunktion und statische Hilfsdateien
 
 Die Seitensuche wird lokal über eine statisch erzeugte Pagefind-Suche bereitgestellt. Dabei werden Suchanfragen im Browser verarbeitet; die dafür benötigten Dateien werden gemeinsam mit der Website ausgeliefert. Zusätzlich werden Hilfsdateien wie `robots.txt`, `sitemap.xml` oder `opensearch.xml` bereitgestellt.
-
-## Stand
-
-Diese Datenschutzerklärung wurde für den statischen Neuaufbau von christoph-fischer.de an den aktuellen technischen Aufbau angepasst.
