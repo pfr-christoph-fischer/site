@@ -773,3 +773,8 @@
 	path = src/content/sermons/2021-11-17-ganz-einfach-und-unendlich-schwer
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-11-17-ganz-einfach-und-unendlich-schwer.git
 	branch = main
+
+[submodule "src/content/sermons/2021-11-21-hoffnungsrahmen"]
+	path = src/content/sermons/2021-11-21-hoffnungsrahmen
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-11-21-hoffnungsrahmen.git
+	branch = main
