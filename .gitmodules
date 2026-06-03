@@ -493,3 +493,8 @@
 	path = src/content/sermons/2020-11-22-hoffnungsgruen-1
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-11-22-hoffnungsgruen-1.git
 	branch = main
+
+[submodule "src/content/sermons/2020-12-03-wenn-er-doch-kaeme"]
+	path = src/content/sermons/2020-12-03-wenn-er-doch-kaeme
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-12-03-wenn-er-doch-kaeme.git
+	branch = main
