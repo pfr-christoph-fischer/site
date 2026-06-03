@@ -548,3 +548,8 @@
 	path = src/content/sermons/2020-12-31-ins-unbekannte
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-12-31-ins-unbekannte.git
 	branch = main
+
+[submodule "src/content/sermons/2021-01-03-vaterhaus"]
+	path = src/content/sermons/2021-01-03-vaterhaus
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-01-03-vaterhaus.git
+	branch = main
