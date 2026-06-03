@@ -108,3 +108,8 @@
 	path = src/content/sermons/2019-03-10-gnadenthron
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-03-10-gnadenthron.git
 	branch = main
+
+[submodule "src/content/sermons/2019-03-31-keine-bleibende-stadt"]
+	path = src/content/sermons/2019-03-31-keine-bleibende-stadt
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-03-31-keine-bleibende-stadt.git
+	branch = main
