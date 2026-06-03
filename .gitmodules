@@ -1418,3 +1418,8 @@
 	path = src/content/sermons/2024-12-29-nunc-dimittis
 	url = git@github.com:pfr-christoph-fischer/predigt-2024-12-29-nunc-dimittis.git
 	branch = main
+
+[submodule "src/content/sermons/2025-01-01-orange-plakette"]
+	path = src/content/sermons/2025-01-01-orange-plakette
+	url = git@github.com:pfr-christoph-fischer/predigt-2025-01-01-orange-plakette.git
+	branch = main
