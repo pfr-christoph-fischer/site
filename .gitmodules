@@ -923,3 +923,8 @@
 	path = src/content/sermons/2022-07-21-auf-ins-abenteuer
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-07-21-auf-ins-abenteuer.git
 	branch = main
+
+[submodule "src/content/sermons/2022-07-24-fest-des-lebens"]
+	path = src/content/sermons/2022-07-24-fest-des-lebens
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-07-24-fest-des-lebens.git
+	branch = main
