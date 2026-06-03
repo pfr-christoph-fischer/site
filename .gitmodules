@@ -918,3 +918,8 @@
 	path = src/content/sermons/2022-07-07-guten-appetit
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-07-07-guten-appetit.git
 	branch = main
+
+[submodule "src/content/sermons/2022-07-21-auf-ins-abenteuer"]
+	path = src/content/sermons/2022-07-21-auf-ins-abenteuer
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-07-21-auf-ins-abenteuer.git
+	branch = main
