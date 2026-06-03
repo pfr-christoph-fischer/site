@@ -1208,3 +1208,8 @@
 	path = src/content/sermons/2023-11-26-leuchten-von-wolke-97
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-11-26-leuchten-von-wolke-97.git
 	branch = main
+
+[submodule "src/content/sermons/2023-12-03-die-tor-macht-weit"]
+	path = src/content/sermons/2023-12-03-die-tor-macht-weit
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-12-03-die-tor-macht-weit.git
+	branch = main
