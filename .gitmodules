@@ -393,3 +393,8 @@
 	path = src/content/sermons/2020-06-07-facetime-1
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-06-07-facetime-1.git
 	branch = main
+
+[submodule "src/content/sermons/2020-06-14-damals"]
+	path = src/content/sermons/2020-06-14-damals
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-06-14-damals.git
+	branch = main
