@@ -638,3 +638,8 @@
 	path = src/content/sermons/2021-04-15-fruehstueck-mit-jesus-1
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-04-15-fruehstueck-mit-jesus-1.git
 	branch = main
+
+[submodule "src/content/sermons/2021-04-29-ode-an-die-freude-2"]
+	path = src/content/sermons/2021-04-29-ode-an-die-freude-2
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-04-29-ode-an-die-freude-2.git
+	branch = main
