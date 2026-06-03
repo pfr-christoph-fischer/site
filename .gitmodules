@@ -1468,3 +1468,8 @@
 	path = src/content/sermons/2025-03-16-0800-111-0-111
 	url = git@github.com:pfr-christoph-fischer/predigt-2025-03-16-0800-111-0-111.git
 	branch = main
+
+[submodule "src/content/sermons/2025-03-23-anders-vorgestellt"]
+	path = src/content/sermons/2025-03-23-anders-vorgestellt
+	url = git@github.com:pfr-christoph-fischer/predigt-2025-03-23-anders-vorgestellt.git
+	branch = main
