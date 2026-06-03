@@ -368,3 +368,8 @@
 	path = src/content/sermons/2020-04-26-du-schaf
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-04-26-du-schaf.git
 	branch = main
+
+[submodule "src/content/sermons/2020-05-07-saft-und-kraft"]
+	path = src/content/sermons/2020-05-07-saft-und-kraft
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-05-07-saft-und-kraft.git
+	branch = main
