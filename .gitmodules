@@ -1153,3 +1153,8 @@
 	path = src/content/sermons/2023-08-06-weder-aus-noch-ein
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-08-06-weder-aus-noch-ein.git
 	branch = main
+
+[submodule "src/content/sermons/2023-08-17-sein-volk"]
+	path = src/content/sermons/2023-08-17-sein-volk
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-08-17-sein-volk.git
+	branch = main
