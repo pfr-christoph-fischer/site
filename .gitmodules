@@ -878,3 +878,8 @@
 	path = src/content/sermons/2022-04-17-er-ist-nicht-hier
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-04-17-er-ist-nicht-hier.git
 	branch = main
+
+[submodule "src/content/sermons/2022-04-28-neue-menschen"]
+	path = src/content/sermons/2022-04-28-neue-menschen
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-04-28-neue-menschen.git
+	branch = main
