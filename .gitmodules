@@ -1633,3 +1633,8 @@
 	path = src/content/sermons/2026-04-05-alles-in-allem
 	url = git@github.com:pfr-christoph-fischer/predigt-2026-04-05-alles-in-allem.git
 	branch = main
+
+[submodule "src/content/sermons/2026-04-19-found"]
+	path = src/content/sermons/2026-04-19-found
+	url = git@github.com:pfr-christoph-fischer/predigt-2026-04-19-found.git
+	branch = main
