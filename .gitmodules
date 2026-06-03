@@ -818,3 +818,8 @@
 	path = src/content/sermons/2022-01-02-gott-zum-anfassen
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-01-02-gott-zum-anfassen.git
 	branch = main
+
+[submodule "src/content/sermons/2022-01-20-sensationelle-enthuellungen"]
+	path = src/content/sermons/2022-01-20-sensationelle-enthuellungen
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-01-20-sensationelle-enthuellungen.git
+	branch = main
