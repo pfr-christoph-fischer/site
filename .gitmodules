@@ -288,3 +288,8 @@
 	path = src/content/sermons/2019-12-26-die-erfuellung
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-12-26-die-erfuellung.git
 	branch = main
+
+[submodule "src/content/sermons/2019-12-29-nun-hat-mein-auge-dich-gesehen"]
+	path = src/content/sermons/2019-12-29-nun-hat-mein-auge-dich-gesehen
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-12-29-nun-hat-mein-auge-dich-gesehen.git
+	branch = main
