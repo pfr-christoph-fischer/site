@@ -843,3 +843,8 @@
 	path = src/content/sermons/2022-03-06-tag-des-heils
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-03-06-tag-des-heils.git
 	branch = main
+
+[submodule "src/content/sermons/2022-03-13-wachet-und-betet"]
+	path = src/content/sermons/2022-03-13-wachet-und-betet
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-03-13-wachet-und-betet.git
+	branch = main
