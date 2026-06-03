@@ -253,3 +253,8 @@
 	path = src/content/sermons/2019-11-24-er-ruft
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-11-24-er-ruft.git
 	branch = main
+
+[submodule "src/content/sermons/2019-12-06-dann-gnade-uns-gott"]
+	path = src/content/sermons/2019-12-06-dann-gnade-uns-gott
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-12-06-dann-gnade-uns-gott.git
+	branch = main
