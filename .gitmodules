@@ -1018,3 +1018,8 @@
 	path = src/content/sermons/2022-12-24-zeitenwende
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-12-24-zeitenwende.git
 	branch = main
+
+[submodule "src/content/sermons/2022-12-25-ich-steh-an-deiner-krippen-hier"]
+	path = src/content/sermons/2022-12-25-ich-steh-an-deiner-krippen-hier
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-12-25-ich-steh-an-deiner-krippen-hier.git
+	branch = main
