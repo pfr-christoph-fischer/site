@@ -358,3 +358,8 @@
 	path = src/content/sermons/2020-04-09-was-ist-anders-in-dieser-nacht
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-04-09-was-ist-anders-in-dieser-nacht.git
 	branch = main
+
+[submodule "src/content/sermons/2020-04-09-was-ist-anders-in-dieser-nacht-1"]
+	path = src/content/sermons/2020-04-09-was-ist-anders-in-dieser-nacht-1
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-04-09-was-ist-anders-in-dieser-nacht-1.git
+	branch = main
