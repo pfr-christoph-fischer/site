@@ -8,3 +8,8 @@
 	path = src/content/sermons/2018-09-02-dnkgtt
 	url = git@github.com:pfr-christoph-fischer/predigt-2018-09-02-dnkgtt.git
 	branch = main
+
+[submodule "src/content/sermons/2018-09-09-wie-kann-man-nur-so-blind-sein"]
+	path = src/content/sermons/2018-09-09-wie-kann-man-nur-so-blind-sein
+	url = git@github.com:pfr-christoph-fischer/predigt-2018-09-09-wie-kann-man-nur-so-blind-sein.git
+	branch = main
