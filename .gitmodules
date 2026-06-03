@@ -768,3 +768,8 @@
 	path = src/content/sermons/2021-11-11-lieb-und-teuer
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-11-11-lieb-und-teuer.git
 	branch = main
+
+[submodule "src/content/sermons/2021-11-17-ganz-einfach-und-unendlich-schwer"]
+	path = src/content/sermons/2021-11-17-ganz-einfach-und-unendlich-schwer
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-11-17-ganz-einfach-und-unendlich-schwer.git
+	branch = main
