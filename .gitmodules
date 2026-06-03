@@ -173,3 +173,8 @@
 	path = src/content/sermons/2019-07-18-mir-ist-erbarmen-widerfahren
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-07-18-mir-ist-erbarmen-widerfahren.git
 	branch = main
+
+[submodule "src/content/sermons/2019-07-28-leere-taschen"]
+	path = src/content/sermons/2019-07-28-leere-taschen
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-07-28-leere-taschen.git
+	branch = main
