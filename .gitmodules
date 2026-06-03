@@ -848,3 +848,8 @@
 	path = src/content/sermons/2022-03-13-wachet-und-betet
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-03-13-wachet-und-betet.git
 	branch = main
+
+[submodule "src/content/sermons/2022-03-31-jemand-an-meiner-seite"]
+	path = src/content/sermons/2022-03-31-jemand-an-meiner-seite
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-03-31-jemand-an-meiner-seite.git
+	branch = main
