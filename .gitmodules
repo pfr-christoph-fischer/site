@@ -973,3 +973,8 @@
 	path = src/content/sermons/2022-10-16-final-countdown
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-10-16-final-countdown.git
 	branch = main
+
+[submodule "src/content/sermons/2022-10-27-volle-bude"]
+	path = src/content/sermons/2022-10-27-volle-bude
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-10-27-volle-bude.git
+	branch = main
