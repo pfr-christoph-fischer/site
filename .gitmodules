@@ -498,3 +498,8 @@
 	path = src/content/sermons/2020-12-03-wenn-er-doch-kaeme
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-12-03-wenn-er-doch-kaeme.git
 	branch = main
+
+[submodule "src/content/sermons/2020-12-13-benedictus-2"]
+	path = src/content/sermons/2020-12-13-benedictus-2
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-12-13-benedictus-2.git
+	branch = main
