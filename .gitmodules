@@ -1298,3 +1298,8 @@
 	path = src/content/sermons/2024-04-14-el-roi-ii
 	url = git@github.com:pfr-christoph-fischer/predigt-2024-04-14-el-roi-ii.git
 	branch = main
+
+[submodule "src/content/sermons/2024-04-28-herzensangelegenheit"]
+	path = src/content/sermons/2024-04-28-herzensangelegenheit
+	url = git@github.com:pfr-christoph-fischer/predigt-2024-04-28-herzensangelegenheit.git
+	branch = main
