@@ -1168,3 +1168,8 @@
 	path = src/content/sermons/2023-08-27-als-stuende-es-schon-vor-der-tuer
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-08-27-als-stuende-es-schon-vor-der-tuer.git
 	branch = main
+
+[submodule "src/content/sermons/2023-09-14-sag-auch-danke"]
+	path = src/content/sermons/2023-09-14-sag-auch-danke
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-09-14-sag-auch-danke.git
+	branch = main
