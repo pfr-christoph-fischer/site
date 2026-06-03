@@ -1433,3 +1433,8 @@
 	path = src/content/sermons/2025-01-26-lebenswasser
 	url = git@github.com:pfr-christoph-fischer/predigt-2025-01-26-lebenswasser.git
 	branch = main
+
+[submodule "src/content/sermons/2025-01-27-resistance"]
+	path = src/content/sermons/2025-01-27-resistance
+	url = git@github.com:pfr-christoph-fischer/predigt-2025-01-27-resistance.git
+	branch = main
