@@ -1033,3 +1033,8 @@
 	path = src/content/sermons/2023-01-06-so-schoen-leuchtet-der-morgenstern
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-01-06-so-schoen-leuchtet-der-morgenstern.git
 	branch = main
+
+[submodule "src/content/sermons/2023-01-19-spuren-von-herrlichkeit"]
+	path = src/content/sermons/2023-01-19-spuren-von-herrlichkeit
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-01-19-spuren-von-herrlichkeit.git
+	branch = main
