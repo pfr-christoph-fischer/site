@@ -103,3 +103,8 @@
 	path = src/content/sermons/2019-02-17-jenseits-des-ponyhofs
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-02-17-jenseits-des-ponyhofs.git
 	branch = main
+
+[submodule "src/content/sermons/2019-03-10-gnadenthron"]
+	path = src/content/sermons/2019-03-10-gnadenthron
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-03-10-gnadenthron.git
+	branch = main
