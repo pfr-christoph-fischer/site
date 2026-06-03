@@ -32,10 +32,22 @@ export default {
   ],
   podcast: {
     title: "Christoph predigt",
-    description: "Predigten und Audiobeiträge von Christoph Fischer.",
+    description: "Predigten von Pfarrer Christoph Fischer, Gäufelden",
     ownerName: "Christoph Fischer",
-    ownerEmail: "",
+    ownerEmail: "chris@toph.de",
+    author: "Christoph Fischer",
+    image: "/img/podcast.jpg",
+    link: "/podcast.xml",
+    copyright: "(c) Christoph Fischer",
+    managingEditor: "chris@toph.de (Christoph Fischer)",
+    rssCategory: "Religion & Spirituality / Christianity",
     categories: ["Religion & Spirituality", "Christianity"],
+    itunesCategories: [
+      {
+        text: "Religion & Spirituality",
+        children: ["Christianity"]
+      }
+    ],
     explicit: false
   }
 };

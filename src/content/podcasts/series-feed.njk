@@ -32,6 +32,8 @@ eleventyExcludeFromCollections: true
     {% endfor %}
     {% for episode in episodes %}
       {% if episode.data.audio %}
+      {% set audioDuration = episode | audioDurationForFeed %}
+      {% set audioLengthBytes = episode | audioLengthBytes %}
       <item>
         <title>{{ episode.data.title | escape }}</title>
         <link>{{ episode.url | absoluteUrl(site) }}</link>
@@ -42,11 +44,11 @@ eleventyExcludeFromCollections: true
         <itunes:summary>{{ episode.data.summary | escape }}</itunes:summary>
         {% if episode.data.subtitle %}<itunes:subtitle>{{ episode.data.subtitle | escape }}</itunes:subtitle>{% endif %}
         <itunes:explicit>{{ explicitFlag }}</itunes:explicit>
-        {% if episode.data.audio_duration %}<itunes:duration>{{ episode.data.audio_duration }}</itunes:duration>{% endif %}
+        {% if audioDuration %}<itunes:duration>{{ audioDuration }}</itunes:duration>{% endif %}
         {% if episode.data.episode_number %}<itunes:episode>{{ episode.data.episode_number }}</itunes:episode>{% endif %}
         {% if episode.data.season_number %}<itunes:season>{{ episode.data.season_number }}</itunes:season>{% endif %}
         {% if episode.data.cover %}<itunes:image href="{{ (episode.url + episode.data.cover) | absoluteUrl(site) }}"/>{% endif %}
-        <enclosure url="{{ (episode.url + episode.data.audio) | absoluteUrl(site) }}" type="audio/mpeg"/>
+        <enclosure url="{{ (episode.url + episode.data.audio) | absoluteUrl(site) }}" type="audio/mpeg"{% if audioLengthBytes %} length="{{ audioLengthBytes }}"{% endif %}/>
       </item>
       {% endif %}
     {% endfor %}

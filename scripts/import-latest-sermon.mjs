@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { readMp3Duration } from "./lib/audio-metadata.mjs";
 import {
   normalizeSermonBody,
   stripBibleVersionTag,
@@ -172,6 +173,7 @@ async function main() {
   fs.mkdirSync(targetDir, { recursive: true });
   let coverFile = null;
   let audioFile = null;
+  let audioDuration = sermon.audio_duration || null;
   const sanitizedReference = stripBibleVersionTag(sermon.reference || null);
   const sanitizedSummary = stripBibleVersionTagsFromText(sermon.summary || "") || "";
   const sanitizedText = stripBibleVersionTagsFromText(sermon.text || "") || "";
@@ -190,14 +192,22 @@ async function main() {
   if (overrides.audio) {
     const ext = path.extname(overrides.audio) || ".mp3";
     audioFile = `audio${ext}`;
-    fs.copyFileSync(path.resolve(overrides.audio), path.join(targetDir, audioFile));
+    const sourceAudioPath = path.resolve(overrides.audio);
+    fs.copyFileSync(sourceAudioPath, path.join(targetDir, audioFile));
+    if (!audioDuration && ext.toLowerCase() === ".mp3") {
+      audioDuration = readMp3Duration(sourceAudioPath);
+    }
   } else if (sermon.audio_recording) {
     const audioUrl = String(sermon.audio_recording).startsWith("http")
       ? sermon.audio_recording
       : `https://www.christoph-fischer.de${sermon.audio_recording}`;
     const ext = path.extname(audioUrl) || ".mp3";
     audioFile = `audio${ext}`;
-    await downloadFile(audioUrl, path.join(targetDir, audioFile));
+    const targetAudioPath = path.join(targetDir, audioFile);
+    await downloadFile(audioUrl, targetAudioPath);
+    if (!audioDuration && ext.toLowerCase() === ".mp3") {
+      audioDuration = readMp3Duration(targetAudioPath);
+    }
   }
 
   const frontmatter = renderFrontmatter({
@@ -215,7 +225,7 @@ async function main() {
     cover: coverFile,
     cover_alt: coverFile ? `Titelbild zur Predigt "${sermon.title}".` : null,
     audio: audioFile,
-    audio_duration: sermon.audio_duration || null,
+    audio_duration: audioDuration,
     listed: overrides.hidden ? false : true,
     index: overrides.hidden ? false : true,
     federate: overrides.hidden ? false : true,

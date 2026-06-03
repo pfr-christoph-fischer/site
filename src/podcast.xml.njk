@@ -2,40 +2,62 @@
 permalink: /podcast.xml
 eleventyExcludeFromCollections: true
 ---
-{% set explicitFlag = "yes" if site.podcast.explicit else "no" %}
+{%- set explicitFlag = "yes" if site.podcast.explicit else "no" -%}
+{%- set buildDate = "" | rssBuildDate -%}
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>{{ site.podcast.title }}</title>
     <link>{{ site.url }}/</link>
     <description>{{ site.podcast.description }}</description>
+    <lastBuildDate>{{ buildDate }}</lastBuildDate>
+    <pubDate>{{ buildDate }}</pubDate>
+    <image>
+      <url>{{ (site.podcast.image or '/img/podcast.jpg') | absoluteUrl(site) }}</url>
+      <title>{{ site.podcast.title }}</title>
+      <link>{{ (site.podcast.link or '/podcast.xml') | absoluteUrl(site) }}</link>
+      <description>{{ site.podcast.description }}</description>
+    </image>
     <language>{{ site.language }}</language>
-    <itunes:author>{{ site.author.name }}</itunes:author>
+    {% if site.podcast.copyright %}<copyright>{{ site.podcast.copyright }}</copyright>{% endif %}
+    {% if site.podcast.managingEditor %}<managingEditor>{{ site.podcast.managingEditor }}</managingEditor>{% endif %}
+    {% if site.podcast.rssCategory %}<category>{{ site.podcast.rssCategory }}</category>{% endif %}
+    <itunes:author>{{ site.podcast.author or site.author.name }}</itunes:author>
     <itunes:summary>{{ site.podcast.description }}</itunes:summary>
     <itunes:explicit>{{ explicitFlag }}</itunes:explicit>
     <itunes:owner>
       <itunes:name>{{ site.podcast.ownerName }}</itunes:name>
       {% if site.podcast.ownerEmail %}<itunes:email>{{ site.podcast.ownerEmail }}</itunes:email>{% endif %}
     </itunes:owner>
-    <itunes:image href="{{ ('/img/podcast.jpg') | absoluteUrl(site) }}"/>
-    {% for category in site.podcast.categories %}
-      <itunes:category text="{{ category }}"/>
+    <itunes:image href="{{ (site.podcast.image or '/img/podcast.jpg') | absoluteUrl(site) }}"/>
+    {% for category in site.podcast.itunesCategories or [] %}
+      <itunes:category text="{{ category.text }}">
+        {% for child in category.children or [] %}
+          <itunes:category text="{{ child }}"/>
+        {% endfor %}
+      </itunes:category>
+    {% endfor %}
+    {% for category in site.podcast.categories or [] %}
+      <category>{{ category }}</category>
     {% endfor %}
     {% for sermon in collections.sermons.slice(0, 100) %}
       {% if sermon.data.audio %}
+      {% set audioDuration = sermon | audioDurationForFeed %}
+      {% set audioLengthBytes = sermon | audioLengthBytes %}
       <item>
         <title>{{ sermon.data.title | escape }}</title>
         <link>{{ sermon.url | absoluteUrl(site) }}</link>
         <guid>{{ sermon.url | absoluteUrl(site) }}</guid>
         <pubDate>{{ sermon.date.toUTCString() }}</pubDate>
         <description>{{ sermon.data.summary | escape }}</description>
+        <content:encoded><![CDATA[{{ sermon.templateContent | xmlCdata | safe }}]]></content:encoded>
         <itunes:author>{{ site.author.name }}</itunes:author>
         <itunes:summary>{{ sermon.data.summary | escape }}</itunes:summary>
         {% if sermon.data.subtitle %}<itunes:subtitle>{{ sermon.data.subtitle | escape }}</itunes:subtitle>{% endif %}
         <itunes:explicit>{{ explicitFlag }}</itunes:explicit>
-        {% if sermon.data.audio_duration %}<itunes:duration>{{ sermon.data.audio_duration }}</itunes:duration>{% endif %}
+        {% if audioDuration %}<itunes:duration>{{ audioDuration }}</itunes:duration>{% endif %}
         {% if sermon.data.cover %}<itunes:image href="{{ (sermon.url + sermon.data.cover) | absoluteUrl(site) }}"/>{% endif %}
-        <enclosure url="{{ (sermon.url + sermon.data.audio) | absoluteUrl(site) }}" type="audio/mpeg"/>
+        <enclosure url="{{ (sermon.url + sermon.data.audio) | absoluteUrl(site) }}" type="audio/mpeg"{% if audioLengthBytes %} length="{{ audioLengthBytes }}"{% endif %}/>
       </item>
       {% endif %}
     {% endfor %}

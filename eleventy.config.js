@@ -1,8 +1,10 @@
 import path from "node:path";
+import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import Image from "@11ty/eleventy-img";
 import { DateTime } from "luxon";
 import { copyEntryMedia } from "./scripts/copy-sermon-assets.mjs";
+import { readAudioFileSize, readMp3Duration } from "./scripts/lib/audio-metadata.mjs";
 import { loadEnv } from "./scripts/lib/env.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -183,6 +185,32 @@ function plainTextFromHtml(value) {
   return normalizePlainText(decodeHtmlEntities(prepared));
 }
 
+function wrapCdata(value) {
+  return String(value || "").replaceAll("]]>", "]]]]><![CDATA[>");
+}
+
+function resolveAudioPath(item) {
+  const audio = item?.data?.audio;
+  const inputPath = item?.inputPath || item?.page?.inputPath;
+  if (!audio || !inputPath || /^https?:\/\//i.test(audio)) return null;
+  return path.resolve(path.dirname(inputPath), audio);
+}
+
+function audioMetadataForItem(item) {
+  const audioPath = resolveAudioPath(item);
+  if (!audioPath || !fs.existsSync(audioPath) || !fs.statSync(audioPath).isFile()) {
+    return {
+      bytes: null,
+      duration: item?.data?.audio_duration || null
+    };
+  }
+
+  return {
+    bytes: readAudioFileSize(audioPath),
+    duration: item?.data?.audio_duration || readMp3Duration(audioPath) || null
+  };
+}
+
 function shareTitleLine(item) {
   const title = String(item?.data?.title || "").trim();
   const subtitle = String(item?.data?.subtitle || "").trim();
@@ -280,7 +308,7 @@ function resolveOutputImageUrl(src, page = null, options = {}) {
 
 export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
-  eleventyConfig.addPassthroughCopy("src/content/img", { mode: "html-relative" });
+  eleventyConfig.addPassthroughCopy({ "src/content/img": "img" });
   eleventyConfig.addPassthroughCopy("src/content/**/*.{jpg,jpeg,png,webp,avif,gif,svg,mp3,m4a,ogg,pdf}", {
     mode: "html-relative"
   });
@@ -310,6 +338,10 @@ export default function(eleventyConfig) {
     });
   });
 
+  eleventyConfig.addFilter("rssBuildDate", () => {
+    return new Date().toUTCString();
+  });
+
   eleventyConfig.addFilter("absoluteUrl", (path, site) => {
     try {
       return new URL(path, site.url).toString();
@@ -332,6 +364,18 @@ export default function(eleventyConfig) {
 
   eleventyConfig.addFilter("plainText", (value) => {
     return plainTextFromHtml(value);
+  });
+
+  eleventyConfig.addFilter("xmlCdata", (value) => {
+    return wrapCdata(value);
+  });
+
+  eleventyConfig.addFilter("audioDurationForFeed", (item) => {
+    return audioMetadataForItem(item).duration;
+  });
+
+  eleventyConfig.addFilter("audioLengthBytes", (item) => {
+    return audioMetadataForItem(item).bytes;
   });
 
   eleventyConfig.addFilter("shareTitleLine", (item) => {
