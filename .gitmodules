@@ -908,3 +908,8 @@
 	path = src/content/sermons/2022-06-23-drei-affen
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-06-23-drei-affen.git
 	branch = main
+
+[submodule "src/content/sermons/2022-06-26-in-40-tagen-seid-ihr-tot"]
+	path = src/content/sermons/2022-06-26-in-40-tagen-seid-ihr-tot
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-06-26-in-40-tagen-seid-ihr-tot.git
+	branch = main
