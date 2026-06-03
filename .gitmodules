@@ -1378,3 +1378,8 @@
 	path = src/content/sermons/2024-11-17-weltgericht
 	url = git@github.com:pfr-christoph-fischer/predigt-2024-11-17-weltgericht.git
 	branch = main
+
+[submodule "src/content/sermons/2024-11-24-wie-die-traeumenden"]
+	path = src/content/sermons/2024-11-24-wie-die-traeumenden
+	url = git@github.com:pfr-christoph-fischer/predigt-2024-11-24-wie-die-traeumenden.git
+	branch = main
