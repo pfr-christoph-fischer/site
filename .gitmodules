@@ -1188,3 +1188,8 @@
 	path = src/content/sermons/2023-10-08-das-grossgedruckte
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-10-08-das-grossgedruckte.git
 	branch = main
+
+[submodule "src/content/sermons/2023-10-22-herzenssache"]
+	path = src/content/sermons/2023-10-22-herzenssache
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-10-22-herzenssache.git
+	branch = main
