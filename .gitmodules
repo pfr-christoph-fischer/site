@@ -188,3 +188,8 @@
 	path = src/content/sermons/2019-08-15-keiner-kann-frieden-schmieden
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-08-15-keiner-kann-frieden-schmieden.git
 	branch = main
+
+[submodule "src/content/sermons/2019-08-18-christus-vor-augen"]
+	path = src/content/sermons/2019-08-18-christus-vor-augen
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-08-18-christus-vor-augen.git
+	branch = main
