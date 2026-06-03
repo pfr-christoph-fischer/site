@@ -823,3 +823,8 @@
 	path = src/content/sermons/2022-01-20-sensationelle-enthuellungen
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-01-20-sensationelle-enthuellungen.git
 	branch = main
+
+[submodule "src/content/sermons/2022-01-23-heiden-heiland"]
+	path = src/content/sermons/2022-01-23-heiden-heiland
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-01-23-heiden-heiland.git
+	branch = main
