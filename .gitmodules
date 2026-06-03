@@ -1063,3 +1063,8 @@
 	path = src/content/sermons/2023-03-02-schirm-im-sturm
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-03-02-schirm-im-sturm.git
 	branch = main
+
+[submodule "src/content/sermons/2023-03-05-winzergeschichten"]
+	path = src/content/sermons/2023-03-05-winzergeschichten
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-03-05-winzergeschichten.git
+	branch = main
