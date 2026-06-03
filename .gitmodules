@@ -63,3 +63,8 @@
 	path = src/content/sermons/2018-12-21-strohkoenig
 	url = git@github.com:pfr-christoph-fischer/predigt-2018-12-21-strohkoenig.git
 	branch = main
+
+[submodule "src/content/sermons/2018-12-24-stern-ueber-tailfingen"]
+	path = src/content/sermons/2018-12-24-stern-ueber-tailfingen
+	url = git@github.com:pfr-christoph-fischer/predigt-2018-12-24-stern-ueber-tailfingen.git
+	branch = main
