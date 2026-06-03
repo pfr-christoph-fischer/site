@@ -1463,3 +1463,8 @@
 	path = src/content/sermons/2025-03-09-auf-herz-und-nieren
 	url = git@github.com:pfr-christoph-fischer/predigt-2025-03-09-auf-herz-und-nieren.git
 	branch = main
+
+[submodule "src/content/sermons/2025-03-16-0800-111-0-111"]
+	path = src/content/sermons/2025-03-16-0800-111-0-111
+	url = git@github.com:pfr-christoph-fischer/predigt-2025-03-16-0800-111-0-111.git
+	branch = main
