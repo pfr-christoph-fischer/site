@@ -213,3 +213,8 @@
 	path = src/content/sermons/2019-09-14-andere-gibts-schon-genug
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-09-14-andere-gibts-schon-genug.git
 	branch = main
+
+[submodule "src/content/sermons/2019-09-26-nicht-vergessen"]
+	path = src/content/sermons/2019-09-26-nicht-vergessen
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-09-26-nicht-vergessen.git
+	branch = main
