@@ -1613,3 +1613,8 @@
 	path = src/content/sermons/2026-02-08-kein-honigschlecken
 	url = git@github.com:pfr-christoph-fischer/predigt-2026-02-08-kein-honigschlecken.git
 	branch = main
+
+[submodule "src/content/sermons/2026-02-15-sehhilfe"]
+	path = src/content/sermons/2026-02-15-sehhilfe
+	url = git@github.com:pfr-christoph-fischer/predigt-2026-02-15-sehhilfe.git
+	branch = main
