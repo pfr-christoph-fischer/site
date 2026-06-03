@@ -763,3 +763,8 @@
 	path = src/content/sermons/2021-10-31-immer-mehr-von-dir-2
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-10-31-immer-mehr-von-dir-2.git
 	branch = main
+
+[submodule "src/content/sermons/2021-11-11-lieb-und-teuer"]
+	path = src/content/sermons/2021-11-11-lieb-und-teuer
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-11-11-lieb-und-teuer.git
+	branch = main
