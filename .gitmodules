@@ -1393,3 +1393,8 @@
 	path = src/content/sermons/2024-12-08-da-ist-euer-gott
 	url = git@github.com:pfr-christoph-fischer/predigt-2024-12-08-da-ist-euer-gott.git
 	branch = main
+
+[submodule "src/content/sermons/2024-12-15-kommt-das-christuskind"]
+	path = src/content/sermons/2024-12-15-kommt-das-christuskind
+	url = git@github.com:pfr-christoph-fischer/predigt-2024-12-15-kommt-das-christuskind.git
+	branch = main
