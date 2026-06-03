@@ -1138,3 +1138,8 @@
 	path = src/content/sermons/2023-07-06-hoffnung
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-07-06-hoffnung.git
 	branch = main
+
+[submodule "src/content/sermons/2023-07-09-komm-und-sieh"]
+	path = src/content/sermons/2023-07-09-komm-und-sieh
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-07-09-komm-und-sieh.git
+	branch = main
