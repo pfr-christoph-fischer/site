@@ -798,3 +798,8 @@
 	path = src/content/sermons/2021-12-23-wie-soll-man-sich-da-freuen
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-12-23-wie-soll-man-sich-da-freuen.git
 	branch = main
+
+[submodule "src/content/sermons/2021-12-24-nie-war-mehr-lametta"]
+	path = src/content/sermons/2021-12-24-nie-war-mehr-lametta
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-12-24-nie-war-mehr-lametta.git
+	branch = main
