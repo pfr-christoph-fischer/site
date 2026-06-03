@@ -1173,3 +1173,8 @@
 	path = src/content/sermons/2023-09-14-sag-auch-danke
 	url = git@github.com:pfr-christoph-fischer/predigt-2023-09-14-sag-auch-danke.git
 	branch = main
+
+[submodule "src/content/sermons/2023-09-17-weisst-du-wie-viel-sternlein-stehen"]
+	path = src/content/sermons/2023-09-17-weisst-du-wie-viel-sternlein-stehen
+	url = git@github.com:pfr-christoph-fischer/predigt-2023-09-17-weisst-du-wie-viel-sternlein-stehen.git
+	branch = main
