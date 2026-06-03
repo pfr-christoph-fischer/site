@@ -143,3 +143,8 @@
 	path = src/content/sermons/2019-05-26-auf-dass-eure-freude-vollkommen-sei
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-05-26-auf-dass-eure-freude-vollkommen-sei.git
 	branch = main
+
+[submodule "src/content/sermons/2019-06-02-was-steht-ihr-da-und-seht-gen-himmel"]
+	path = src/content/sermons/2019-06-02-was-steht-ihr-da-und-seht-gen-himmel
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-06-02-was-steht-ihr-da-und-seht-gen-himmel.git
+	branch = main
