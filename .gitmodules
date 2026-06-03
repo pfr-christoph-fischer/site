@@ -93,3 +93,8 @@
 	path = src/content/sermons/2019-01-27-weil-der-der-bei-mir-ist-mich-stark-macht
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-01-27-weil-der-der-bei-mir-ist-mich-stark-macht.git
 	branch = main
+
+[submodule "src/content/sermons/2019-02-14-sturmstiller"]
+	path = src/content/sermons/2019-02-14-sturmstiller
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-02-14-sturmstiller.git
+	branch = main
