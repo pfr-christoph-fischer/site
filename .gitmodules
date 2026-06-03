@@ -838,3 +838,8 @@
 	path = src/content/sermons/2022-03-03-feste-burg
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-03-03-feste-burg.git
 	branch = main
+
+[submodule "src/content/sermons/2022-03-06-tag-des-heils"]
+	path = src/content/sermons/2022-03-06-tag-des-heils
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-03-06-tag-des-heils.git
+	branch = main
