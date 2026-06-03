@@ -683,3 +683,8 @@
 	path = src/content/sermons/2021-06-27-wie-gott-mir-so-ich-dir
 	url = git@github.com:pfr-christoph-fischer/predigt-2021-06-27-wie-gott-mir-so-ich-dir.git
 	branch = main
+
+[submodule "src/content/sermons/2021-07-08-im-zeichen-des-kreuzes"]
+	path = src/content/sermons/2021-07-08-im-zeichen-des-kreuzes
+	url = git@github.com:pfr-christoph-fischer/predigt-2021-07-08-im-zeichen-des-kreuzes.git
+	branch = main
