@@ -523,3 +523,8 @@
 	path = src/content/sermons/2020-12-20-kein-ding-unmoeglich-1
 	url = git@github.com:pfr-christoph-fischer/predigt-2020-12-20-kein-ding-unmoeglich-1.git
 	branch = main
+
+[submodule "src/content/sermons/2020-12-24-die-allem-volk-widerfahren-wird"]
+	path = src/content/sermons/2020-12-24-die-allem-volk-widerfahren-wird
+	url = git@github.com:pfr-christoph-fischer/predigt-2020-12-24-die-allem-volk-widerfahren-wird.git
+	branch = main
