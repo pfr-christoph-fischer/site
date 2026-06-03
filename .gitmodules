@@ -163,3 +163,8 @@
 	path = src/content/sermons/2019-07-04-erfrischung-gefaellig
 	url = git@github.com:pfr-christoph-fischer/predigt-2019-07-04-erfrischung-gefaellig.git
 	branch = main
+
+[submodule "src/content/sermons/2019-07-14-maria-magdalena-20"]
+	path = src/content/sermons/2019-07-14-maria-magdalena-20
+	url = git@github.com:pfr-christoph-fischer/predigt-2019-07-14-maria-magdalena-20.git
+	branch = main
