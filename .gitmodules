@@ -1008,3 +1008,8 @@
 	path = src/content/sermons/2022-12-08-huegelhuepfer
 	url = git@github.com:pfr-christoph-fischer/predigt-2022-12-08-huegelhuepfer.git
 	branch = main
+
+[submodule "src/content/sermons/2022-12-22-freudensonn"]
+	path = src/content/sermons/2022-12-22-freudensonn
+	url = git@github.com:pfr-christoph-fischer/predigt-2022-12-22-freudensonn.git
+	branch = main
