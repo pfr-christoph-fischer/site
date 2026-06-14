@@ -1,6 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
+import { createInterface } from "node:readline/promises";
+import { fileURLToPath } from "node:url";
+import { stdin as input, stdout as output } from "node:process";
 import { readMp3Duration } from "./lib/audio-metadata.mjs";
+import { loadPfarrplanerHosts } from "./lib/pfarrplaner-config.mjs";
 import {
   normalizeSermonBody,
   stripBibleVersionTag,
@@ -8,12 +12,12 @@ import {
   textExcerpt
 } from "./lib/sermon-markdown.mjs";
 
-const repoRoot = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..", "..");
-const configPath = path.join(repoRoot, "current", "config", "pfarrplaner.json");
-const sermonsRoot = path.join(repoRoot, "2026", "src", "content", "sermons");
+const scriptDir = path.dirname(fileURLToPath(import.meta.url));
+const projectRoot = path.resolve(scriptDir, "..");
+const sermonsRoot = path.join(projectRoot, "src", "content", "sermons");
 
 function parseArgs(argv) {
-  const out = { audio: null, image: null, hidden: false };
+  const out = { audio: null, image: null, hidden: false, latest: false };
   for (let i = 0; i < argv.length; i += 1) {
     if (argv[i] === "--audio") {
       out.audio = argv[i + 1] || null;
@@ -23,6 +27,8 @@ function parseArgs(argv) {
       i += 1;
     } else if (argv[i] === "--hidden") {
       out.hidden = true;
+    } else if (argv[i] === "--latest") {
+      out.latest = true;
     }
   }
   return out;
@@ -140,9 +146,87 @@ function resolvePrimaryLiturgyColor(events) {
   return null;
 }
 
+function resolveSermonDateValue(sermon) {
+  const candidates = [
+    sermon?.events?.[0]?.date,
+    sermon?.date,
+    sermon?.updated_at,
+    sermon?.updatedAt,
+    sermon?.created_at,
+    sermon?.createdAt
+  ];
+
+  for (const candidate of candidates) {
+    if (!candidate) continue;
+    const timestamp = Date.parse(candidate);
+    if (!Number.isNaN(timestamp)) {
+      return timestamp;
+    }
+  }
+
+  return 0;
+}
+
+function resolveDisplayDate(sermon) {
+  const timestamp = resolveSermonDateValue(sermon);
+  if (!timestamp) return "ohne Datum";
+  return new Date(timestamp).toISOString().slice(0, 10);
+}
+
+function sortSermonsByDate(sermons) {
+  return [...sermons].sort((left, right) => resolveSermonDateValue(right) - resolveSermonDateValue(left));
+}
+
+function renderSermonChoice(sermon, index) {
+  const title = sermon.title || `Predigt ${sermon.id}`;
+  const date = resolveDisplayDate(sermon);
+  const occasion = sermon.occasion || resolveOccasion(sermon.events || []);
+  const parts = [`${index + 1}.`, date, title];
+  if (occasion) {
+    parts.push(`(${occasion})`);
+  }
+  return parts.join(" ");
+}
+
+async function chooseSermon(sermons, options) {
+  const sorted = sortSermonsByDate(sermons);
+  if (sorted.length === 0) {
+    throw new Error("No sermons returned by Pfarrplaner");
+  }
+
+  if (options.latest || !input.isTTY || !output.isTTY || sorted.length === 1) {
+    return sorted[0];
+  }
+
+  const choices = sorted.slice(0, 10);
+  console.log("Select sermon to import:");
+  for (const [index, sermon] of choices.entries()) {
+    console.log(renderSermonChoice(sermon, index));
+  }
+
+  const rl = createInterface({ input, output });
+  try {
+    while (true) {
+      const answer = (await rl.question(`Choose 1-${choices.length} [1]: `)).trim();
+      if (!answer) {
+        return choices[0];
+      }
+
+      const selection = Number.parseInt(answer, 10);
+      if (Number.isInteger(selection) && selection >= 1 && selection <= choices.length) {
+        return choices[selection - 1];
+      }
+
+      console.log(`Invalid selection: ${answer}`);
+    }
+  } finally {
+    rl.close();
+  }
+}
+
 async function main() {
   const overrides = parseArgs(process.argv.slice(2));
-  const hosts = JSON.parse(fs.readFileSync(configPath, "utf8"));
+  const hosts = loadPfarrplanerHosts(projectRoot);
   const host = hosts[0];
   const latest = await fetchJson(`https://${host.host}/extranet/user/sermons/latest`, host.token);
   const sermonsPayload = latest.sermons || latest.data || [];
@@ -151,7 +235,7 @@ async function main() {
     throw new Error("No sermons returned by Pfarrplaner");
   }
 
-  const sermonHeader = sermons[0];
+  const sermonHeader = await chooseSermon(sermons, overrides);
   const sermonId = sermonHeader.id;
   const sermon = await fetchJson(`https://${host.host}/extranet/sermon/${sermonId}`, host.token);
   const date = new Date(sermon.events?.[0]?.date || sermon.date || Date.now()).toISOString().slice(0, 10);
@@ -244,7 +328,7 @@ async function main() {
     : `${sanitizedSummary}\n`;
 
   fs.writeFileSync(path.join(targetDir, "index.md"), `${frontmatter}${body}`);
-  console.log(`Imported latest sermon to ${targetDir}`);
+  console.log(`Imported sermon to ${targetDir}`);
 }
 
 main().catch((error) => {

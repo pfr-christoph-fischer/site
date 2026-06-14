@@ -1,10 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import yaml from "js-yaml";
+import { loadPfarrplanerHosts } from "./lib/pfarrplaner-config.mjs";
 
-const repoRoot = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..", "..");
-const configPath = path.join(repoRoot, "current", "config", "pfarrplaner.json");
-const sermonsRoot = path.join(repoRoot, "2026", "src", "content", "sermons");
+const scriptDir = path.dirname(fileURLToPath(import.meta.url));
+const projectRoot = path.resolve(scriptDir, "..");
+const sermonsRoot = path.join(projectRoot, "src", "content", "sermons");
 
 function parseArgs(argv) {
   const out = { slug: null, sourceId: null, dryRun: false, force: false };
@@ -126,7 +128,7 @@ async function fetchJson(url, token) {
 
 async function main() {
   const options = parseArgs(process.argv.slice(2));
-  const hosts = JSON.parse(fs.readFileSync(configPath, "utf8"));
+  const hosts = loadPfarrplanerHosts(projectRoot);
   const hostMap = new Map(hosts.map((host) => [host.host, host]));
 
   const files = fs.readdirSync(sermonsRoot, { withFileTypes: true })

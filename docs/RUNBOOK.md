@@ -329,9 +329,12 @@ Optional:
 
 ```dotenv
 SHARE_BATCH_URLS=https://www.facebook.com/sharer/sharer.php?u=<permalink>,https://kirche.social/@christoph
+PFARRPLANER_INSTANCES=[{"host":"www.pfarrplaner.de","token":"token-for-first-instance"},{"host":"example.org","token":"token-for-second-instance"}]
 ```
 
 `SHARE_BATCH_URLS` accepts comma- or newline-separated URLs. Supported placeholders are `<permalink>`, `<title>`, `<summary>`, and `<text>`.
+
+`PFARRPLANER_INSTANCES` accepts a single-line JSON array of objects with `host` and `token` fields. Sermon import scripts require this variable.
 
 ### Deploy only
 
