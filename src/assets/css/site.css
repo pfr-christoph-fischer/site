@@ -402,6 +402,7 @@ summary:focus-visible {
   line-height: 1.02;
   margin: 0 0 var(--space-3);
   text-wrap: balance;
+  hyphens: auto;
   letter-spacing: -0.02em;
 }
 
