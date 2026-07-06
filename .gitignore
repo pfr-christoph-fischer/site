@@ -3,3 +3,5 @@ _site/
 .build_site/
 node_modules/
 .cache/
+.aider*
+pfarrplaner.json
