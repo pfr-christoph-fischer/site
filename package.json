@@ -12,6 +12,7 @@
     "audit:a11y:full": "node scripts/audit-accessibility.mjs --full",
     "build": "npm run generate:assets && npm run fix:sermon-audio-durations && npm run validate && npx @11ty/eleventy && node scripts/copy-sermon-assets.mjs && npm run search && node scripts/validate-content.mjs --site",
     "build:clean": "npm run clean && npm run build",
+    "build:deploy": "npm run build && npm run deploy",
     "search": "npx pagefind --site _site",
     "backend": "node backend/server.mjs",
     "federate": "node scripts/federate-new-posts.mjs",
