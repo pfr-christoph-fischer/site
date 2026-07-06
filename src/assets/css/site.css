@@ -406,6 +406,10 @@ summary:focus-visible {
   letter-spacing: -0.02em;
 }
 
+.hero__copy h1 {
+  hyphens: none;
+}
+
 .lede,
 .page-summary {
   font-size: clamp(1.1rem, 2vw, 1.35rem);
