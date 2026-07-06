@@ -1668,3 +1668,8 @@
 	path = src/content/sermons/2026-05-31-nett
 	url = git@github.com:pfr-christoph-fischer/predigt-2026-05-31-nett.git
 	branch = main
+
+[submodule "src/content/sermons/2026-06-14-ruhe"]
+	path = src/content/sermons/2026-06-14-ruhe
+	url = git@github.com:pfr-christoph-fischer/predigt-2026-06-14-ruhe.git
+	branch = main
