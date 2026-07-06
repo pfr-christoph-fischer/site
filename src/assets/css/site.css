@@ -645,6 +645,22 @@ summary:focus-visible {
   color: var(--color-ink-soft);
 }
 
+.prose blockquote > :first-child {
+  margin-top: 0;
+}
+
+.prose blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.prose blockquote:has(+ blockquote) {
+  margin-bottom: 0;
+}
+
+.prose blockquote + blockquote {
+  margin-top: 0;
+}
+
 .portrait-block {
   display: grid;
   grid-template-columns: minmax(12rem, 16rem) 1fr;
