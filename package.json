@@ -32,7 +32,8 @@
     "rewrite:sermons-markdown": "node scripts/rewrite-sermons-markdown.mjs",
     "fix:sermon-cover-extensions": "node scripts/fix-sermon-cover-extensions.mjs",
     "fix:sermon-bible-version-tags": "node scripts/strip-sermon-bible-version-tags.mjs",
-    "extract:material": "node scripts/extract-material.mjs"
+    "extract:material": "node scripts/extract-material.mjs",
+    "check:submodules": "node scripts/check-submodule-candidates.mjs"
   },
   "dependencies": {
     "@11ty/eleventy": "^3.1.0",
