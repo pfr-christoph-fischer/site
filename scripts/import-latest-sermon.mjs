@@ -4,6 +4,7 @@ import { createInterface } from "node:readline/promises";
 import { fileURLToPath } from "node:url";
 import { stdin as input, stdout as output } from "node:process";
 import { readMp3Duration } from "./lib/audio-metadata.mjs";
+import { writeCcBySa40LicenseFile } from "./lib/license-files.mjs";
 import { loadPfarrplanerHosts } from "./lib/pfarrplaner-config.mjs";
 import {
   normalizeSermonBody,
@@ -255,6 +256,7 @@ async function main() {
   }
 
   fs.mkdirSync(targetDir, { recursive: true });
+  writeCcBySa40LicenseFile(targetDir);
   let coverFile = null;
   let audioFile = null;
   let audioDuration = sermon.audio_duration || null;
