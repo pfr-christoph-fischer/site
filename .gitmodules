@@ -1688,3 +1688,8 @@
 	path = src/content/sermons/2026-07-12-zuerst-geliebt
 	url = git@github.com:pfr-christoph-fischer/predigt-2026-07-12-zuerst-geliebt.git
 	branch = main
+
+[submodule "src/content/sermons/2026-07-26-licht"]
+	path = src/content/sermons/2026-07-26-licht
+	url = git@github.com:pfr-christoph-fischer/predigt-2026-07-26-licht.git
+	branch = main
