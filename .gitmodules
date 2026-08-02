@@ -1683,3 +1683,8 @@
 	path = src/content/sermons/2018-07-29-ach-herr
 	url = git@github.com:pfr-christoph-fischer/predigt-2018-07-29-ach-herr.git
 	branch = main
+
+[submodule "src/content/sermons/2026-07-12-zuerst-geliebt"]
+	path = src/content/sermons/2026-07-12-zuerst-geliebt
+	url = git@github.com:pfr-christoph-fischer/predigt-2026-07-12-zuerst-geliebt.git
+	branch = main
