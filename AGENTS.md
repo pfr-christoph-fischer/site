@@ -12,7 +12,9 @@
 
 ## Build tools
 
- - node and npm are available from /run/user/1000/fnm_multishells/99281_1780402586253/bin/
+ - Use the stable FNM default alias path for Node.js tools: `/home/christoph/.local/share/fnm/aliases/default/bin/`.
+ - `node` is at `/home/christoph/.local/share/fnm/aliases/default/bin/node`.
+ - `npm` is at `/home/christoph/.local/share/fnm/aliases/default/bin/npm`.
  - Git commits need elevated privileges.
 
 ## Content architecture
