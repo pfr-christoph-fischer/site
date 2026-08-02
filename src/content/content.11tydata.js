@@ -103,6 +103,7 @@ export default {
         return data.repository_provider || getRepositoryInfo(data).repositoryProvider;
     },
     license: (data) => data.license || 'CC-BY-SA 4.0',
+    license_url: (data) => data.license_url || 'https://creativecommons.org/licenses/by-sa/4.0/deed.de',
     licenseUrl: (data) => data.license_url || 'https://creativecommons.org/licenses/by-sa/4.0/deed.de',
   },
 };
