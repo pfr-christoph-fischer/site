@@ -1,24 +1,27 @@
 ---
-title: "hochschulstart"
-summary: "This PHP tool logs into hochschulstart.de, navigates through the service procedures, and retrieves the waitlist status for a prospective student."
-date: 2025-08-11
-updated: 2025-08-13
-repository_owner: "peregrinus"
-repository_owner_url: "https://christoph-fischer.de"
-repository_url: "https://codeberg.org/peregrinus/hochschulstart"
-repository_platform: "Codeberg"
-homepage_url: ""
-license: "GPL 3.0+"
-license_url: "https://codeberg.org/peregrinus/hochschulstart/src/branch/main/LICENSE"
-language: "PHP"
+title: hochschulstart
+summary: >-
+  This PHP tool logs into hochschulstart.de, navigates through the service
+  procedures, and retrieves the waitlist status for a prospective student.
+date: 2025-08-11T00:00:00.000Z
+updated: 2025-08-13T00:00:00.000Z
+repository_owner: peregrinus
+repository_owner_url: 'https://christoph-fischer.de'
+repository_url: 'https://codeberg.org/peregrinus/hochschulstart'
+repository_platform: Codeberg
+homepage_url: ''
+license: GPL 3.0+
+license_url: 'https://codeberg.org/peregrinus/hochschulstart/src/branch/main/LICENSE'
+language: PHP
 tags:
-  - "project"
-  - "open-source"
-  - "codeberg"
-  - "user"
-  - "php"
+  - project
+  - open-source
+  - codeberg
+  - user
+  - php
 technologies:
-  - "PHP"
+  - PHP
+submodule_skip: true
 ---
 
 # Hochschulstart

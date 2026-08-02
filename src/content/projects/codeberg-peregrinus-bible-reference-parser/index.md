@@ -1,24 +1,25 @@
 ---
-title: "bible-reference-parser"
-summary: "A PHP library for parsing German Bible verse references into structured data."
-date: 2026-05-05
-updated: 2026-05-12
-repository_owner: "peregrinus"
-repository_owner_url: "https://christoph-fischer.de"
-repository_url: "https://codeberg.org/peregrinus/bible-reference-parser"
-repository_platform: "Codeberg"
-homepage_url: ""
-license: "GPL 3.0+"
-license_url: "https://codeberg.org/peregrinus/bible-reference-parser/src/branch/main/LICENSE"
-language: "PHP"
+title: bible-reference-parser
+summary: A PHP library for parsing German Bible verse references into structured data.
+date: 2026-05-05T00:00:00.000Z
+updated: 2026-05-12T00:00:00.000Z
+repository_owner: peregrinus
+repository_owner_url: 'https://christoph-fischer.de'
+repository_url: 'https://codeberg.org/peregrinus/bible-reference-parser'
+repository_platform: Codeberg
+homepage_url: ''
+license: GPL 3.0+
+license_url: 'https://codeberg.org/peregrinus/bible-reference-parser/src/branch/main/LICENSE'
+language: PHP
 tags:
-  - "project"
-  - "open-source"
-  - "codeberg"
-  - "user"
-  - "php"
+  - project
+  - open-source
+  - codeberg
+  - user
+  - php
 technologies:
-  - "PHP"
+  - PHP
+submodule_skip: true
 ---
 
 # peregrinus/bible-reference-parser

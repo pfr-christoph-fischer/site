@@ -1,24 +1,25 @@
 ---
-title: "site"
-summary: "Eleventy based rebuild of christoph fischer.de with:"
-date: 2026-06-02
-updated: 2026-06-02
-repository_owner: "peregrinus"
-repository_owner_url: "https://christoph-fischer.de"
-repository_url: "https://codeberg.org/peregrinus/site"
-repository_platform: "Codeberg"
-homepage_url: ""
-license: "GPL 3.0+"
-license_url: "https://www.gnu.org/licenses/gpl-3.0.txt"
-language: "JavaScript"
+title: site
+summary: 'Eleventy based rebuild of christoph fischer.de with:'
+date: 2026-06-02T00:00:00.000Z
+updated: 2026-06-02T00:00:00.000Z
+repository_owner: peregrinus
+repository_owner_url: 'https://christoph-fischer.de'
+repository_url: 'https://codeberg.org/peregrinus/site'
+repository_platform: Codeberg
+homepage_url: ''
+license: GPL 3.0+
+license_url: 'https://www.gnu.org/licenses/gpl-3.0.txt'
+language: JavaScript
 tags:
-  - "project"
-  - "open-source"
-  - "codeberg"
-  - "user"
-  - "javascript"
+  - project
+  - open-source
+  - codeberg
+  - user
+  - javascript
 technologies:
-  - "JavaScript"
+  - JavaScript
+submodule_skip: true
 ---
 
 # 2026 Static Rebuild

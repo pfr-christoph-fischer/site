@@ -1,24 +1,25 @@
 ---
-title: "aktenbuddy"
-summary: "Aktenbuddy =========="
-date: 2025-02-26
-updated: 2025-02-26
-repository_owner: "pfarr.tools"
-repository_owner_url: "https://pfarr.tools"
-repository_url: "https://codeberg.org/pfarr.tools/aktenbuddy"
-repository_platform: "Codeberg"
-homepage_url: ""
-license: "GPL 3.0+"
-license_url: "https://codeberg.org/pfarr.tools/aktenbuddy/src/branch/main/LICENSE"
-language: "C#"
+title: aktenbuddy
+summary: Aktenbuddy ==========
+date: 2025-02-26T00:00:00.000Z
+updated: 2025-02-26T00:00:00.000Z
+repository_owner: pfarr.tools
+repository_owner_url: 'https://pfarr.tools'
+repository_url: 'https://codeberg.org/pfarr.tools/aktenbuddy'
+repository_platform: Codeberg
+homepage_url: ''
+license: GPL 3.0+
+license_url: 'https://codeberg.org/pfarr.tools/aktenbuddy/src/branch/main/LICENSE'
+language: C#
 tags:
-  - "project"
-  - "open-source"
-  - "codeberg"
-  - "organization"
-  - "c"
+  - project
+  - open-source
+  - codeberg
+  - organization
+  - c
 technologies:
-  - "C#"
+  - C#
+submodule_skip: true
 ---
 
 Aktenbuddy

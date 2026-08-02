@@ -1,24 +1,25 @@
 ---
-title: "slug"
-summary: "German aware URL slug generator, compatible with Laravel's Str::slug()."
-date: 2026-05-05
-updated: 2026-05-05
-repository_owner: "pfarr.tools"
-repository_owner_url: "https://pfarr.tools"
-repository_url: "https://codeberg.org/pfarr.tools/slug"
-repository_platform: "Codeberg"
-homepage_url: ""
-license: "GPL 3.0+"
-license_url: "https://codeberg.org/pfarr.tools/slug/src/branch/main/LICENSE"
-language: "JavaScript"
+title: slug
+summary: 'German aware URL slug generator, compatible with Laravel''s Str::slug().'
+date: 2026-05-05T00:00:00.000Z
+updated: 2026-05-05T00:00:00.000Z
+repository_owner: pfarr.tools
+repository_owner_url: 'https://pfarr.tools'
+repository_url: 'https://codeberg.org/pfarr.tools/slug'
+repository_platform: Codeberg
+homepage_url: ''
+license: GPL 3.0+
+license_url: 'https://codeberg.org/pfarr.tools/slug/src/branch/main/LICENSE'
+language: JavaScript
 tags:
-  - "project"
-  - "open-source"
-  - "codeberg"
-  - "organization"
-  - "javascript"
+  - project
+  - open-source
+  - codeberg
+  - organization
+  - javascript
 technologies:
-  - "JavaScript"
+  - JavaScript
+submodule_skip: true
 ---
 
 # @pfarr.tools/slug

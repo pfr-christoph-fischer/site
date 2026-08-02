@@ -1,24 +1,25 @@
 ---
-title: "psalmody"
-summary: "Learn psalmody for German psalms"
-date: 2018-01-29
-updated: 2018-01-29
-repository_owner: "potofcoffee"
-repository_owner_url: "https://github.com/potofcoffee"
-repository_url: "https://github.com/potofcoffee/psalmody"
-repository_platform: "GitHub"
-homepage_url: ""
-license: "GPL 3.0+"
-license_url: "https://www.gnu.org/licenses/gpl-3.0.txt"
-language: "PHP"
+title: psalmody
+summary: Learn psalmody for German psalms
+date: 2018-01-29T00:00:00.000Z
+updated: 2018-01-29T00:00:00.000Z
+repository_owner: potofcoffee
+repository_owner_url: 'https://github.com/potofcoffee'
+repository_url: 'https://github.com/potofcoffee/psalmody'
+repository_platform: GitHub
+homepage_url: ''
+license: GPL 3.0+
+license_url: 'https://www.gnu.org/licenses/gpl-3.0.txt'
+language: PHP
 tags:
-  - "project"
-  - "open-source"
-  - "github"
-  - "user"
-  - "php"
+  - project
+  - open-source
+  - github
+  - user
+  - php
 technologies:
-  - "PHP"
+  - PHP
+submodule_skip: true
 ---
 
 Learn psalmody for German psalms

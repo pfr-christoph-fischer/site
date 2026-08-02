@@ -1,12 +1,16 @@
 ---
 title: Digitale Gemeindearbeit mit Haltung
-summary: Digitale Werkzeuge sind für mich kein Selbstzweck, sondern eine konkrete Hilfe, damit Verkündigung, Seelsorge und Gemeindeleben Menschen besser erreichen.
-date: 2026-06-01
+summary: >-
+  Digitale Werkzeuge sind für mich kein Selbstzweck, sondern eine konkrete
+  Hilfe, damit Verkündigung, Seelsorge und Gemeindeleben Menschen besser
+  erreichen.
+date: 2026-06-01T00:00:00.000Z
 tags:
   - post
   - digital
   - gemeinde
   - werkzeuge
+submodule_skip: true
 ---
 Digitale Werkzeuge faszinieren mich nicht deshalb, weil sie neu sind, sondern weil sie ganz praktisch helfen koennen. Sie schaffen Zugaenge, sparen Zeit und machen manches moeglich, was sonst an Alltag, Entfernungen oder knappen Ressourcen scheitern wuerde.
 

@@ -1,24 +1,25 @@
 ---
-title: "gdtv"
-summary: "Gottesdienste Live =================="
-date: 2023-04-03
-updated: 2024-12-03
-repository_owner: "peregrinus"
-repository_owner_url: "https://christoph-fischer.de"
-repository_url: "https://codeberg.org/peregrinus/gdtv"
-repository_platform: "Codeberg"
-homepage_url: ""
-license: "GPL 3.0+"
-license_url: "https://www.gnu.org/licenses/gpl-3.0.txt"
-language: "Kotlin"
+title: gdtv
+summary: Gottesdienste Live ==================
+date: 2023-04-03T00:00:00.000Z
+updated: 2024-12-03T00:00:00.000Z
+repository_owner: peregrinus
+repository_owner_url: 'https://christoph-fischer.de'
+repository_url: 'https://codeberg.org/peregrinus/gdtv'
+repository_platform: Codeberg
+homepage_url: ''
+license: GPL 3.0+
+license_url: 'https://www.gnu.org/licenses/gpl-3.0.txt'
+language: Kotlin
 tags:
-  - "project"
-  - "open-source"
-  - "codeberg"
-  - "user"
-  - "kotlin"
+  - project
+  - open-source
+  - codeberg
+  - user
+  - kotlin
 technologies:
-  - "Kotlin"
+  - Kotlin
+submodule_skip: true
 ---
 
 Gottesdienste Live

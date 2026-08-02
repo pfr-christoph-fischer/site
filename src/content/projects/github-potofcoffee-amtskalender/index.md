@@ -1,24 +1,25 @@
 ---
-title: "Amtskalender"
-summary: "Weitere Informationen finden sich in der Dokumentation."
-date: 2019-01-02
-updated: 2019-11-04
-repository_owner: "potofcoffee"
-repository_owner_url: "https://github.com/potofcoffee"
-repository_url: "https://github.com/potofcoffee/Amtskalender"
-repository_platform: "GitHub"
-homepage_url: ""
-license: "GPL-3.0"
-license_url: "https://github.com/potofcoffee/Amtskalender/blob/master/LICENSE"
-language: "C#"
+title: Amtskalender
+summary: Weitere Informationen finden sich in der Dokumentation.
+date: 2019-01-02T00:00:00.000Z
+updated: 2019-11-04T00:00:00.000Z
+repository_owner: potofcoffee
+repository_owner_url: 'https://github.com/potofcoffee'
+repository_url: 'https://github.com/potofcoffee/Amtskalender'
+repository_platform: GitHub
+homepage_url: ''
+license: GPL-3.0
+license_url: 'https://github.com/potofcoffee/Amtskalender/blob/master/LICENSE'
+language: C#
 tags:
-  - "project"
-  - "open-source"
-  - "github"
-  - "user"
-  - "c"
+  - project
+  - open-source
+  - github
+  - user
+  - c
 technologies:
-  - "C#"
+  - C#
+submodule_skip: true
 ---
 
 # Amtskalender

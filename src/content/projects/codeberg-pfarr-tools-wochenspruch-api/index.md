@@ -1,24 +1,28 @@
 ---
-title: "wochenspruch-api"
-summary: "Die Wochenspruch API gibt Zugriff auf die wichtigsten Daten zum Kirchenjahr im JSON Format und stellt automatisch erzeugte Bilder zu den Wochensprüchen bereit. Als Datenbasis dient www.kirchenjahr evangelisch.de."
-date: 2024-07-09
-updated: 2026-06-02
-repository_owner: "pfarr.tools"
-repository_owner_url: "https://pfarr.tools"
-repository_url: "https://codeberg.org/pfarr.tools/wochenspruch-api"
-repository_platform: "Codeberg"
-homepage_url: ""
-license: "GPL 3.0+"
-license_url: "https://codeberg.org/pfarr.tools/wochenspruch-api/src/branch/main/LICENSE"
-language: "PHP"
+title: wochenspruch-api
+summary: >-
+  Die Wochenspruch API gibt Zugriff auf die wichtigsten Daten zum Kirchenjahr im
+  JSON Format und stellt automatisch erzeugte Bilder zu den Wochensprüchen
+  bereit. Als Datenbasis dient www.kirchenjahr evangelisch.de.
+date: 2024-07-09T00:00:00.000Z
+updated: 2026-06-02T00:00:00.000Z
+repository_owner: pfarr.tools
+repository_owner_url: 'https://pfarr.tools'
+repository_url: 'https://codeberg.org/pfarr.tools/wochenspruch-api'
+repository_platform: Codeberg
+homepage_url: ''
+license: GPL 3.0+
+license_url: 'https://codeberg.org/pfarr.tools/wochenspruch-api/src/branch/main/LICENSE'
+language: PHP
 tags:
-  - "project"
-  - "open-source"
-  - "codeberg"
-  - "organization"
-  - "php"
+  - project
+  - open-source
+  - codeberg
+  - organization
+  - php
 technologies:
-  - "PHP"
+  - PHP
+submodule_skip: true
 ---
 
 # Wochenspruch API

@@ -1,24 +1,28 @@
 ---
-title: "aktenplan"
-summary: "<p align=\"center\" <a href=\"https://aktenplan.pfarr.tools\" target=\" blank\" <img src=\"https://aktenplan.pfarr.tools/img/logo/logo.png\" width=\"400\" alt=\"Logo der Pfarrstellenkarte\" </a </p"
-date: 2024-04-09
-updated: 2024-12-20
-repository_owner: "pfarr.tools"
-repository_owner_url: "https://pfarr.tools"
-repository_url: "https://codeberg.org/pfarr.tools/aktenplan"
-repository_platform: "Codeberg"
-homepage_url: ""
-license: "GPL 3.0+"
-license_url: "https://codeberg.org/pfarr.tools/aktenplan/src/branch/main/LICENSE"
-language: "CSS"
+title: aktenplan
+summary: >-
+  <p align="center" <a href="https://aktenplan.pfarr.tools" target=" blank" <img
+  src="https://aktenplan.pfarr.tools/img/logo/logo.png" width="400" alt="Logo
+  der Pfarrstellenkarte" </a </p
+date: 2024-04-09T00:00:00.000Z
+updated: 2024-12-20T00:00:00.000Z
+repository_owner: pfarr.tools
+repository_owner_url: 'https://pfarr.tools'
+repository_url: 'https://codeberg.org/pfarr.tools/aktenplan'
+repository_platform: Codeberg
+homepage_url: ''
+license: GPL 3.0+
+license_url: 'https://codeberg.org/pfarr.tools/aktenplan/src/branch/main/LICENSE'
+language: CSS
 tags:
-  - "project"
-  - "open-source"
-  - "codeberg"
-  - "organization"
-  - "css"
+  - project
+  - open-source
+  - codeberg
+  - organization
+  - css
 technologies:
-  - "CSS"
+  - CSS
+submodule_skip: true
 ---
 
 <p align="center"><a href="https://aktenplan.pfarr.tools" target="_blank"><img src="https://aktenplan.pfarr.tools/img/logo/logo.png" width="400" alt="Logo der Pfarrstellenkarte"></a></p>

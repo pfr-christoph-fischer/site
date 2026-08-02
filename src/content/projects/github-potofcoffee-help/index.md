@@ -1,24 +1,25 @@
 ---
-title: "help"
-summary: "A shared neighborhood-help database"
-date: 2020-03-18
-updated: 2023-01-05
-repository_owner: "potofcoffee"
-repository_owner_url: "https://github.com/potofcoffee"
-repository_url: "https://github.com/potofcoffee/help"
-repository_platform: "GitHub"
-homepage_url: ""
-license: "GPL 3.0+"
-license_url: "https://www.gnu.org/licenses/gpl-3.0.txt"
-language: "HTML"
+title: help
+summary: A shared neighborhood-help database
+date: 2020-03-18T00:00:00.000Z
+updated: 2023-01-05T00:00:00.000Z
+repository_owner: potofcoffee
+repository_owner_url: 'https://github.com/potofcoffee'
+repository_url: 'https://github.com/potofcoffee/help'
+repository_platform: GitHub
+homepage_url: ''
+license: GPL 3.0+
+license_url: 'https://www.gnu.org/licenses/gpl-3.0.txt'
+language: HTML
 tags:
-  - "project"
-  - "open-source"
-  - "github"
-  - "user"
-  - "html"
+  - project
+  - open-source
+  - github
+  - user
+  - html
 technologies:
-  - "HTML"
+  - HTML
+submodule_skip: true
 ---
 
 A shared neighborhood-help database

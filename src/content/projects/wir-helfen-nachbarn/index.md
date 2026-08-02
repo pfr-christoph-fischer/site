@@ -1,7 +1,9 @@
 ---
 title: Wir helfen Nachbarn
-summary: Waehrend der Corona-Pandemie entstand eine Plattform, die Nachbarschaftshilfe in 16 Orten im Zollernalbkreis koordinierbar machte.
-date: 2020-03-20
+summary: >-
+  Waehrend der Corona-Pandemie entstand eine Plattform, die Nachbarschaftshilfe
+  in 16 Orten im Zollernalbkreis koordinierbar machte.
+date: 2020-03-20T00:00:00.000Z
 tags:
   - project
   - software
@@ -11,6 +13,7 @@ technologies:
   - Konzeption
   - Softwareentwicklung
   - Krisenkommunikation
+submodule_skip: true
 ---
 Zu Beginn der Corona-Pandemie habe ich die Plattform **Wir helfen Nachbarn** fuer 16 Orte im Zollernalbkreis entwickelt. Sie sollte schnell, unbuerokratisch und verstaendlich dazu beitragen, dass Hilfe vor Ort sichtbar und organisierbar wird.
 

@@ -1,24 +1,27 @@
 ---
-title: "kirchzettel"
-summary: "Kirchzettel =========== Create various church bulletins in Microsoft Word format from a JSON calendar source."
-date: 2019-02-04
-updated: 2019-02-04
-repository_owner: "potofcoffee"
-repository_owner_url: "https://github.com/potofcoffee"
-repository_url: "https://github.com/potofcoffee/kirchzettel"
-repository_platform: "GitHub"
-homepage_url: ""
-license: "GPL-3.0"
-license_url: "https://github.com/potofcoffee/kirchzettel/blob/master/LICENSE"
-language: "PHP"
+title: kirchzettel
+summary: >-
+  Kirchzettel =========== Create various church bulletins in Microsoft Word
+  format from a JSON calendar source.
+date: 2019-02-04T00:00:00.000Z
+updated: 2019-02-04T00:00:00.000Z
+repository_owner: potofcoffee
+repository_owner_url: 'https://github.com/potofcoffee'
+repository_url: 'https://github.com/potofcoffee/kirchzettel'
+repository_platform: GitHub
+homepage_url: ''
+license: GPL-3.0
+license_url: 'https://github.com/potofcoffee/kirchzettel/blob/master/LICENSE'
+language: PHP
 tags:
-  - "project"
-  - "open-source"
-  - "github"
-  - "user"
-  - "php"
+  - project
+  - open-source
+  - github
+  - user
+  - php
 technologies:
-  - "PHP"
+  - PHP
+submodule_skip: true
 ---
 
 Kirchzettel

@@ -1,24 +1,25 @@
 ---
-title: "potter"
-summary: "composer require peregrinus/potter"
-date: 2018-05-31
-updated: 2018-06-02
-repository_owner: "potofcoffee"
-repository_owner_url: "https://github.com/potofcoffee"
-repository_url: "https://github.com/potofcoffee/potter"
-repository_platform: "GitHub"
-homepage_url: ""
-license: "GPL 3.0+"
-license_url: "https://www.gnu.org/licenses/gpl-3.0.txt"
-language: "PHP"
+title: potter
+summary: composer require peregrinus/potter
+date: 2018-05-31T00:00:00.000Z
+updated: 2018-06-02T00:00:00.000Z
+repository_owner: potofcoffee
+repository_owner_url: 'https://github.com/potofcoffee'
+repository_url: 'https://github.com/potofcoffee/potter'
+repository_platform: GitHub
+homepage_url: ''
+license: GPL 3.0+
+license_url: 'https://www.gnu.org/licenses/gpl-3.0.txt'
+language: PHP
 tags:
-  - "project"
-  - "open-source"
-  - "github"
-  - "user"
-  - "php"
+  - project
+  - open-source
+  - github
+  - user
+  - php
 technologies:
-  - "PHP"
+  - PHP
+submodule_skip: true
 ---
 
 # potter

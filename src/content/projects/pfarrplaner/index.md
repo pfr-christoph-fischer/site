@@ -1,7 +1,9 @@
 ---
 title: Pfarrplaner
-summary: Der Pfarrplaner ist eine regio-lokale Gemeindemanagement-Plattform, die aus konkreten Anforderungen kirchlicher Praxis entstanden ist.
-date: 2018-01-01
+summary: >-
+  Der Pfarrplaner ist eine regio-lokale Gemeindemanagement-Plattform, die aus
+  konkreten Anforderungen kirchlicher Praxis entstanden ist.
+date: 2018-01-01T00:00:00.000Z
 tags:
   - project
   - software
@@ -11,6 +13,7 @@ technologies:
   - Konzeption
   - Softwareentwicklung
   - Gemeindepraxis
+submodule_skip: true
 ---
 Seit 2018 entwickle und betreue ich fuer den Kirchenbezirk Balingen den **Pfarrplaner**. Ausgangspunkt war eine sehr einfache Frage: Wie lassen sich wiederkehrende Aufgaben in Gemeinden digital so abbilden, dass sie im Alltag wirklich helfen?
 

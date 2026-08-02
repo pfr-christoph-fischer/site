@@ -1,24 +1,28 @@
 ---
-title: "kOOLDAV"
-summary: "kOOLDAV is aiming to be a drop in CardDAV server for kOOL. It allows users to synchronize their devices and addressbook with an existing kOOL install. Currently, it is read only."
-date: 2013-12-11
-updated: 2013-12-11
-repository_owner: "potofcoffee"
-repository_owner_url: "https://github.com/potofcoffee"
-repository_url: "https://github.com/potofcoffee/kOOLDAV"
-repository_platform: "GitHub"
-homepage_url: ""
-license: "GPL 3.0+"
-license_url: "https://www.gnu.org/licenses/gpl-3.0.txt"
-language: "PHP"
+title: kOOLDAV
+summary: >-
+  kOOLDAV is aiming to be a drop in CardDAV server for kOOL. It allows users to
+  synchronize their devices and addressbook with an existing kOOL install.
+  Currently, it is read only.
+date: 2013-12-11T00:00:00.000Z
+updated: 2013-12-11T00:00:00.000Z
+repository_owner: potofcoffee
+repository_owner_url: 'https://github.com/potofcoffee'
+repository_url: 'https://github.com/potofcoffee/kOOLDAV'
+repository_platform: GitHub
+homepage_url: ''
+license: GPL 3.0+
+license_url: 'https://www.gnu.org/licenses/gpl-3.0.txt'
+language: PHP
 tags:
-  - "project"
-  - "open-source"
-  - "github"
-  - "user"
-  - "php"
+  - project
+  - open-source
+  - github
+  - user
+  - php
 technologies:
-  - "PHP"
+  - PHP
+submodule_skip: true
 ---
 
 # What is kOOLDAV

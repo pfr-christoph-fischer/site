@@ -1,24 +1,25 @@
 ---
-title: "DistributionListUpdater"
-summary: "DistributionListUpdater ======================="
-date: 2018-11-04
-updated: 2019-11-09
-repository_owner: "potofcoffee"
-repository_owner_url: "https://github.com/potofcoffee"
-repository_url: "https://github.com/potofcoffee/DistributionListUpdater"
-repository_platform: "GitHub"
-homepage_url: ""
-license: "GPL-3.0"
-license_url: "https://github.com/potofcoffee/DistributionListUpdater/blob/master/LICENSE"
-language: "C#"
+title: DistributionListUpdater
+summary: DistributionListUpdater =======================
+date: 2018-11-04T00:00:00.000Z
+updated: 2019-11-09T00:00:00.000Z
+repository_owner: potofcoffee
+repository_owner_url: 'https://github.com/potofcoffee'
+repository_url: 'https://github.com/potofcoffee/DistributionListUpdater'
+repository_platform: GitHub
+homepage_url: ''
+license: GPL-3.0
+license_url: 'https://github.com/potofcoffee/DistributionListUpdater/blob/master/LICENSE'
+language: C#
 tags:
-  - "project"
-  - "open-source"
-  - "github"
-  - "user"
-  - "c"
+  - project
+  - open-source
+  - github
+  - user
+  - c
 technologies:
-  - "C#"
+  - C#
+submodule_skip: true
 ---
 
 DistributionListUpdater

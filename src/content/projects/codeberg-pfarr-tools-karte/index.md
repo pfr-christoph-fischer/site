@@ -1,24 +1,28 @@
 ---
-title: "karte"
-summary: "<p align=\"center\" <a href=\"https://karte.pfarr.tools\" target=\" blank\" <img src=\"https://karte.pfarr.tools/img/logo/logo.png\" width=\"400\" alt=\"Logo der Pfarrstellenkarte\" </a </p"
-date: 2023-08-11
-updated: 2024-12-03
-repository_owner: "pfarr.tools"
-repository_owner_url: "https://pfarr.tools"
-repository_url: "https://codeberg.org/pfarr.tools/karte"
-repository_platform: "Codeberg"
-homepage_url: ""
-license: "GPL 3.0+"
-license_url: "https://codeberg.org/pfarr.tools/karte/src/branch/main/LICENSE"
-language: "CSS"
+title: karte
+summary: >-
+  <p align="center" <a href="https://karte.pfarr.tools" target=" blank" <img
+  src="https://karte.pfarr.tools/img/logo/logo.png" width="400" alt="Logo der
+  Pfarrstellenkarte" </a </p
+date: 2023-08-11T00:00:00.000Z
+updated: 2024-12-03T00:00:00.000Z
+repository_owner: pfarr.tools
+repository_owner_url: 'https://pfarr.tools'
+repository_url: 'https://codeberg.org/pfarr.tools/karte'
+repository_platform: Codeberg
+homepage_url: ''
+license: GPL 3.0+
+license_url: 'https://codeberg.org/pfarr.tools/karte/src/branch/main/LICENSE'
+language: CSS
 tags:
-  - "project"
-  - "open-source"
-  - "codeberg"
-  - "organization"
-  - "css"
+  - project
+  - open-source
+  - codeberg
+  - organization
+  - css
 technologies:
-  - "CSS"
+  - CSS
+submodule_skip: true
 ---
 
 <p align="center"><a href="https://karte.pfarr.tools" target="_blank"><img src="https://karte.pfarr.tools/img/logo/logo.png" width="400" alt="Logo der Pfarrstellenkarte"></a></p>

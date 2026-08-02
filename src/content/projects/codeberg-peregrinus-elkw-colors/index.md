@@ -1,24 +1,25 @@
 ---
-title: "elkw-colors"
-summary: "elkw colors ==========="
-date: 2024-11-22
-updated: 2024-11-22
-repository_owner: "peregrinus"
-repository_owner_url: "https://christoph-fischer.de"
-repository_url: "https://codeberg.org/peregrinus/elkw-colors"
-repository_platform: "Codeberg"
-homepage_url: ""
-license: "GPL 3.0+"
-license_url: "https://codeberg.org/peregrinus/elkw-colors/src/branch/main/LICENSE"
-language: "SCSS"
+title: elkw-colors
+summary: elkw colors ===========
+date: 2024-11-22T00:00:00.000Z
+updated: 2024-11-22T00:00:00.000Z
+repository_owner: peregrinus
+repository_owner_url: 'https://christoph-fischer.de'
+repository_url: 'https://codeberg.org/peregrinus/elkw-colors'
+repository_platform: Codeberg
+homepage_url: ''
+license: GPL 3.0+
+license_url: 'https://codeberg.org/peregrinus/elkw-colors/src/branch/main/LICENSE'
+language: SCSS
 tags:
-  - "project"
-  - "open-source"
-  - "codeberg"
-  - "user"
-  - "scss"
+  - project
+  - open-source
+  - codeberg
+  - user
+  - scss
 technologies:
-  - "SCSS"
+  - SCSS
+submodule_skip: true
 ---
 
 elkw-colors

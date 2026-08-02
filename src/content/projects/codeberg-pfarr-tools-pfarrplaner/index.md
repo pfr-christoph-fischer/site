@@ -1,24 +1,28 @@
 ---
-title: "pfarrplaner"
-summary: "<p align=\"center\" <img src=\"https://www.pfarrplaner.de/img/logo/pfarrplaner.png\" alt=\"Pfarrplaner Logo\" </p"
-date: 2022-12-03
-updated: 2026-05-27
-repository_owner: "pfarr.tools"
-repository_owner_url: "https://pfarr.tools"
-repository_url: "https://codeberg.org/pfarr.tools/pfarrplaner"
-repository_platform: "Codeberg"
-homepage_url: ""
-license: "GPL 3.0+"
-license_url: "https://codeberg.org/pfarr.tools/pfarrplaner/src/branch/main/LICENSE"
-language: "PHP"
+title: pfarrplaner
+summary: >-
+  <p align="center" <img
+  src="https://www.pfarrplaner.de/img/logo/pfarrplaner.png" alt="Pfarrplaner
+  Logo" </p
+date: 2022-12-03T00:00:00.000Z
+updated: 2026-05-27T00:00:00.000Z
+repository_owner: pfarr.tools
+repository_owner_url: 'https://pfarr.tools'
+repository_url: 'https://codeberg.org/pfarr.tools/pfarrplaner'
+repository_platform: Codeberg
+homepage_url: ''
+license: GPL 3.0+
+license_url: 'https://codeberg.org/pfarr.tools/pfarrplaner/src/branch/main/LICENSE'
+language: PHP
 tags:
-  - "project"
-  - "open-source"
-  - "codeberg"
-  - "organization"
-  - "php"
+  - project
+  - open-source
+  - codeberg
+  - organization
+  - php
 technologies:
-  - "PHP"
+  - PHP
+submodule_skip: true
 ---
 
 # Pfarrplaner

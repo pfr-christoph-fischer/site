@@ -1,24 +1,28 @@
 ---
-title: "cutter2"
-summary: "This is an online tool to cut images with predefined aspect ratios and label them with a copyrights watermark. For further processing, images can be ... simply saved to a server directory downloaded assigned to a kOOL..."
-date: 2019-01-10
-updated: 2019-01-10
-repository_owner: "potofcoffee"
-repository_owner_url: "https://github.com/potofcoffee"
-repository_url: "https://github.com/potofcoffee/cutter2"
-repository_platform: "GitHub"
-homepage_url: ""
-license: "GPL-3.0"
-license_url: "https://github.com/potofcoffee/cutter2/blob/master/LICENSE"
-language: "PHP"
+title: cutter2
+summary: >-
+  This is an online tool to cut images with predefined aspect ratios and label
+  them with a copyrights watermark. For further processing, images can be ...
+  simply saved to a server directory downloaded assigned to a kOOL...
+date: 2019-01-10T00:00:00.000Z
+updated: 2019-01-10T00:00:00.000Z
+repository_owner: potofcoffee
+repository_owner_url: 'https://github.com/potofcoffee'
+repository_url: 'https://github.com/potofcoffee/cutter2'
+repository_platform: GitHub
+homepage_url: ''
+license: GPL-3.0
+license_url: 'https://github.com/potofcoffee/cutter2/blob/master/LICENSE'
+language: PHP
 tags:
-  - "project"
-  - "open-source"
-  - "github"
-  - "user"
-  - "php"
+  - project
+  - open-source
+  - github
+  - user
+  - php
 technologies:
-  - "PHP"
+  - PHP
+submodule_skip: true
 ---
 
 # cutter

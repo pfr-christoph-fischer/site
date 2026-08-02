@@ -1,24 +1,25 @@
 ---
-title: "pfarrplaner-dockerized"
-summary: "planer dockerized ================="
-date: 2026-05-28
-updated: 2026-05-28
-repository_owner: "pfarr.tools"
-repository_owner_url: "https://pfarr.tools"
-repository_url: "https://codeberg.org/pfarr.tools/pfarrplaner-dockerized"
-repository_platform: "Codeberg"
-homepage_url: ""
-license: "GPL 3.0+"
-license_url: "https://www.gnu.org/licenses/gpl-3.0.txt"
-language: "Shell"
+title: pfarrplaner-dockerized
+summary: planer dockerized =================
+date: 2026-05-28T00:00:00.000Z
+updated: 2026-05-28T00:00:00.000Z
+repository_owner: pfarr.tools
+repository_owner_url: 'https://pfarr.tools'
+repository_url: 'https://codeberg.org/pfarr.tools/pfarrplaner-dockerized'
+repository_platform: Codeberg
+homepage_url: ''
+license: GPL 3.0+
+license_url: 'https://www.gnu.org/licenses/gpl-3.0.txt'
+language: Shell
 tags:
-  - "project"
-  - "open-source"
-  - "codeberg"
-  - "organization"
-  - "shell"
+  - project
+  - open-source
+  - codeberg
+  - organization
+  - shell
 technologies:
-  - "Shell"
+  - Shell
+submodule_skip: true
 ---
 
 planer-dockerized

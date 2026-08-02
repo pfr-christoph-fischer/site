@@ -1,24 +1,25 @@
 ---
-title: "nacht-der-thesen"
-summary: "Nacht der Thesen ================"
-date: 2020-10-23
-updated: 2020-10-29
-repository_owner: "potofcoffee"
-repository_owner_url: "https://github.com/potofcoffee"
-repository_url: "https://github.com/potofcoffee/nacht-der-thesen"
-repository_platform: "GitHub"
-homepage_url: ""
-license: "GPL-3.0"
-license_url: "https://github.com/potofcoffee/nacht-der-thesen/blob/master/LICENSE"
-language: "PHP"
+title: nacht-der-thesen
+summary: Nacht der Thesen ================
+date: 2020-10-23T00:00:00.000Z
+updated: 2020-10-29T00:00:00.000Z
+repository_owner: potofcoffee
+repository_owner_url: 'https://github.com/potofcoffee'
+repository_url: 'https://github.com/potofcoffee/nacht-der-thesen'
+repository_platform: GitHub
+homepage_url: ''
+license: GPL-3.0
+license_url: 'https://github.com/potofcoffee/nacht-der-thesen/blob/master/LICENSE'
+language: PHP
 tags:
-  - "project"
-  - "open-source"
-  - "github"
-  - "user"
-  - "php"
+  - project
+  - open-source
+  - github
+  - user
+  - php
 technologies:
-  - "PHP"
+  - PHP
+submodule_skip: true
 ---
 
 Nacht der Thesen
