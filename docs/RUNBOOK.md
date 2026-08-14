@@ -452,11 +452,14 @@ DEPLOY_DELETE=false
 DEPLOY_RSYNC_ARGS=--compress-choice=zstd
 SHARE_BATCH_URLS=https://www.facebook.com/sharer/sharer.php?u=<permalink>,https://kirche.social/@christoph
 PFARRPLANER_INSTANCES=[{"host":"www.pfarrplaner.de","token":"token-for-first-instance"},{"host":"example.org","token":"token-for-second-instance"}]
+INFLUENCE_FEED_URL=https://influence.christoph-fischer.de/api/feed/published.json
 ```
 
 `SHARE_BATCH_URLS` accepts comma- or newline-separated URLs. Supported placeholders are `<permalink>`, `<title>`, `<summary>`, and `<text>`.
 
 `PFARRPLANER_INSTANCES` accepts a single-line JSON array of objects with `host` and `token` fields.
+
+Each build synchronizes the published Influence posts into `src/content/posts/`. The feed must be reachable during the build. If it is protected, configure `INFLUENCE_FEED_USERNAME` and `INFLUENCE_FEED_PASSWORD` as single-line `.env` values.
 
 ### Full release
 
