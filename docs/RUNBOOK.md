@@ -273,8 +273,8 @@ npm run fix:sermon-audio-durations -- --dry-run
 
 `npm run fix:sermon-cover-extensions`
 
-- renames legacy `cover.` files to `cover.jpg`
-- rewrites `cover: cover.` frontmatter lines to `cover: cover.jpg`
+- renames generic entry media files to `<entry-slug>.<ext>`
+- updates matching `cover`, `audio`, and `image` frontmatter values
 
 `npm run fix:sermon-bible-version-tags`
 
@@ -338,11 +338,11 @@ Structure:
 ```text
 src/content/podcasts/christoph-talks/
   index.md
-  cover.jpg
+  christoph-talks.jpg
   erste-folge/
     index.md
-    episode.mp3
-    cover.jpg
+    erste-folge.mp3
+    erste-folge.jpg
 ```
 
 Series frontmatter:
@@ -352,7 +352,7 @@ Series frontmatter:
 title: Christoph talks
 summary: Gespraeche, Beobachtungen und digitale Randnotizen.
 date: 2026-06-02
-cover: cover.jpg
+cover: christoph-talks.jpg
 cover_alt: Kurze, konkrete Bildbeschreibung.
 podcast_feed_title: Christoph talks
 podcast_feed_description: Gespraeche, Beobachtungen und digitale Randnotizen.
@@ -371,9 +371,9 @@ title: Erste Folge
 summary: Kurze Beschreibung fuer Archiv, Feed und Suchseite.
 date: 2026-06-02
 subtitle: Optionaler Untertitel fuer Feed und Detailseite
-audio: episode.mp3
+audio: erste-folge.mp3
 audio_duration: 28:14
-cover: cover.jpg
+cover: erste-folge.jpg
 cover_alt: Kurze, konkrete Bildbeschreibung.
 episode_number: 1
 season_number: 1
@@ -672,7 +672,7 @@ This section lists every script entrypoint in [`scripts/`](/home/christoph/dev/c
 - `scripts/fix-sermon-audio-durations.mjs`
   Fills missing sermon `audio_duration` values. Supports `--dry-run`.
 - `scripts/fix-sermon-cover-extensions.mjs`
-  Renames legacy `cover.` files to `cover.jpg` and updates matching frontmatter.
+  Renames generic entry media files to `<entry-slug>.<ext>` and updates matching frontmatter.
 - `scripts/generate-site-assets.mjs`
   Rebuilds default generated icon and social image assets when the embedded SVG changes.
 - `scripts/import-latest-sermon.mjs`

@@ -32,6 +32,7 @@
     "migrate:sermons": "node scripts/migrate-sermons.mjs",
     "rewrite:sermons-markdown": "node scripts/rewrite-sermons-markdown.mjs",
     "fix:sermon-cover-extensions": "node scripts/fix-sermon-cover-extensions.mjs",
+    "migrate:entry-media-names": "node scripts/migrate-entry-media-names.mjs",
     "fix:sermon-bible-version-tags": "node scripts/strip-sermon-bible-version-tags.mjs",
     "extract:material": "node scripts/extract-material.mjs",
     "check:submodules": "node scripts/check-submodule-candidates.mjs"

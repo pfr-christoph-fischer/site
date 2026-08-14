@@ -266,18 +266,18 @@ async function main() {
 
   if (overrides.image) {
     const ext = path.extname(overrides.image) || ".jpg";
-    coverFile = `cover${ext}`;
+    coverFile = `${slug}${ext}`;
     fs.copyFileSync(path.resolve(overrides.image), path.join(targetDir, coverFile));
   } else if (sermon.image && String(sermon.image).startsWith("attachments/")) {
     const imageUrl = `https://${host.host}/image/${String(sermon.image).replace("attachments/", "")}`;
     const ext = path.extname(sermon.image) || ".jpg";
-    coverFile = `cover${ext}`;
+    coverFile = `${slug}${ext}`;
     await downloadFile(imageUrl, path.join(targetDir, coverFile), host.token);
   }
 
   if (overrides.audio) {
     const ext = path.extname(overrides.audio) || ".mp3";
-    audioFile = `audio${ext}`;
+    audioFile = `${slug}${ext}`;
     const sourceAudioPath = path.resolve(overrides.audio);
     fs.copyFileSync(sourceAudioPath, path.join(targetDir, audioFile));
     if (!audioDuration && ext.toLowerCase() === ".mp3") {
@@ -288,7 +288,7 @@ async function main() {
       ? sermon.audio_recording
       : `https://www.christoph-fischer.de${sermon.audio_recording}`;
     const ext = path.extname(audioUrl) || ".mp3";
-    audioFile = `audio${ext}`;
+    audioFile = `${slug}${ext}`;
     const targetAudioPath = path.join(targetDir, audioFile);
     await downloadFile(audioUrl, targetAudioPath);
     if (!audioDuration && ext.toLowerCase() === ".mp3") {

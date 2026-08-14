@@ -168,7 +168,7 @@ Series example:
 title: Christoph talks
 summary: Gespraeche, Beobachtungen und digitale Randnotizen.
 date: 2026-06-02
-cover: cover.jpg
+cover: christoph-talks.jpg
 cover_alt: Podcastcover fuer Christoph talks.
 podcast_feed_title: Christoph talks
 podcast_feed_description: Gespraeche, Beobachtungen und digitale Randnotizen.
@@ -189,7 +189,7 @@ date: 2026-06-02
 subtitle: Ein moeglicher Untertitel
 audio: episode.mp3
 audio_duration: 28:14
-cover: cover.jpg
+cover: erste-folge.jpg
 cover_alt: Covermotiv der Folge.
 episode_number: 1
 season_number: 1

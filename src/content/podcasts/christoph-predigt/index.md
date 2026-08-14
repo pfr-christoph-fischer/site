@@ -7,7 +7,7 @@ date: 2026-05-31T00:00:00.000Z
 tags:
   - podcast-series
   - predigt
-cover: cover.jpg
+cover: christoph-predigt.jpg
 cover_alt: Podcastmotiv zu "Christoph predigt".
 podcast_external_feed: /podcast.xml
 submodule_skip: true
