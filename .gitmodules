@@ -1693,3 +1693,8 @@
 	path = src/content/sermons/2026-07-26-licht
 	url = git@github.com:pfr-christoph-fischer/predigt-2026-07-26-licht.git
 	branch = main
+
+[submodule "src/content/sermons/2026-08-16-ich-liebe-es"]
+	path = src/content/sermons/2026-08-16-ich-liebe-es
+	url = git@github.com:pfr-christoph-fischer/predigt-2026-08-16-ich-liebe-es.git
+	branch = main
