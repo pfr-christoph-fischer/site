@@ -10,6 +10,10 @@ series: Trinitatiszeit 2026
 summary: "Was, wenn Gott schweigt? Wenn die Tür verschlossen scheint und selbst Jesus auf Abstand hält? Eine kanaanäische Frau gibt nicht auf. Sie widerspricht – und Jesus nennt ihren Glauben groß. Eine Predigt über einen Glauben, der Gottes Güte mehr zutraut als dem, was er gerade erlebt."
 source: pfarrplaner
 source_id: "345@planer.pfarr.tools"
+cover: und-die-kruemel.jpg
+cover_alt: "Titelbild zur Predigt \"Und die Krümel?\"."
+audio: und-die-kruemel.mp3
+audio_duration: "11:01"
 listed: true
 index: true
 federate: true
