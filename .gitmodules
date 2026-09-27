@@ -1698,3 +1698,8 @@
 	path = src/content/sermons/2026-08-16-ich-liebe-es
 	url = git@github.com:pfr-christoph-fischer/predigt-2026-08-16-ich-liebe-es.git
 	branch = main
+
+[submodule "src/content/sermons/2026-09-27-und-die-kruemel"]
+	path = src/content/sermons/2026-09-27-und-die-kruemel
+	url = git@github.com:pfr-christoph-fischer/predigt-2026-09-27-und-die-kruemel.git
+	branch = main
