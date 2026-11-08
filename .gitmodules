@@ -1723,3 +1723,8 @@
 	path = src/content/sermons/2026-11-07-so-sehnt-sich-meine-seele-nach-dir
 	url = git@github.com:pfr-christoph-fischer/predigt-2026-11-07-so-sehnt-sich-meine-seele-nach-dir.git
 	branch = main
+
+[submodule "src/content/sermons/2026-11-08-und-wenn-er-kommt"]
+	path = src/content/sermons/2026-11-08-und-wenn-er-kommt
+	url = git@github.com:pfr-christoph-fischer/predigt-2026-11-08-und-wenn-er-kommt.git
+	branch = main
