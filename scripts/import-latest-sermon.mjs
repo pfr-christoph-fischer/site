@@ -1,11 +1,17 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createInterface } from "node:readline/promises";
+import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { stdin as input, stdout as output } from "node:process";
 import { readMp3Duration } from "./lib/audio-metadata.mjs";
 import { writeCcBySa40LicenseFile } from "./lib/license-files.mjs";
 import { loadPfarrplanerHosts } from "./lib/pfarrplaner-config.mjs";
+import {
+  hasMissingMediaOptions,
+  shouldAbortForMissingMedia,
+  shouldRunFollowUp
+} from "./lib/import-latest-sermon-flow.mjs";
 import {
   normalizeSermonBody,
   stripBibleVersionTag,
@@ -225,6 +231,36 @@ async function chooseSermon(sermons, options) {
   }
 }
 
+async function askYesNo(question) {
+  const rl = createInterface({ input, output });
+  try {
+    return await rl.question(`${question} [y/N] `);
+  } finally {
+    rl.close();
+  }
+}
+
+function isInteractive() {
+  return input.isTTY && output.isTTY;
+}
+
+function runFollowUpScript(folderName) {
+  const npmCommand = process.env.npm_execpath ? process.execPath : "npm";
+  const npmArgs = process.env.npm_execpath ? [process.env.npm_execpath] : [];
+  execFileSync(npmCommand, [
+    ...npmArgs,
+    "run",
+    "extract:materials",
+    "--",
+    folderName,
+    "sermons"
+  ], { cwd: projectRoot, stdio: "inherit" });
+}
+
+function pushRepository() {
+  execFileSync("git", ["push"], { cwd: projectRoot, stdio: "inherit" });
+}
+
 async function main() {
   const overrides = parseArgs(process.argv.slice(2));
   const hosts = loadPfarrplanerHosts(projectRoot);
@@ -253,6 +289,17 @@ async function main() {
   if (fs.existsSync(targetDir)) {
     console.log(`Skipping existing sermon: ${targetDir}`);
     return;
+  }
+
+  if (hasMissingMediaOptions(overrides)) {
+    console.warn("Warning: --image and --audio were not both provided.");
+    if (isInteractive()) {
+      const answer = await askYesNo("Abort the import?");
+      if (shouldAbortForMissingMedia(answer)) {
+        console.log("Import aborted.");
+        return;
+      }
+    }
   }
 
   fs.mkdirSync(targetDir, { recursive: true });
@@ -331,6 +378,18 @@ async function main() {
 
   fs.writeFileSync(path.join(targetDir, "index.md"), `${frontmatter}${body}`);
   console.log(`Imported sermon to ${targetDir}`);
+
+  if (!isInteractive()) return;
+
+  const extractAnswer = await askYesNo(`Run extract:materials for ${path.basename(targetDir)} now?`);
+  if (shouldRunFollowUp(extractAnswer)) {
+    runFollowUpScript(path.basename(targetDir));
+  }
+
+  const pushAnswer = await askYesNo("Push the whole repository now?");
+  if (shouldRunFollowUp(pushAnswer)) {
+    pushRepository();
+  }
 }
 
 main().catch((error) => {

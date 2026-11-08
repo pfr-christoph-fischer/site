@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "clean": "node scripts/clean-site-output.mjs",
+    "test": "node --test",
     "dev": "npx @11ty/eleventy --serve",
     "generate:assets": "node scripts/generate-site-assets.mjs",
     "sync:influence": "node scripts/sync-influence-posts.mjs",
@@ -35,6 +36,7 @@
     "migrate:entry-media-names": "node scripts/migrate-entry-media-names.mjs",
     "fix:sermon-bible-version-tags": "node scripts/strip-sermon-bible-version-tags.mjs",
     "extract:material": "node scripts/extract-material.mjs",
+    "extract:materials": "node scripts/extract-material.mjs",
     "check:submodules": "node scripts/check-submodule-candidates.mjs"
   },
   "dependencies": {
