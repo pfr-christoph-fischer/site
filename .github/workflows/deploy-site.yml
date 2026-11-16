@@ -1,0 +1,93 @@
+name: Build and deploy site
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-site
+  cancel-in-progress: false
+
+env:
+  NODE_VERSION: 20.x
+  PUPPETEER_SKIP_DOWNLOAD: true
+
+jobs:
+  build:
+    name: Build site
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          submodules: false
+
+      - name: Configure public submodule URLs
+        run: |
+          git config --global url."https://github.com/".insteadOf "git@github.com:"
+          git config --global url."https://codeberg.org/".insteadOf "git@codeberg.org:"
+          git submodule sync --recursive
+          git submodule update --init --recursive
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build clean site
+        env:
+          INFLUENCE_FEED_URL: ${{ vars.INFLUENCE_FEED_URL }}
+          INFLUENCE_FEED_USERNAME: ${{ secrets.INFLUENCE_FEED_USERNAME }}
+          INFLUENCE_FEED_PASSWORD: ${{ secrets.INFLUENCE_FEED_PASSWORD }}
+          SHARE_BATCH_URLS: ${{ vars.SHARE_BATCH_URLS }}
+        run: npm run build:clean
+
+      - name: Upload finished site
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-${{ github.sha }}
+          path: _site
+          if-no-files-found: error
+          retention-days: 1
+
+  deploy:
+    name: Deploy site
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download finished site
+        uses: actions/download-artifact@v4
+        with:
+          name: site-${{ github.sha }}
+          path: _site
+
+      - name: Configure SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
+
+      - name: Pin deployment host key
+        env:
+          DEPLOY_SSH_KNOWN_HOSTS: ${{ secrets.DEPLOY_SSH_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d "$HOME/.ssh"
+          printf '%s\n' "$DEPLOY_SSH_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/known_hosts"
+
+      - name: Deploy site
+        run: >-
+          rsync -az --delete --human-readable --progress
+          _site/
+          peregrinus@toph.de:/home/peregrinus/sites/christoph-fischer.de/

@@ -55,6 +55,21 @@ For a full clean rebuild:
 npm run build:clean
 ```
 
+Production deployment is automated by GitHub Actions. Every push to `main`
+builds a clean site in CI and deploys only the resulting `_site/` artifact to
+`peregrinus@toph.de:/home/peregrinus/sites/christoph-fischer.de/`. The workflow
+is also available through `workflow_dispatch`.
+
+The repository must have these GitHub configuration values for deployment:
+
+- secret `DEPLOY_SSH_PRIVATE_KEY`: private key authorized for `peregrinus@toph.de`
+- secret `DEPLOY_SSH_KNOWN_HOSTS`: pinned `known_hosts` entry for `toph.de`
+- optional variables `INFLUENCE_FEED_URL` and `SHARE_BATCH_URLS`
+- optional secrets `INFLUENCE_FEED_USERNAME` and `INFLUENCE_FEED_PASSWORD`
+
+The local `npm run deploy` command remains available for explicit operator
+deployments, but it is not used by the GitHub Actions workflow.
+
 Run the representative accessibility audit by itself:
 
 ```bash

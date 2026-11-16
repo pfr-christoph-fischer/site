@@ -95,13 +95,25 @@ Use this when incremental output looks suspicious or after structural changes.
 
 ### Static site publish
 
-`npm run publish`
+Push to the `main` branch to run the GitHub Actions workflow
+`.github/workflows/deploy-site.yml`.
 
-- runs `build:clean`
-- deploys `_site/`
-- federates newly released public sermons
+- builds the site from a clean checkout in CI
+- checks out the public content submodules over HTTPS
+- uploads only the finished `_site/` directory as a short-lived artifact
+- deploys that artifact with `rsync --delete` to
+  `peregrinus@toph.de:/home/peregrinus/sites/christoph-fischer.de/`
 
-This is the normal production command for the public site.
+The workflow can also be started manually with `workflow_dispatch`. It needs
+the GitHub secret `DEPLOY_SSH_PRIVATE_KEY` and the pinned host-key secret
+`DEPLOY_SSH_KNOWN_HOSTS`. Optional build configuration uses the repository
+variables `INFLUENCE_FEED_URL` and `SHARE_BATCH_URLS`; protected Influence
+feeds use the secrets `INFLUENCE_FEED_USERNAME` and
+`INFLUENCE_FEED_PASSWORD`.
+
+The local `npm run publish` command remains available for local workflows that
+also need to federate newly released public sermons, but it is not the normal
+production site deployment path.
 
 ### Backend runtime
 
