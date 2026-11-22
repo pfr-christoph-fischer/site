@@ -1738,3 +1738,8 @@
 	path = src/content/sermons/2026-11-15-nicht-weiter-so-erinnern-aufwachen-frieden-stiften
 	url = git@github.com:pfr-christoph-fischer/predigt-2026-11-15-nicht-weiter-so-erinnern-aufwachen-frieden-stiften.git
 	branch = main
+
+[submodule "src/content/sermons/2026-11-22-friedhofswetter"]
+	path = src/content/sermons/2026-11-22-friedhofswetter
+	url = git@github.com:pfr-christoph-fischer/predigt-2026-11-22-friedhofswetter.git
+	branch = main
